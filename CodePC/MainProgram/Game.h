@@ -4,6 +4,8 @@
 #include "Balloon.h"
 #include "Obstacle.h"
 
+#include "Menu.h"
+
 class Game
 {
 private:

@@ -24,7 +24,6 @@ void Game::update()
 	elapsedTimeSinceLastUpdate += clock.restart();
 	while (elapsedTimeSinceLastUpdate > timePerFrame)
 	{
-		elapsedTimeSinceLastUpdate -= timePerFrame;
 
 		// Bounds checking to prevent the player from moving outside the window
 		sf::Vector2f characterPosition = this->character.getPosition();
@@ -67,6 +66,16 @@ void Game::update()
 
 void Game::render()
 {
+	/*Menu menu(WIDTH, HEIGHT);
+
+	while (this->window.isOpen()) {
+		int menuResult = menu.handleInput(window);
+		if (menuResult == 1) break;
+		window.clear();
+		window.draw(menu);
+		window.display();       MENYN ÄR INTE KLAR..
+	}
+*/
 	this->window.clear();
 	this->window.draw(this->character);
 	this->window.draw(*this->balloon);
@@ -76,7 +85,7 @@ void Game::render()
 
 
 Game::Game()
-	:window(sf::VideoMode(WIDTH, HEIGHT), "Flying balloon"),
+	:window(sf::VideoMode(WIDTH, HEIGHT), "Space Invaders v2"),
 	timePerFrame(sf::seconds(1.f / 60.f)),
 	elapsedTimeSinceLastUpdate(sf::Time::Zero),
 	character(WIDTH, HEIGHT, sf::Color::Green, 40.0f, 40.0f, 6.0f), obstacle(HEIGHT, WIDTH, sf::Color::Yellow)
@@ -92,7 +101,7 @@ Game::~Game()
 
 void Game::run()
 {
-	
+
 	while (this->window.isOpen())
 	{
 		handleEvents();
