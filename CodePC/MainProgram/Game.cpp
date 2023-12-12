@@ -20,9 +20,31 @@ void Game::update()
 	}
 	//WTFTHis is bullshit
 	//WTF COMMITS CHANGES
+
 	elapsedTimeSinceLastUpdate += clock.restart();
 	while (elapsedTimeSinceLastUpdate > timePerFrame)
 	{
+		elapsedTimeSinceLastUpdate -= timePerFrame;
+
+		// Bounds checking to prevent the player from moving outside the window
+		sf::Vector2f characterPosition = this->character.getPosition();
+		sf::Vector2f characterSize = this->character.getSize();
+		sf::Vector2u windowSize = this->window.getSize();
+
+		if (characterPosition.x < 0) {
+			this->character.setPosition(0, characterPosition.y);
+		}
+		else if (characterPosition.x > windowSize.x - characterSize.x) {
+			this->character.setPosition(windowSize.x - characterSize.x, characterPosition.y);
+		}
+
+		if (characterPosition.y < 0) {
+			this->character.setPosition(characterPosition.x, 0);
+		}
+		else if (characterPosition.y > windowSize.y - characterSize.y) {
+			this->character.setPosition(characterPosition.x, windowSize.y - characterSize.y);
+		}
+
 		elapsedTimeSinceLastUpdate -= timePerFrame;
 		this->character.act();
 		if (this->balloon->collidedWith(this->obstacle))

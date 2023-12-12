@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Balloon.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -29,8 +30,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Balloon.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Missile.h" />
     <ClInclude Include="Obstacle.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

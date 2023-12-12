@@ -1,7 +1,9 @@
 #include "Character.h"
+const float Character::BalloonHeightAdjustment = 85.0f;
 
 void Character::receiveBalloon(Balloon * theBalloon)
 {
+
 	this->aBallon = theBalloon;
 	this->aBallon->setPosition(this->rectShape.getGlobalBounds().left, this->rectShape.getGlobalBounds().top - 85.f); // 85.0 is the height of the Balloon, should use a memberfunction in Balloon for this
 }
@@ -51,4 +53,23 @@ void Character::releaseBalloon()
 void Character::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	target.draw(this->rectShape);
+}
+//new changes:
+sf::Vector2f Character::getPosition() const
+{
+	return this->rectShape.getPosition();
+}
+
+sf::Vector2f Character::getSize() const
+{
+	return this->rectShape.getSize();
+}
+
+void Character::setPosition(float x, float y)
+{
+	this->rectShape.setPosition(x, y);
+	if (this->aBallon != nullptr) {
+		this->aBallon->setPosition(this->rectShape.getGlobalBounds().left,
+			this->rectShape.getGlobalBounds().top - BalloonHeightAdjustment);
+	}
 }
