@@ -19,6 +19,7 @@ void Game::update()
 		exit(0);
 	}
 
+	//WTF COMMITS CHANGES
 	elapsedTimeSinceLastUpdate += clock.restart();
 	while (elapsedTimeSinceLastUpdate > timePerFrame)
 	{
