@@ -18,7 +18,7 @@ void Game::update()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 		exit(0);
 	}
-
+	//WTFTHis is bullshit
 	//WTF COMMITS CHANGES
 	elapsedTimeSinceLastUpdate += clock.restart();
 	while (elapsedTimeSinceLastUpdate > timePerFrame)
