@@ -15,6 +15,10 @@ void Game::handleEvents()
 
 void Game::update()
 {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+		exit(0);
+	}
+
 	elapsedTimeSinceLastUpdate += clock.restart();
 	while (elapsedTimeSinceLastUpdate > timePerFrame)
 	{
@@ -46,6 +50,7 @@ void Game::render()
 	this->window.draw(this->obstacle);
 	this->window.display();
 }
+
 
 Game::Game()
 	:window(sf::VideoMode(WIDTH, HEIGHT), "Flying balloon"),
