@@ -21,8 +21,11 @@
   <ItemGroup>
     <ClCompile Include="Balloon.cpp" />
     <ClCompile Include="Character.cpp" />
-    <ClCompile Include="FlyingBallon.cpp" />
+    <ClCompile Include="FlyingBallon.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Obstacle.cpp" />
   </ItemGroup>
   <ItemGroup>
