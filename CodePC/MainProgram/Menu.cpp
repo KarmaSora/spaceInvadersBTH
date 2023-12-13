@@ -1,17 +1,21 @@
 #include "Menu.h"
 
 Menu::Menu()
-    :windowWidth(600), windowHeight(600), font(), title("title", font), start("start", font)
+    : windowWidth(600), windowHeight(600), xPos(250), yPos(400), color(250, 0, 0, 0), font(), title("title", font), start("start", font)
     , exit("exit", font)
-    ,window(sf::VideoMode(600, 600), "Menu")
 {
+    this->rectShape.setFillColor(color);
 
 }
 
-Menu::Menu(float windowWidth, float windowHeight, sf::Text title,
-    sf::Text start, sf::Text exit)
+Menu::Menu(float windowWidth, float windowHeight, int xPos, int yPos, sf::Color color, sf::Text title,
+    sf::Text start, sf::Text exit, sf::Font font)
+
+    : windowWidth(windowWidth), windowHeight(windowHeight), xPos(xPos), yPos(yPos),
+    color(color),  title(title), start(start),
+    exit(exit), font(font)
+
 {
-    sf::Font font;
     font.loadFromFile("../Fonts/AeogoProTry-Bold.ttf");
     if (!font.loadFromFile("../Fonts/AeogoProTry-Bold.ttf")) {
         std::cerr << "Error loading font file" << std::endl;
@@ -63,6 +67,26 @@ int Menu::handleInput(sf::RenderWindow& window)
         }
     }
     return 0; //stays at menu
+}
+
+void Menu::setXPos(int xPos)
+{
+    this->xPos = xPos;
+}
+
+void Menu::setYPos(int yPos)
+{
+    this->yPos = yPos;
+}
+
+int Menu::getXPos()
+{
+    return this->xPos;
+}
+
+int Menu::getYPos()
+{
+    return yPos;
 }
 
 void Menu::setFont(sf::Font font)

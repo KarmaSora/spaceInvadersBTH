@@ -8,15 +8,22 @@ private:
 	sf::Text title;
 	sf::Text start;
 	sf::Text exit;
-
+	sf::RectangleShape rectShape;
+	sf::Color color;
+	int xPos, yPos;
 	float windowWidth, windowHeight;
 public:
-	sf::RenderWindow window;
 	Menu();
-	Menu(float windowWidth, float windowHeight, sf::Text title,
-		sf::Text start, sf::Text exit);
+	Menu(float windowWidth, float windowHeight, int xPos, int yPos, sf::Color color, sf::Text title,
+		sf::Text start, sf::Text exit, sf::Font font);
+
+
 	int handleInput(sf::RenderWindow& window);
 private:
+	void setXPos(int xPos);
+	void setYPos(int yPos);
+	int getXPos();
+	int getYPos();
 
 	void setFont(sf::Font font);
 	void setTitle(sf::Text title);

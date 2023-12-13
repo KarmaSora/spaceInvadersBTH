@@ -81,6 +81,7 @@ void Game::render()
 */
 
 	this->window.clear();
+	this->window.draw(this->menu);
 	this->window.draw(this->character);
 	this->window.draw(*this->balloon);
 	this->window.draw(this->obstacle);

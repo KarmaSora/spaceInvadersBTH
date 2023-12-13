@@ -20,7 +20,8 @@ private:
 	Obstacle obstacle;
 	Character character;
 	Balloon * balloon;
-	
+	Menu menu; //added
+
 	void handleEvents();
 	void update();
 	void render();
