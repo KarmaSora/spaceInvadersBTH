@@ -24,7 +24,6 @@ private:
 	void handleEvents();
 	void update();
 	void render();
-	void terminate();
 public:
 	Game();
 	~Game();

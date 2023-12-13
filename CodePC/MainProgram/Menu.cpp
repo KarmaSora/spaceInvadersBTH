@@ -1,8 +1,18 @@
 #include "Menu.h"
 
-Menu::Menu(float windowWidth, float windowHeight)
+Menu::Menu()
+    :windowWidth(600), windowHeight(600), font(), title("title", font), start("start", font)
+    , exit("exit", font)
+    ,window(sf::VideoMode(600, 600), "Menu")
+{
+
+}
+
+Menu::Menu(float windowWidth, float windowHeight, sf::Text title,
+    sf::Text start, sf::Text exit)
 {
     sf::Font font;
+    font.loadFromFile("../Fonts/AeogoProTry-Bold.ttf");
     if (!font.loadFromFile("../Fonts/AeogoProTry-Bold.ttf")) {
         std::cerr << "Error loading font file" << std::endl;
         std::exit(EXIT_FAILURE);
@@ -53,6 +63,46 @@ int Menu::handleInput(sf::RenderWindow& window)
         }
     }
     return 0; //stays at menu
+}
+
+void Menu::setFont(sf::Font font)
+{
+    this->font = font;
+}
+
+void Menu::setTitle(sf::Text title)
+{
+    this->title = title;
+}
+
+void Menu::setStart(sf::Text start)
+{
+    this->start = start;
+}
+
+void Menu::setExit(sf::Text exit)
+{
+    this->exit = exit;
+}
+
+sf::Font Menu::getFont()
+{
+    return this->font;
+}
+
+sf::Text Menu::getTitle()
+{
+    return this->title;
+}
+
+sf::Text Menu::getStart()
+{
+    return this->start;
+}
+
+sf::Text Menu::getExit()
+{
+    return this->exit;
 }
 
 void Menu::setTextProperties(sf::Text& text, const std::string& content, unsigned int size, const sf::Color& color, float x, float y)

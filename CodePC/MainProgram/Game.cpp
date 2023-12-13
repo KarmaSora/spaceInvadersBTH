@@ -1,6 +1,8 @@
 #include "Game.h"
 #include <iostream>
 
+#include "Menu.h"
+
 void Game::handleEvents()
 {
 	sf::Event event;
@@ -43,6 +45,7 @@ void Game::update()
 		else if (characterPosition.y > windowSize.y - characterSize.y) {
 			this->character.setPosition(characterPosition.x, windowSize.y - characterSize.y);
 		}
+		//
 
 		elapsedTimeSinceLastUpdate -= timePerFrame;
 		this->character.act();
@@ -76,6 +79,7 @@ void Game::render()
 		window.display();       MENYN ÄR INTE KLAR..
 	}
 */
+
 	this->window.clear();
 	this->window.draw(this->character);
 	this->window.draw(*this->balloon);
@@ -102,8 +106,10 @@ Game::~Game()
 void Game::run()
 {
 
+
 	while (this->window.isOpen())
 	{
+
 		handleEvents();
 		update();
 		render();
