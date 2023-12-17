@@ -40,6 +40,7 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 int Menu::handleInput(sf::RenderWindow& window)
 {
     sf::Event event;
+
     while (window.pollEvent(event)) {
         switch (event.type) {
         case sf::Event::Closed:
