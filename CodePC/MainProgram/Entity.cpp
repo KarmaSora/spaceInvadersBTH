@@ -1,7 +1,7 @@
 #include "Entity.h"
 
 Entity::Entity()
-	: alive(true), dX(0), dY(0), speed(10), xPos(400.f), yPos(400.f)
+	: alive(false), dX(0), dY(0), speed(10), xPos(400.f), yPos(400.f)
 {
 
 }
