@@ -27,7 +27,7 @@ int main()
 			switch (ev.type)
 			{
 			case sf::Event::KeyPressed:
-				if (ev.key.code == sf::Keyboard::Escape) {
+				if (ev.key.code == sf::Keyboard::Space) {
 					menuWindow.close();
 					allowGame = true;
 				}
