@@ -91,7 +91,7 @@ void Game::render()
 
 
 Game::Game()
-	:window(sf::VideoMode(WIDTH, HEIGHT), "Space Invaders v2"),
+	:window(sf::VideoMode(WIDTH, HEIGHT), "Space Invaders"),
 	timePerFrame(sf::seconds(1.f / 60.f)),
 	elapsedTimeSinceLastUpdate(sf::Time::Zero),
 	character(WIDTH, HEIGHT, sf::Color::Green, 40.0f, 40.0f, 6.0f), obstacle(HEIGHT, WIDTH, sf::Color::Yellow)
