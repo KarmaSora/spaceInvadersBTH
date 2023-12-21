@@ -53,7 +53,7 @@ void Game::update()
 		if (this->balloon->collidedWith(this->obstacle))
 		{
 			this->balloon->stopMoving();
-			this->character.receiveBalloon(this->balloon);
+			this->character.receiveBalloon(this->balloon.get());
 		}
 		else if (this->balloon->insideWindow() &&
 			this->balloon->isMoving())
@@ -63,26 +63,16 @@ void Game::update()
 		else if (!this->balloon->insideWindow())
 		{
 			this->balloon->stopMoving();
-			this->character.receiveBalloon(this->balloon);
+			this->character.receiveBalloon(this->balloon.get());
 		}
 	}	
 }
 
 void Game::render()
 {
-	/*Menu menu(WIDTH, HEIGHT);
-
-	while (this->window.isOpen()) {
-		int menuResult = menu.handleInput(window);
-		if (menuResult == 1) break;
-		window.clear();
-		window.draw(menu);
-		window.display();       MENYN ÄR INTE KLAR..
-	}
-*/
+	
 
 	this->window.clear();
-	//this->window.draw(this->menu);
 	this->window.draw(this->character);
 	this->window.draw(*this->balloon);
 	this->window.draw(this->obstacle);
@@ -96,13 +86,15 @@ Game::Game()
 	elapsedTimeSinceLastUpdate(sf::Time::Zero),
 	character(WIDTH, HEIGHT, sf::Color::Green, 40.0f, 40.0f, 6.0f), obstacle(HEIGHT, WIDTH, sf::Color::Yellow)
 {
-	this->balloon = new Balloon(3.0f);
-	this->character.receiveBalloon(this->balloon);
+	this->balloon = std::make_unique<Balloon>(3.0f);
+	this->character.receiveBalloon(this->balloon.get()); // Assuming receiveBalloon takes a raw pointer
+	/*this->balloon = new Balloon(3.0f);
+	this->character.receiveBalloon(this->balloon);*/
 }
 
 Game::~Game()
 {
-	delete this->balloon;
+	//delete this->balloon;
 }
 
 void Game::run()

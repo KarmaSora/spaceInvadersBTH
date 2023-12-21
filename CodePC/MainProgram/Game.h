@@ -4,6 +4,8 @@
 #include "Balloon.h"
 #include "Obstacle.h"
 
+#include <memory>
+
 #include "Menu.h"
 
 class Game
@@ -19,7 +21,10 @@ private:
 
 	Obstacle obstacle;
 	Character character;
-	Balloon * balloon;
+	//Balloon * balloon;
+	
+	std::unique_ptr<Balloon>(balloon);
+
 	//Menu menu; //added
 
 	void handleEvents();
