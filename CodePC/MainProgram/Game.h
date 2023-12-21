@@ -3,6 +3,7 @@
 #include "Character.h"
 #include "Balloon.h"
 #include "Obstacle.h"
+#include "Enemy.h"
 
 #include <memory>
 
@@ -13,6 +14,9 @@ class Game
 private:
 	static const int WIDTH = 900;
 	static const int HEIGHT = 600;
+
+	std::vector<Enemy> enemies; /////////////////////////////new
+	sf::Texture enemyTexture;
 private:
 	sf::RenderWindow window;
 	sf::Clock clock;

@@ -4,11 +4,26 @@
 #include "Entity.h"
 
 class Enemy : public Entity {
-private:
-	sf::RectangleShape shape;
-	bool isAlive;
 public:
-	Enemy(float x, float y);
+    sf::RectangleShape shape;
+    bool isAlive;
+
+    Enemy(float x, float y, const sf::Texture& texture) {
+        shape.setSize(sf::Vector2f(60.0f, 60.0f));
+        shape.setPosition(x, y);
+        shape.setTexture(&texture);
+        isAlive = true;
+    }
+
+    void move(float offsetX, float offsetY) {
+        shape.move(offsetX, offsetY);
+    }
+
+    void draw(sf::RenderWindow& window) {
+        if (isAlive) {
+            window.draw(shape);
+        }
+    }
 };
 
 

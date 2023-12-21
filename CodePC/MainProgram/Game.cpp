@@ -76,6 +76,13 @@ void Game::render()
 	this->window.draw(this->character);
 	this->window.draw(*this->balloon);
 	this->window.draw(this->obstacle);
+
+	//////
+	for (auto& enemy : enemies) {
+		enemy.draw(window);
+	}
+	//////
+
 	this->window.display();
 }
 
@@ -90,6 +97,14 @@ Game::Game()
 	this->character.receiveBalloon(this->balloon.get()); // Assuming receiveBalloon takes a raw pointer
 	/*this->balloon = new Balloon(3.0f);
 	this->character.receiveBalloon(this->balloon);*/
+	/////////////////////////////new:
+	enemyTexture.loadFromFile("../Images/invader1.png");
+
+	for (int row = 0; row < 3; row++) {
+		for (int col = 0; col < 5; col++) {
+			enemies.emplace_back(col * 212.0f, row * 60.0f, enemyTexture);
+		}
+	}
 }
 
 Game::~Game()
