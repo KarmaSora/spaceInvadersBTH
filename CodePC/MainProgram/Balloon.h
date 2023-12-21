@@ -1,8 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Obstacle.h"
+#include "Entity.h"
 
-class Balloon :public sf::Drawable
+class Balloon :public Entity
 {
 private:
 	sf::Texture texture;
