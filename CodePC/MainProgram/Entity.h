@@ -30,6 +30,19 @@ public:
     void setDY(int newDY) { dY = newDY; }
     void setAlive(bool isAlive) { alive = isAlive; }
     void setSprite(const sf::Sprite& newSprite) { sprite = newSprite; }
+    // Setters for widthHeight
+    void setWidth(float width) {
+        widthHeight.x = width;
+    }
+
+    void setHeight(float height) {
+        widthHeight.y = height;
+    }
+    // Setters for position
+    void setPosition(float x, float y) {
+        position.x = x;
+        position.y = y;
+    }
 
 
     // Getters
@@ -43,6 +56,35 @@ public:
     int getDY() const { return dY; }
     bool isAlive() const { return alive; }
     const sf::Sprite& getSprite() const { return sprite; }  
+
+    // Getters for widthHeight
+    sf::Vector2f getWidthHeight() const {
+        return widthHeight;
+    }
+
+    float getWidth() const {
+        return widthHeight.x;
+    }
+
+    float getHeight() const {
+        return widthHeight.y;
+    }
+
+    // Getters for position
+    sf::Vector2f getPosition() const {
+        return position;
+    }
+
+    float getXPos() const {
+        return position.x;
+    }
+
+    float getYPos() const {
+        return position.y;
+    }
+
+
+
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
