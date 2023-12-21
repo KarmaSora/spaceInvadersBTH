@@ -8,6 +8,7 @@ class Entity : public sf::Drawable {
 private:
     float xPos, yPos;
     sf::Image image;
+    sf::Sprite sprite;
     int height, width;
     int speed;
     int dX, dY;
@@ -26,6 +27,8 @@ public:
     void setDX(int newDX) { dX = newDX; }
     void setDY(int newDY) { dY = newDY; }
     void setAlive(bool isAlive) { alive = isAlive; }
+    void setSprite(const sf::Sprite& newSprite) { sprite = newSprite; }
+
 
     // Getters
     float getX() const { return xPos; }
@@ -37,6 +40,7 @@ public:
     int getDX() const { return dX; }
     int getDY() const { return dY; }
     bool isAlive() const { return alive; }
+    const sf::Sprite& getSprite() const { return sprite; }  
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
