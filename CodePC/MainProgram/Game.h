@@ -15,7 +15,7 @@ private:
 	static const int WIDTH = 900;
 	static const int HEIGHT = 600;
 
-	std::vector<Enemy> enemies; /////////////////////////////new
+	std::vector<std::unique_ptr<Enemy>> enemies; /////////////////////////////new
 	sf::Texture enemyTexture;
 private:
 	sf::RenderWindow window;
@@ -25,7 +25,6 @@ private:
 
 	Obstacle obstacle;
 	Character character;
-	//Balloon * balloon;
 	
 	std::unique_ptr<Balloon>(balloon);
 
@@ -34,6 +33,8 @@ private:
 	void handleEvents();
 	void update();
 	void render();
+
+	void updateEnemies();
 public:
 	Game();
 	~Game();

@@ -78,12 +78,27 @@ void Game::render()
 	this->window.draw(this->obstacle);
 
 	//////
-	for (auto& enemy : enemies) {
-		enemy.draw(window);
+	updateEnemies();
+	for (const auto& enemy : enemies) {
+		enemy->draw(window);
 	}
 	//////
 
 	this->window.display();
+}
+
+void Game::updateEnemies()
+{
+	for (auto& enemy : enemies) {
+		enemy->update();
+
+		if (enemy->getPosition().x <= 0 || enemy->getPosition().x >= 860) {
+			for (auto& e : enemies) {
+				e->changeDirection();
+			}
+			break;
+		}
+	}
 }
 
 
@@ -101,8 +116,8 @@ Game::Game()
 	enemyTexture.loadFromFile("../Images/invader1.png");
 
 	for (int row = 0; row < 3; row++) {
-		for (int col = 0; col < 5; col++) {
-			enemies.emplace_back(col * 212.0f, row * 60.0f, enemyTexture);
+		for (int col = 0; col < 8; col++) {
+			enemies.push_back(std::make_unique<Enemy>(col * 60.0f, row * 60.0f, enemyTexture));
 		}
 	}
 }
