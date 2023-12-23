@@ -17,6 +17,7 @@ private:
 
 	std::vector<std::unique_ptr<Enemy>> enemies; /////////////////////////////new
 	sf::Texture enemyTexture;
+
 private:
 	sf::RenderWindow window;
 	sf::Clock clock;
@@ -35,6 +36,7 @@ private:
 	void render();
 
 	void updateEnemies();
+
 public:
 	Game();
 	~Game();

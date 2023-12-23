@@ -90,7 +90,7 @@ void Game::render()
 void Game::updateEnemies()
 {
 	for (auto& enemy : enemies) {
-		enemy->update();
+		enemy->update(timePerFrame.asSeconds()); // Pass in the time since last update
 
 		if (enemy->getPosition().x <= 0 || enemy->getPosition().x >= 860) {
 			for (auto& e : enemies) {
