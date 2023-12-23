@@ -4,6 +4,8 @@
 #include "Balloon.h"
 #include "Obstacle.h"
 #include "Enemy.h"
+#include <vector>
+#include <random>
 
 #include <memory>
 

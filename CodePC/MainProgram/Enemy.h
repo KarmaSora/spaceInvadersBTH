@@ -18,12 +18,14 @@ private:
     std::random_device rd;
     std::mt19937 gen;
     std::uniform_int_distribution<> dis;
+
+    int firingDelay;
 public:
     bool getIsAlive() const;
     sf::Vector2f getPosition() const;
     void setPosition(float x, float y);
 
-    Enemy(float x, float y, const sf::Texture& texture);
+    Enemy(float x, float y, const sf::Texture& texture, int firingDelay);
 
     void move();
     void changeDirection();

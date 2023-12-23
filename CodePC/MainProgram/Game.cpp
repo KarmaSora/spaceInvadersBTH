@@ -65,12 +65,12 @@ void Game::update()
 			this->balloon->stopMoving();
 			this->character.receiveBalloon(this->balloon.get());
 		}
-	}	
+	}
 }
 
 void Game::render()
 {
-	
+
 
 	this->window.clear();
 	this->window.draw(this->character);
@@ -115,9 +115,14 @@ Game::Game()
 	/////////////////////////////new:
 	enemyTexture.loadFromFile("../Images/invader1.png");
 
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> firingDelayDistribution(100, 900); // Random firing delay between 100 and 900, change this to your liking (900)
+
 	for (int row = 0; row < 3; row++) {
 		for (int col = 0; col < 8; col++) {
-			enemies.push_back(std::make_unique<Enemy>(col * 60.0f, row * 60.0f, enemyTexture));
+			int firingDelay = firingDelayDistribution(gen);  // Random firing delay for each enemy
+			enemies.push_back(std::make_unique<Enemy>(col * 60.0f, row * 60.0f, enemyTexture, firingDelay));
 		}
 	}
 }

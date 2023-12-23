@@ -15,8 +15,8 @@ void Enemy::setPosition(float x, float y)
     shape.setPosition(x, y);
 }
 
-Enemy::Enemy(float x, float y, const sf::Texture& texture)
-    : isAlive(true), speed(0.02f), frameCounter(0), gen(rd()), dis(100, 300)
+Enemy::Enemy(float x, float y, const sf::Texture& texture, int firingDelay)
+    : isAlive(true), speed(0.02f), frameCounter(0), gen(rd()), dis(100, 300), firingDelay(firingDelay)
 {
     shape.setSize(sf::Vector2f(40.0f, 40.0f));
     shape.setPosition(x, y);
@@ -50,14 +50,14 @@ void Enemy::update(float deltaTime)
     //    frameCounter = 0;  // Reset the frame count
     //}
 
-    if (frameCounter >= dis(gen)) {
+    if (frameCounter >= firingDelay) {
         fireBullet();
         frameCounter = 0;  // Reset the frame count
     }
 
     // Update bullets
     float bulletSpeedDown = 5.f; // Bullets move down
-    updateBullets(bulletSpeedDown); 
+    updateBullets(bulletSpeedDown);
 }
 
 void Enemy::draw(sf::RenderWindow& window)
