@@ -8,8 +8,9 @@ void Character::receiveBalloon(Balloon * theBalloon)
 	this->aBallon->setPosition(this->rectShape.getGlobalBounds().left, this->rectShape.getGlobalBounds().top - 85.f); // 85.0 is the height of the Balloon, should use a memberfunction in Balloon for this
 }
 
-Character::Character(float windowWidth, float windowHeight, sf::Color color, float width, float height, float speed)
-	:rectShape(sf::Vector2f(width,height)), aBallon(nullptr), speed(speed)
+Character::Character(float windowWidth, float windowHeight, sf::Color color, 
+	float width, float height, float speed, int health)
+	:rectShape(sf::Vector2f(width,height)), aBallon(nullptr), speed(speed), health(health)
 {
 	this->rectShape.setFillColor(color);
 	this->rectShape.setPosition(windowWidth/2, windowHeight - width);
@@ -72,4 +73,23 @@ void Character::setPosition(float x, float y)
 		this->aBallon->setPosition(this->rectShape.getGlobalBounds().left,
 			this->rectShape.getGlobalBounds().top - BalloonHeightAdjustment);
 	}
+}
+
+bool Character::isCollidingWith(const Bullet& bullet)
+{
+	//this->health--;
+	return this->rectShape.getGlobalBounds().intersects(bullet.getBounds());
+}
+
+void Character::takeDamage(int damage)
+{
+	this->health -= damage;
+	/*if (health <= 0) {
+		std::cout << "Player has been defeated!" << std::endl;
+	}*/
+}
+
+sf::FloatRect Character::getBounds() const
+{
+	return this->rectShape.getGlobalBounds();
 }

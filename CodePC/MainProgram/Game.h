@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include <vector>
 #include <random>
+#include "Bullet.h"
 
 #include <memory>
 
@@ -28,6 +29,7 @@ private:
 
 	Obstacle obstacle;
 	Character character;
+	Bullet bullet;
 	
 	std::unique_ptr<Balloon>(balloon);
 
@@ -38,9 +40,8 @@ private:
 	void render();
 
 	void updateEnemies();
-
+	void updateBullets();
 public:
 	Game();
-	~Game();
 	void run(); 
 };

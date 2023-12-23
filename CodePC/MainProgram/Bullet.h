@@ -5,7 +5,8 @@
 
 class Bullet{
 public:
-    Bullet(float startX, float startY, float speed);
+    Bullet();
+    Bullet(float startX, float startY, float speed, float damage);
 
     // Update the bullet's position
     void update(float deltaTime);
@@ -20,13 +21,19 @@ public:
     void deactivate();
 
     // Get the global bounds of the bullet for collision detection
-    sf::FloatRect getGlobalBounds() const;
+    //sf::FloatRect getGlobalBounds() const;
 
+    int getDamage() const;
+    sf::FloatRect getBounds() const;
+
+    sf::Vector2f getPosition() const;
 private:
     // Bullet attributes
     sf::RectangleShape shape;
     float speed;
     bool active;
+
+    int damage;
 
     // Private helper method to set the bullet's appearance
     void initShape();

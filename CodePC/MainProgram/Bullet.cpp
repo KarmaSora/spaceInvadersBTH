@@ -44,8 +44,14 @@
 //	return shape.getSize();
 //}
 
-Bullet::Bullet(float startX, float startY, float speed)
-	: speed(speed), active(true)
+Bullet::Bullet()
+	: speed(0.f), active(false), damage(0)
+{
+	initShape();
+}
+
+Bullet::Bullet(float startX, float startY, float speed, float damage)
+	: speed(speed), active(true), damage(damage)
 {
 	initShape();
 	shape.setPosition(startX, startY);
@@ -76,9 +82,24 @@ void Bullet::deactivate()
 	active = false;
 }
 
-sf::FloatRect Bullet::getGlobalBounds() const
+//sf::FloatRect Bullet::getGlobalBounds() const
+//{
+//	return shape.getGlobalBounds();
+//}
+
+int Bullet::getDamage() const
 {
-	return shape.getGlobalBounds();
+	return this->damage;
+}
+
+sf::FloatRect Bullet::getBounds() const
+{
+	return this->shape.getGlobalBounds();
+}
+
+sf::Vector2f Bullet::getPosition() const
+{
+	return this->shape.getPosition();
 }
 
 void Bullet::initShape()

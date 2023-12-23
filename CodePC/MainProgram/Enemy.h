@@ -40,6 +40,8 @@ public:
 
     // Draw bullets on the window
     void drawBullets(sf::RenderWindow& window);
+
+    const std::vector<Bullet>& getBullets() const;
 };
 
 

@@ -3,6 +3,8 @@
 
 #include "Menu.h"
 
+const float collisionThreshold = 7.0f; // Adjust as needed for collision detection
+
 void Game::handleEvents()
 {
 	sf::Event event;
@@ -65,6 +67,8 @@ void Game::update()
 			this->balloon->stopMoving();
 			this->character.receiveBalloon(this->balloon.get());
 		}
+
+		updateBullets(); // Update bullets
 	}
 }
 
@@ -101,6 +105,25 @@ void Game::updateEnemies()
 	}
 }
 
+void Game::updateBullets()
+{
+	for (auto& enemy : enemies) {
+		// Assuming some threshold for collision, adjust as needed
+		enemy->updateBullets(timePerFrame.asSeconds());
+
+		for (auto& bullet : enemy->getBullets()) {
+			sf::FloatRect characterBounds = character.getBounds();
+			sf::FloatRect bulletBounds = bullet.getBounds();
+
+			if (characterBounds.intersects(bulletBounds)) {
+				character.takeDamage(bullet.getDamage());
+				std::cout << "Character Hit! Damage: " << bullet.getDamage() << std::endl;
+				//bullet.deactivate();
+			}
+		}
+	}
+}
+
 
 Game::Game()
 	:window(sf::VideoMode(WIDTH, HEIGHT), "Space Invaders"),
@@ -125,11 +148,6 @@ Game::Game()
 			enemies.push_back(std::make_unique<Enemy>(col * 60.0f, row * 60.0f, enemyTexture, firingDelay));
 		}
 	}
-}
-
-Game::~Game()
-{
-	//delete this->balloon;
 }
 
 void Game::run()

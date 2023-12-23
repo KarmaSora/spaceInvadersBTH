@@ -73,7 +73,8 @@ void Enemy::draw(sf::RenderWindow& window)
 void Enemy::fireBullet()
 {
     float fireSpeed = 0.02f;
-    Bullet bullet(shape.getPosition().x + shape.getSize().x / 2.f, shape.getPosition().y + shape.getSize().y, fireSpeed);
+    float bulletDamage = 1.f;
+    Bullet bullet(shape.getPosition().x + shape.getSize().x / 2.f, shape.getPosition().y + shape.getSize().y, fireSpeed, bulletDamage);
     bullets.push_back(bullet);
 }
 
@@ -95,4 +96,9 @@ void Enemy::drawBullets(sf::RenderWindow& window)
     for (const auto& bullet : bullets) {
         bullet.draw(window);
     }
+}
+
+const std::vector<Bullet>& Enemy::getBullets() const
+{
+    return bullets;
 }

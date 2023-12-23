@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Balloon.h"
+#include "Bullet.h"
 
 class Character :public sf::Drawable
 {
@@ -11,9 +12,11 @@ private:
 	void releaseBalloon();
 	//new
 	static const float BalloonHeightAdjustment;
+
+	int health;
 public:
 	Character(float windowWidth, float windowHeight, sf::Color color, float width, float height,
-		float speed = 5.0f);
+		float speed = 5.0f, int health = 3);
 	void act();
 	void receiveBalloon(Balloon *theBalloon);
 	// Inherited via Drawable
@@ -23,4 +26,8 @@ public:
 	sf::Vector2f getPosition() const;
 	sf::Vector2f getSize() const;
 	void setPosition(float x, float y);
+	
+	bool isCollidingWith(const Bullet& bullet);
+	void takeDamage(int damage);
+	sf::FloatRect getBounds() const;
 };
