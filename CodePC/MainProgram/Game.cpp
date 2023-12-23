@@ -3,7 +3,7 @@
 
 #include "Menu.h"
 
-const float collisionThreshold = 7.0f; // Adjust as needed for collision detection
+//const float collisionThreshold = 7.0f; // Adjust as needed for collision detection
 
 void Game::handleEvents()
 {
@@ -112,13 +112,26 @@ void Game::updateBullets()
 		enemy->updateBullets(timePerFrame.asSeconds());
 
 		for (auto& bullet : enemy->getBullets()) {
-			sf::FloatRect characterBounds = character.getBounds();
-			sf::FloatRect bulletBounds = bullet.getBounds();
+			/*sf::FloatRect characterBounds = character.getBounds();
+			sf::FloatRect bulletBounds = bullet.getBounds();*/
 
-			if (characterBounds.intersects(bulletBounds)) {
-				character.takeDamage(bullet.getDamage());
-				std::cout << "Character Hit! Damage: " << bullet.getDamage() << std::endl;
-				//bullet.deactivate();
+			//if (characterBounds.intersects(bulletBounds)) {
+			//	character.takeDamage(bullet.getDamage());
+			//	std::cout << "Character Hit! Damage: " << bullet.getDamage() << std::endl;
+			//	//bullet.deactivate();
+			//}
+			if (!bullet.hasHit()) {
+				sf::FloatRect characterBounds = character.getBounds();
+				sf::FloatRect bulletBounds = bullet.getBounds();
+
+				if (characterBounds.intersects(bulletBounds)) {
+					character.takeDamage(bullet.getDamage());
+					std::cout << "Character Hit! Damage: " << bullet.getDamage() << std::endl;
+					//bullet.deactivate();  // Assuming there's a method to deactivate the bullet
+					//bullet.markAsHit();   // Mark the bullet as hit to prevent multiple hits
+					const_cast<Bullet&>(bullet).markAsHit();  // Cast away const-ness to call non-const member
+					const_cast<Bullet&>(bullet).deactivate();  // Cast away const-ness to call non-const member
+				}
 			}
 		}
 	}
@@ -126,7 +139,7 @@ void Game::updateBullets()
 
 
 Game::Game()
-	:window(sf::VideoMode(WIDTH, HEIGHT), "Space Invaders"),
+	: window(sf::VideoMode(WIDTH, HEIGHT), "Space Invaders"),
 	timePerFrame(sf::seconds(1.f / 60.f)),
 	elapsedTimeSinceLastUpdate(sf::Time::Zero),
 	character(WIDTH, HEIGHT, sf::Color::Green, 40.0f, 40.0f, 6.0f), obstacle(HEIGHT, WIDTH, sf::Color::Yellow)

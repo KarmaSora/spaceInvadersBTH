@@ -27,12 +27,15 @@ public:
     sf::FloatRect getBounds() const;
 
     sf::Vector2f getPosition() const;
+
+    bool hasHit() const;
+    void markAsHit();
 private:
     // Bullet attributes
     sf::RectangleShape shape;
     float speed;
     bool active;
-
+    bool hasHitCharacter;  // Flag to track whether the bullet has hit the character
     int damage;
 
     // Private helper method to set the bullet's appearance

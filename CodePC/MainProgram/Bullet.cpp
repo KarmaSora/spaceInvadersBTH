@@ -45,13 +45,13 @@
 //}
 
 Bullet::Bullet()
-	: speed(0.f), active(false), damage(0)
+	: speed(0.f), active(false), damage(0), hasHitCharacter(false)
 {
 	initShape();
 }
 
 Bullet::Bullet(float startX, float startY, float speed, float damage)
-	: speed(speed), active(true), damage(damage)
+	: speed(speed), active(true), damage(damage), hasHitCharacter(false)
 {
 	initShape();
 	shape.setPosition(startX, startY);
@@ -100,6 +100,16 @@ sf::FloatRect Bullet::getBounds() const
 sf::Vector2f Bullet::getPosition() const
 {
 	return this->shape.getPosition();
+}
+
+bool Bullet::hasHit() const
+{
+	return hasHitCharacter;
+}
+
+void Bullet::markAsHit()
+{
+	hasHitCharacter = true;
 }
 
 void Bullet::initShape()
