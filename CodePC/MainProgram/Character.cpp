@@ -93,3 +93,8 @@ sf::FloatRect Character::getBounds() const
 {
 	return this->rectShape.getGlobalBounds();
 }
+
+int Character::getHealth() const
+{
+	return this->health;
+}

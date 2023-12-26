@@ -30,4 +30,6 @@ public:
 	bool isCollidingWith(const Bullet& bullet);
 	void takeDamage(int damage);
 	sf::FloatRect getBounds() const;
+
+	int getHealth() const;
 };

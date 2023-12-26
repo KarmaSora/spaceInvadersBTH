@@ -41,6 +41,7 @@ private:
 
 	void updateEnemies();
 	void updateBullets();
+	void gameOverScreen();
 public:
 	Game();
 	void run(); 

@@ -69,6 +69,10 @@ void Game::update()
 		}
 
 		updateBullets(); // Update bullets
+
+		if (character.getHealth() == 0) {
+			gameOverScreen(); //Game over if character health is 0
+		}
 	}
 }
 
@@ -134,6 +138,53 @@ void Game::updateBullets()
 				}
 			}
 		}
+	}
+}
+
+void Game::gameOverScreen()
+{
+	window.close();
+	sf::RenderWindow menuWindow(sf::VideoMode(600, 500), "Space Invaders Menu");
+	sf::Event ev;
+
+	sf::Font gameOverFont;
+	gameOverFont.loadFromFile("../Fonts/space_invaders.ttf");
+
+	sf::Text gameOverText;
+	gameOverText.setFont(gameOverFont);
+	gameOverText.setString("Game\nOver!");
+	gameOverText.setCharacterSize(70);
+	gameOverText.setFillColor(sf::Color::Red);
+	gameOverText.setStyle(sf::Text::Bold);
+	gameOverText.setPosition(190, 100);
+
+	sf::Font pressAnyKeyFont;
+	pressAnyKeyFont.loadFromFile("../Fonts/space_invaders.ttf");
+
+	sf::Text pressAnyKeyText;
+	pressAnyKeyText.setFont(pressAnyKeyFont);
+	pressAnyKeyText.setString("Press any key to continue.");
+	pressAnyKeyText.setCharacterSize(25);
+	pressAnyKeyText.setFillColor(sf::Color::Green);
+	pressAnyKeyText.setStyle(sf::Text::Regular);
+	pressAnyKeyText.setPosition(100, 400);
+
+
+
+	while (menuWindow.isOpen())
+	{
+		while (menuWindow.pollEvent(ev))
+		{
+			if (ev.type == sf::Event::KeyPressed)
+			{
+				menuWindow.close();
+			}
+
+
+		}
+		menuWindow.draw(gameOverText);
+		menuWindow.draw(pressAnyKeyText);
+		menuWindow.display();
 	}
 }
 
