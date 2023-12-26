@@ -43,6 +43,11 @@ bool Balloon::collidedWith(const Obstacle& obstacle)
 	return this->sprite.getGlobalBounds().intersects(obstacle.getBounds());
 }
 
+bool Balloon::collidedWith(const Enemy& enemy)
+{
+	return this->sprite.getGlobalBounds().intersects(enemy.getBounds());
+}
+
 void Balloon::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	target.draw(this->sprite);

@@ -88,7 +88,7 @@ void Game::render()
 	//////
 	updateEnemies();
 	for (const auto& enemy : enemies) {
-		enemy->draw(window);
+		if (enemy != nullptr) enemy->draw(window);
 	}
 	//////
 
@@ -97,16 +97,69 @@ void Game::render()
 
 void Game::updateEnemies()
 {
-	for (auto& enemy : enemies) {
-		enemy->update(timePerFrame.asSeconds()); // Pass in the time since last update
+	//for (auto& enemy : enemies) {
+	//	enemy->update(timePerFrame.asSeconds()); // Pass in the time since last update
 
-		if (enemy->getPosition().x <= 0 || enemy->getPosition().x >= 860) {
-			for (auto& e : enemies) {
-				e->changeDirection();
+	//	if (enemy->getPosition().x <= 0 || enemy->getPosition().x >= 860) {
+	//		for (auto& e : enemies) {
+	//			e->changeDirection();
+	//		}
+	//		break;
+	//	}
+
+	//	if (this->balloon->collidedWith(*enemy)) {
+	//		this->balloon->stopMoving();
+	//		this->character.receiveBalloon(this->balloon.get());
+
+	//	}
+	//}
+
+	// Vector to store enemies marked for removal
+	std::vector<std::unique_ptr<Enemy>> enemiesToRemove;
+
+	// Iterate over the enemies and mark them for removal
+	for (auto it = enemies.begin(); it != enemies.end(); /* no ++it here */) {
+		auto& enemy = *it;
+
+		enemy->update(timePerFrame.asSeconds());
+
+		if (enemy != nullptr) {
+			if (enemy->getPosition().x <= 0 || enemy->getPosition().x >= 860) {
+				for (auto& e : enemies) {
+					e->changeDirection();
+				}
+				// Don't break here, just mark the enemy for removal
+				enemiesToRemove.push_back(std::move(enemy));
+				it = enemies.erase(it);  // Increment 'it' after erasing
 			}
-			break;
+			else if (this->balloon->collidedWith(*enemy)) {
+				this->balloon->stopMoving();
+				this->character.receiveBalloon(this->balloon.get());
+
+				// Mark the enemy for removal
+				enemiesToRemove.push_back(std::move(enemy));
+				it = enemies.erase(it);  // Increment 'it' after erasing
+			}
+			else {
+				++it;  // Increment 'it' if no removal
+			}
+		}
+		else {
+			// Increment 'it' if the enemy is null
+			it = enemies.erase(it);
 		}
 	}
+
+	// Remove marked enemies from the vector
+	enemies.erase(std::remove_if(enemies.begin(), enemies.end(),
+		[&enemiesToRemove](const auto& enemy) {
+			return std::find(enemiesToRemove.begin(), enemiesToRemove.end(), enemy) != enemiesToRemove.end();
+		}),
+		enemies.end());
+
+
+
+
 }
 
 void Game::updateBullets()
@@ -144,7 +197,7 @@ void Game::updateBullets()
 void Game::gameOverScreen()
 {
 	window.close();
-	sf::RenderWindow menuWindow(sf::VideoMode(600, 500), "Space Invaders Menu");
+	sf::RenderWindow menuWindow(sf::VideoMode(600, 500), "Space Invaders Gameover Menu");
 	sf::Event ev;
 
 	sf::Font gameOverFont;
@@ -209,7 +262,9 @@ Game::Game()
 	for (int row = 0; row < 3; row++) {
 		for (int col = 0; col < 8; col++) {
 			int firingDelay = firingDelayDistribution(gen);  // Random firing delay for each enemy
-			enemies.push_back(std::make_unique<Enemy>(col * 60.0f, row * 60.0f, enemyTexture, firingDelay));
+			//enemies.push_back(std::make_unique<Enemy>(col * 60.0f, row * 60.0f, enemyTexture, firingDelay));
+			auto newEnemy = std::make_unique<Enemy>(col * 60.0f, row * 60.0f, enemyTexture, firingDelay);
+			enemies.push_back(std::move(newEnemy));
 		}
 	}
 }

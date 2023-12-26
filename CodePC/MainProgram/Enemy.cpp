@@ -26,7 +26,7 @@ Enemy::Enemy(float x, float y, const sf::Texture& texture, int firingDelay)
 
 void Enemy::move()
 {
-    shape.move(speed * direction, 0.f);
+    if (this != nullptr) shape.move(speed * direction, 0.f);
 }
 
 void Enemy::changeDirection()
@@ -37,36 +37,39 @@ void Enemy::changeDirection()
 
 void Enemy::update(float deltaTime)
 {
-    move(); //Move the enemy
+    if (this != nullptr) {
+        move(); //Move the enemy
 
 
-    //ADD SHOOTING HERE:
-    // Increment the frame count for each enemy
-    frameCounter += deltaTime;
+        //ADD SHOOTING HERE:
+        // Increment the frame count for each enemy
+        frameCounter += deltaTime;
 
-    // Fire a bullet every slower frames
-    //if (frameCounter >= slowerFrameRate * 500) {
-    //    fireBullet();
-    //    frameCounter = 0;  // Reset the frame count
-    //}
+        // Fire a bullet every slower frames
+        //if (frameCounter >= slowerFrameRate * 500) {
+        //    fireBullet();
+        //    frameCounter = 0;  // Reset the frame count
+        //}
 
-    if (frameCounter >= firingDelay) {
-        fireBullet();
-        frameCounter = 0;  // Reset the frame count
+        if (frameCounter >= firingDelay) {
+            fireBullet();
+            frameCounter = 0;  // Reset the frame count
+        }
+
+        // Update bullets
+        float bulletSpeedDown = 5.f; // Bullets move down
+        updateBullets(bulletSpeedDown);
     }
-
-    // Update bullets
-    float bulletSpeedDown = 5.f; // Bullets move down
-    updateBullets(bulletSpeedDown);
 }
 
 void Enemy::draw(sf::RenderWindow& window)
 {
-    if (isAlive) {
+    if (this != nullptr && isAlive) {
         window.draw(shape);
+        drawBullets(window);
+
     }
 
-    drawBullets(window);
 
 }
 
@@ -101,4 +104,9 @@ void Enemy::drawBullets(sf::RenderWindow& window)
 const std::vector<Bullet>& Enemy::getBullets() const
 {
     return bullets;
+}
+
+sf::FloatRect Enemy::getBounds() const
+{
+    return this->shape.getGlobalBounds();
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Obstacle.h"
+#include "Enemy.h"
 
 class Balloon : public sf::Drawable
 {
@@ -18,6 +19,7 @@ public:
 	void stopMoving();
 	void setPosition(float xPos, float yPos);
 	bool collidedWith(const Obstacle& obstacle);
+	bool collidedWith(const Enemy& enemy);
 	// Inherited via Drawable
 	virtual void draw(sf::RenderTarget & target,sf::RenderStates states) const override;
 };

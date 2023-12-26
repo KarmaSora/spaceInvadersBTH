@@ -42,6 +42,9 @@ public:
     void drawBullets(sf::RenderWindow& window);
 
     const std::vector<Bullet>& getBullets() const;
+
+
+    sf::FloatRect getBounds() const;
 };
 
 
