@@ -110,3 +110,10 @@ sf::FloatRect Enemy::getBounds() const
 {
     return this->shape.getGlobalBounds();
 }
+
+
+// had to add something, can change later...
+void Enemy::updateMovment()
+{
+    Entity::updateMovment();
+}

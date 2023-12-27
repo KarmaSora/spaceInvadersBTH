@@ -45,6 +45,11 @@ public:
 
 
     sf::FloatRect getBounds() const;
+
+
+    //forced to add as Entity became abstract
+    void updateMovment() override;
+
 };
 
 
