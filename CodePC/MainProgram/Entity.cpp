@@ -7,7 +7,7 @@ Entity::Entity()
 }
 
 Entity::Entity(sf::Image image, int xPos, int yPos, int speed, int dX, int dY, bool alive)
-	: image(image), xPos(xPos), yPos(yPos), speed(speed), dX(dX), dY(dY), alive(alive)
+	: texture(texture), xPos(xPos), yPos(yPos), speed(speed), dX(dX), dY(dY), alive(alive)
 {
 	
 

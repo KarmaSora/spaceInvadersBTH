@@ -7,7 +7,8 @@
 class Entity : public sf::Drawable {
 private:
     float xPos, yPos;
-    sf::Image image;
+    //sf::Image image;
+    sf::Texture texture;
     sf::Sprite sprite;
     sf::Vector2f widthHeight;
     sf::Vector2f position;
@@ -22,7 +23,8 @@ public:
     // Setters
     void setX(float x) { xPos = x; }
     void setY(float y) { yPos = y; }
-    void setImage(const sf::Image& newImage) { image = newImage; }
+    //void setImage(const sf::Image& newImage) { image = newImage; }
+    void setTexture(const sf::Texture& texture) { this->texture = texture; }
     //void setHeight(int newHeight) { height = newHeight; }
     //void setWidth(int newWidth) { width = newWidth; }
     void setSpeed(int newSpeed) { speed = newSpeed; }
@@ -48,7 +50,8 @@ public:
     // Getters
     float getX() const { return xPos; }
     float getY() const { return yPos; }
-    const sf::Image& getImage() const { return image; }
+    //const sf::Image& getImage() const { return image; }
+    const sf::Texture& getImage() const { return this->texture; }
     //int getHeight() const { return height; }
     //int getWidth() const { return width; }
     int getSpeed() const { return speed; }
