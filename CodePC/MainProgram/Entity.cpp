@@ -6,7 +6,7 @@ Entity::Entity()
 
 }
 
-Entity::Entity(sf::Image image, int xPos, int yPos, int speed, int dX, int dY, bool alive)
+Entity::Entity(sf::Texture texture, int xPos, int yPos, int speed, int dX, int dY, bool alive)
 	: texture(texture), xPos(xPos), yPos(yPos), speed(speed), dX(dX), dY(dY), alive(alive)
 {
 	
@@ -15,4 +15,7 @@ Entity::Entity(sf::Image image, int xPos, int yPos, int speed, int dX, int dY, b
 
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
+	target.draw(this->rectShape);
+
+
 }

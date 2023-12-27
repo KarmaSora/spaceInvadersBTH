@@ -5,6 +5,9 @@
 #include <iostream>
 
 class Entity : public sf::Drawable {
+
+protected:
+    sf::RectangleShape rectShape;
 private:
     float xPos, yPos;
     //sf::Image image;
@@ -12,6 +15,7 @@ private:
     sf::Sprite sprite;
     sf::Vector2f widthHeight;
     sf::Vector2f position;
+
     int speed;
     int dX, dY;
     bool alive;
@@ -19,7 +23,7 @@ private:
 public:
     // Constructor and other member functions...
     Entity();
-    Entity(sf::Image image, int xPos, int yPos, int speed, int dX, int dY, bool alive);
+    Entity(sf::Texture texture, int xPos, int yPos, int speed, int dX, int dY, bool alive);
     // Setters
     void setX(float x) { xPos = x; }
     void setY(float y) { yPos = y; }
