@@ -48,7 +48,7 @@ public:
 
 
     //forced to add as Entity became abstract
-    void updateMovment() override;
+    void updateMovement() override;
 
 };
 

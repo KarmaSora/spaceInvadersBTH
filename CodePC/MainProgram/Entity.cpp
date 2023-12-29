@@ -7,7 +7,7 @@ Entity::Entity()
 }
 
 
-Entity::Entity(sf::Texture texture, int xPos, int yPos, int speed, bool alive, int dX=0, int dY=0)
+Entity::Entity(sf::Texture texture, int xPos, int yPos, int speed, bool alive, int dX, int dY)
 	: texture(texture), xPos(xPos), yPos(yPos), speed(speed), alive(alive), dX(dX), dY(dY)
 {
 
@@ -46,7 +46,7 @@ void Entity::setHeight(float height) {
 }
 
 
-void Entity::updateMovment()
+void Entity::updateMovement()
 {
     this->xPos += this->speed * this->dX;
     this->yPos += this->speed * this->dY;

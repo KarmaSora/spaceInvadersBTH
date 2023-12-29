@@ -113,7 +113,7 @@ sf::FloatRect Enemy::getBounds() const
 
 
 // had to add something, can change later...
-void Enemy::updateMovment()
+void Enemy::updateMovement()
 {
-    Entity::updateMovment();
+    Entity::updateMovement();
 }

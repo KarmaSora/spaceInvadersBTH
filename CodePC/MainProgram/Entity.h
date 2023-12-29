@@ -31,14 +31,14 @@ public:
     /*
     update the xPos and yPos of entity.
     */
-    virtual void updateMovment() = 0;
+    virtual void updateMovement() = 0;
 
     //Setters&Getters
         // Setters
         // Setters for position
     void setDX(const int dX);
     void setDY(const int dY);
-    void setPosition(float xPos, float yPos);
+    virtual void setPosition(float xPos, float yPos);
     void setXPos(float xPos);
     void setYPos(float yPos);
     void setTexture(const sf::Texture& texture);
@@ -46,8 +46,8 @@ public:
     void setAlive(bool isAlive);
     void setSprite(const sf::Sprite& newSprite);
         // Setters for widthHeight
-    void setWidth(float width);
-    void setHeight(float height);
+    virtual void setWidth(float width);
+    virtual void setHeight(float height);
 
 
         // Getters
@@ -64,10 +64,10 @@ public:
     // Getters for widthHeight
     sf::Vector2f getWidthHeight() const;
     float getWidth() const;
-    float getHeight() const;
+    virtual float getHeight() const;
 
     // Getters for position
-    sf::Vector2f getPosition() const;
+    virtual sf::Vector2f getPosition() const;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

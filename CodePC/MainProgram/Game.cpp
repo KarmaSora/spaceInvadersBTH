@@ -35,6 +35,7 @@ void Game::update()
 		sf::Vector2f characterSize = this->character.getSize();
 		sf::Vector2u windowSize = this->window.getSize();
 
+
 		if (characterPosition.x < 0) {
 			this->character.setPosition(0, characterPosition.y);
 		}
