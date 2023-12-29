@@ -50,7 +50,7 @@ void Entity::updateMovement()
 {
     this->xPos += this->speed * this->dX;
     this->yPos += this->speed * this->dY;
-
+    this->rectShape.setPosition(xPos, yPos);
     this->sprite.setPosition(xPos, yPos);
 
 

@@ -1,5 +1,6 @@
 #include "Character.h"
 
+
 const float Character::BalloonHeightAdjustment = 85.0f;
 
 Character::Character(float windowWidth, float windowHeight, sf::Color color, float width, float height, float speed, int health)
@@ -20,11 +21,14 @@ void Character::act()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
+    //std::cout << "enterd act func in character, Left was Pressed\n";
         this->setDX(-1);
         this->updateMovement();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
+        std::cout << "enterd act func in character, Right was Pressed\n";
+
         this->setDX(1);
         this->updateMovement();
     }

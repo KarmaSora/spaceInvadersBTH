@@ -36,6 +36,7 @@ void Game::update()
 		sf::Vector2u windowSize = this->window.getSize();
 
 
+		/*
 		if (characterPosition.x < 0) {
 			this->character.setPosition(0, characterPosition.y);
 		}
@@ -49,10 +50,12 @@ void Game::update()
 		else if (characterPosition.y > windowSize.y - characterSize.y) {
 			this->character.setPosition(characterPosition.x, windowSize.y - characterSize.y);
 		}
-		//
+		*/
+
+		this->character.act();
+
 
 		elapsedTimeSinceLastUpdate -= timePerFrame;
-		this->character.act();
 		if (this->balloon->collidedWith(this->obstacle))
 		{
 			this->balloon->stopMoving();
