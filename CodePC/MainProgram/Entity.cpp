@@ -1,14 +1,14 @@
 #include "Entity.h"
 
 Entity::Entity()
-	: alive(false), speed(10), xPos(400.f), yPos(400.f), dX(0), dY(0)
+	: alive(false), speed(10), xPos(400.f), yPos(400.f), dX(0), dY(0), widthHeight(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height)
 {
 
 }
 
 
-Entity::Entity(sf::Texture texture, int xPos, int yPos, int speed, bool alive, int dX, int dY)
-	: texture(texture), xPos(xPos), yPos(yPos), speed(speed), alive(alive), dX(dX), dY(dY)
+Entity::Entity(std::string texturePath, float xPos, float yPos, int speed, bool alive, int dX, int dY, float windowWidth, float windowHeight)
+	: texturePath(texturePath), xPos(xPos), yPos(yPos), speed(speed), alive(alive), dX(dX), dY(dY), widthHeight(windowWidth, windowHeight)
 {
 
 }
@@ -19,9 +19,12 @@ Entity::Entity(sf::Texture texture, int xPos, int yPos, int speed, bool alive, i
     // Setters
 void Entity::setXPos(float xPos) { 
     this->xPos = xPos;
+    setPosition(xPos, this->yPos);
 }
 void Entity::setYPos(float yPos) {
-    this-> yPos = yPos; 
+    this->yPos = yPos; 
+    setPosition(this->xPos, yPos);
+
 }
 void Entity::setTexture(const sf::Texture& texture) { 
     this->texture = texture; 
@@ -35,6 +38,14 @@ void Entity::setAlive(bool isAlive) {
 }
 void Entity::setSprite(const sf::Sprite& newSprite) { 
     this->sprite = newSprite;
+}
+void Entity::setPosOfSprite(float xPos, float yPos)
+{
+    this->sprite.setPosition(xPos, yPos);
+}
+void Entity::setPosOfRect(float xPos, float yPos)
+{
+    this->rectShape.setPosition(xPos, yPos);
 }
 // Setters for widthHeight
 void Entity::setWidth(float width) {
@@ -82,6 +93,26 @@ float Entity::getHeight() const {
     return this->widthHeight.y;
 }
 
+float Entity::getPosXOfSprite()
+{
+    return this->sprite.getPosition().x;
+}
+
+float Entity::getPosXOfRect()
+{
+    return this->rectShape.getPosition().x;
+}
+
+float Entity::getPosYOfSprite()
+{
+    return this->sprite.getPosition().y;
+}
+
+float Entity::getPosYOfRect()
+{
+    return this->rectShape.getPosition().y;
+}
+
 // Getters for position
 sf::Vector2f Entity::getPosition() const {
     return this->position;
@@ -104,6 +135,8 @@ float Entity::getXPos() const {
 float Entity::getYPos() const {
     return this->position.y;
 }
+
+
 
 const sf::Texture& Entity::getTexture() const
 {

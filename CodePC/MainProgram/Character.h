@@ -12,7 +12,11 @@ private:
     int health;
 
 public:
-    Character(float windowWidth, float windowHeight, sf::Color color, float width, float height, float speed = 5.0f, int health = 3);
+    Character();
+    //Character(float windowWidth, float windowHeight, sf::Color color, float width, float height, float speed = 5.0f, int health = 3);
+    Character(std::string texturePath, float xPos, float yPos, int speed, bool alive, int dX, int dY, float windowWidth, float windowHeight,int health = 3);
+   //Entity(sf::Texture texture, float xPos, float yPos, int speed, bool alive, int dX, int dY, float windowWidth, float windowHeight);
+
     void act();
     void receiveBalloon(Balloon* theBalloon) ;
     void releaseBalloon();

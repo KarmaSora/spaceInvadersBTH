@@ -249,8 +249,8 @@ void Game::gameOverScreen()
 Game::Game()
 	: window(sf::VideoMode(WIDTH, HEIGHT), "Space Invaders"),
 	timePerFrame(sf::seconds(1.f / 60.f)),
-	elapsedTimeSinceLastUpdate(sf::Time::Zero),
-	character(WIDTH, HEIGHT, sf::Color::Green, 40.0f, 40.0f, 6.0f), obstacle(HEIGHT, WIDTH, sf::Color::Yellow)
+	elapsedTimeSinceLastUpdate(sf::Time::Zero), obstacle(HEIGHT, WIDTH, sf::Color::Yellow)	//,
+	//character(WIDTH, HEIGHT, sf::Color::Green, 40.0f, 40.0f, 6.0f), obstacle(HEIGHT, WIDTH, sf::Color::Yellow)
 {
 	this->balloon = std::make_unique<Balloon>(3.0f);
 	this->character.receiveBalloon(this->balloon.get()); // Assuming receiveBalloon takes a raw pointer

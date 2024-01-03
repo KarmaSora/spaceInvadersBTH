@@ -3,13 +3,36 @@
 
 const float Character::BalloonHeightAdjustment = 85.0f;
 
+Character::Character()
+    : Entity(), aBalloon(nullptr), health(3)
+{
+    this->rectShape.setPosition(600 / 2, 800 - 300);
+    this->rectShape.setSize(sf::Vector2f(90.f, 60.f));
+    this->rectShape.setFillColor(sf::Color::Red);
+    //this->setPosition(600 / 2, 800 - 300);
+
+}
+
+Character::Character(std::string texturePath, float xPos, float yPos, int speed, bool alive, int dX, int dY, float windowWidth, float windowHeight, int health)
+    :Entity(texturePath,xPos,yPos,speed,alive,dX,dY,windowWidth,windowHeight), health(health)
+{
+    
+}
+
+//Orginal constructor
+/*
 Character::Character(float windowWidth, float windowHeight, sf::Color color, float width, float height, float speed, int health)
     : Entity(), aBalloon(nullptr), health(health)
+   // Entity(sf::Texture texture, float xPos, float yPos, int speed, bool alive, int dX, int dY, float windowWidth, float windowHeight); 
 {
     this->rectShape.setSize(sf::Vector2f(width, height));
     this->rectShape.setFillColor(color);
     this->setPosition(windowWidth / 2, windowHeight - width);
 }
+*/
+
+
+
 
 void Character::receiveBalloon(Balloon * theBalloon)
 {
@@ -19,15 +42,18 @@ void Character::receiveBalloon(Balloon * theBalloon)
 }
 void Character::act()
 {
+    this->setDX(0);
+    this->setDY(0);
+    this->updateMovement();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
     //std::cout << "enterd act func in character, Left was Pressed\n";
         this->setDX(-1);
-        this->updateMovement();
+        this->updateMovement();        
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
-        std::cout << "enterd act func in character, Right was Pressed\n";
+       // std::cout << "enterd act func in character, Right was Pressed\n";
 
         this->setDX(1);
         this->updateMovement();
@@ -40,6 +66,25 @@ void Character::act()
             this->releaseBalloon();
         }
     }
+
+    //keep character within window, Character bounds 
+    //prevents going to left, outside of window
+    if ((this->getPosXOfRect() + this->rectShape.getSize().x) <= 0) {
+        std::cout << "\n\n\nthis was called\n\n\n";
+        //change the 5 later to the width of image... //Karma
+        this->setXPos(400);   
+    }
+    //prevents going right, outside window, 
+    // the xPosition      +      the width of the rectangle  >=    the width of the screen 
+    if (this->getPosXOfRect() + this->rectShape.getSize().x >= this->getWidth()) {
+
+        this->setXPos(this->getWidth()/2);
+
+    }
+    
+
+
+
 }
 
 void Character::releaseBalloon()
