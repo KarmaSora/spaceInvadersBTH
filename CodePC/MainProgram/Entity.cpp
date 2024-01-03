@@ -1,8 +1,16 @@
 #include "Entity.h"
 
 Entity::Entity()
-	: alive(false), speed(10), xPos(400.f), yPos(400.f), dX(0), dY(0), widthHeight(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height)
+	//: alive(false), speed(10), xPos(400.f), yPos(400.f), dX(0), dY(0), widthHeight(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height)
+    : texturePath("texturePath"), xPos(300.f), yPos(400.f), speed(5), alive(false), dX(0), dY(0), widthHeight(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height)
+
 {
+    //sets defult image for entity
+    this->texture.loadFromFile("../Images/BlueBalloon.png");
+    this->rectShape.setTexture(&this->texture);
+    //sets defult outline for entity
+    this->rectShape.setOutlineColor(sf::Color::Cyan);
+    this->rectShape.setOutlineThickness(5.f);
 
 }
 
@@ -10,6 +18,9 @@ Entity::Entity()
 Entity::Entity(std::string texturePath, float xPos, float yPos, int speed, bool alive, int dX, int dY, float windowWidth, float windowHeight)
 	: texturePath(texturePath), xPos(xPos), yPos(yPos), speed(speed), alive(alive), dX(dX), dY(dY), widthHeight(windowWidth, windowHeight)
 {
+    this->texture.loadFromFile(this->texturePath);
+    this->rectShape.setTexture(&this->texture);
+
 
 }
 

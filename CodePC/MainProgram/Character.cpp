@@ -8,6 +8,10 @@ Character::Character()
 {
     this->rectShape.setPosition(600 / 2, 800 - 300);
     this->rectShape.setSize(sf::Vector2f(90.f, 60.f));
+    sf::Texture tex;
+   
+    tex.loadFromFile("../Images/BlueBalloon.png");
+    this->setTexture(tex);
     this->rectShape.setFillColor(sf::Color::Red);
     //this->setPosition(600 / 2, 800 - 300);
 
