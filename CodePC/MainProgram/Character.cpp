@@ -10,9 +10,11 @@ Character::Character()
     this->rectShape.setSize(sf::Vector2f(90.f, 60.f));
     sf::Texture tex;
    
-    tex.loadFromFile("../Images/BlueBalloon.png");
-    this->setTexture(tex);
-    this->rectShape.setFillColor(sf::Color::Red);
+    //// Defult look for player, Curently blue ballon image
+    //tex.loadFromFile("../Images/BlueBalloon.png");
+    //this->setTexture(tex);
+    ////changes the color of given image if any. If image not found then change color of rect to red -Karma
+    //this->rectShape.setFillColor(sf::Color::Red);
     //this->setPosition(600 / 2, 800 - 300);
 
 }
@@ -73,14 +75,16 @@ void Character::act()
 
     //keep character within window, Character bounds 
     //prevents going to left, outside of window
-    if ((this->getPosXOfRect() + this->rectShape.getSize().x) <= 0) {
+    if ((this->getPosXOfRect() ) <= 0) {
         std::cout << "\n\n\nthis was called\n\n\n";
         //change the 5 later to the width of image... //Karma
-        this->setXPos(400);   
+        this->setXPos(this->rectShape.getSize().x);
+
+        //this->setXPos(400);   
     }
     //prevents going right, outside window, 
     // the xPosition      +      the width of the rectangle  >=    the width of the screen 
-    if (this->getPosXOfRect() + this->rectShape.getSize().x >= this->getWidth()) {
+    if (this->getPosXOfRect() + this->rectShape.getSize().x >= this->getWidth() ) {
 
         this->setXPos(this->getWidth()/2);
 

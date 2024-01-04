@@ -2,12 +2,21 @@
 
 Entity::Entity()
 	//: alive(false), speed(10), xPos(400.f), yPos(400.f), dX(0), dY(0), widthHeight(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height)
-    : texturePath("texturePath"), xPos(300.f), yPos(400.f), speed(5), alive(false), dX(0), dY(0), widthHeight(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height)
+    : texturePath("../Images/BlueBalloon.png"), xPos(300.f), yPos(400.f), speed(5), alive(false), dX(0), dY(0), widthHeight(sf::VideoMode::getDesktopMode().width - 500, sf::VideoMode::getDesktopMode().height)
 
 {
+    sf::Texture tex;
+
+    tex.loadFromFile(this->texturePath);
+    this->setTexture(tex);
+    //changes the color of given image if any. If image not found then change color of rect to red -Karma
+    this->rectShape.setFillColor(sf::Color::Red);
+    //For debugging and coding perpus, can remove later.. -Karma
     //sets defult image for entity
-    this->texture.loadFromFile("../Images/BlueBalloon.png");
+    /*this->texture.loadFromFile("../Images/BlueBalloon.png");
     this->rectShape.setTexture(&this->texture);
+    */
+
     //sets defult outline for entity
     this->rectShape.setOutlineColor(sf::Color::Cyan);
     this->rectShape.setOutlineThickness(5.f);
@@ -19,7 +28,8 @@ Entity::Entity(std::string texturePath, float xPos, float yPos, int speed, bool 
 	: texturePath(texturePath), xPos(xPos), yPos(yPos), speed(speed), alive(alive), dX(dX), dY(dY), widthHeight(windowWidth, windowHeight)
 {
     this->texture.loadFromFile(this->texturePath);
-    this->rectShape.setTexture(&this->texture);
+    this->setTexture(this->texture);
+    //this->rectShape.setTexture(&this->texture);
 
 
 }
@@ -39,6 +49,7 @@ void Entity::setYPos(float yPos) {
 }
 void Entity::setTexture(const sf::Texture& texture) { 
     this->texture = texture; 
+    this->rectShape.setTexture(&this->texture);
 }
 void Entity::setSpeed(int newSpeed) {
     this->speed = newSpeed; 
