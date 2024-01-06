@@ -2,7 +2,7 @@
 
 Entity::Entity()
 	//: alive(false), speed(10), xPos(400.f), yPos(400.f), dX(0), dY(0), widthHeight(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height)
-    : texturePath("../Images/BlueBalloon.png"), xPos(300.f), yPos(400.f), speed(5), alive(false), dX(0), dY(0), widthHeight(sf::VideoMode::getDesktopMode().width - 500, sf::VideoMode::getDesktopMode().height)
+    : texturePath("../Images/BlueBalloon.png"), xPos(400.f), yPos(532.f), speed(5), alive(false), dX(0), dY(0), widthHeight(900, 600)
 
 {
     sf::Texture tex;

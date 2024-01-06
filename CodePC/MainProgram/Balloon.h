@@ -18,6 +18,9 @@ public:
 	bool insideWindow() const;
 	void stopMoving();
 	void setPosition(float xPos, float yPos);
+	float getPosX() const;
+	float getPosY() const;
+	sf::Sprite getSprite() const;
 	bool collidedWith(const Obstacle& obstacle);
 	bool collidedWith(const Enemy& enemy);
 	// Inherited via Drawable

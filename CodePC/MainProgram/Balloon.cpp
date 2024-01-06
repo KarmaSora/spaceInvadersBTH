@@ -38,6 +38,26 @@ void Balloon::setPosition(float xPos, float yPos)
 	this->sprite.setPosition(xPos, yPos);
 }
 
+float Balloon::getPosX() const
+{
+	//return this->sprite.getGlobalBounds().left;
+	return this->sprite.getPosition().x;
+
+}
+
+float Balloon::getPosY() const
+{
+	//returnthis->sprite.getGlobalBounds().top;
+	return this->sprite.getPosition().y;
+	
+
+}
+
+sf::Sprite Balloon::getSprite() const
+{
+	return this->sprite;
+}
+
 bool Balloon::collidedWith(const Obstacle& obstacle)
 {
 	return this->sprite.getGlobalBounds().intersects(obstacle.getBounds());

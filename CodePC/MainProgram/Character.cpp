@@ -63,10 +63,14 @@ void Character::act()
 
     //keep character within window, Character bounds 
     //prevents going to left, outside of window
+
+
+
+  
     if ((this->getPosXOfRect() ) <= 0) {
         std::cout << "\n\n\nthis was called\n\n\n";
         //change the 5 later to the width of image... //Karma
-        this->setXPos(this->rectShape.getSize().x);
+        this->setXPos(0);
 
         //this->setXPos(400);   
     }
@@ -74,12 +78,26 @@ void Character::act()
     // the xPosition      +      the width of the rectangle  >=    the width of the screen 
     if (this->getPosXOfRect() + this->rectShape.getSize().x >= this->getWidth() ) {
 
-        this->setXPos(this->getWidth()/2);
+        this->setXPos(this->getWidth()-this->getSize().x);
 
     }
     
 
+   /* if (this->getPosXOfRect() < 0 && this->aBalloon->getPosX() < 0) {
+        this->rectShape.setPosition(0, this->getPosYOfRect());
+        this->aBalloon->setPosition(this->rectShape.getGlobalBounds().left, this->rectShape.getGlobalBounds().top - BalloonHeightAdjustment);
 
+    }*/
+    /*else if (characterPosition.x > windowSize.x - characterSize.x) {
+        this->character.setPosition(windowSize.x - characterSize.x, characterPosition.y);
+    }
+
+    if (characterPosition.y < 0) {
+        this->character.setPosition(characterPosition.x, 0);
+    }
+    else if (characterPosition.y > windowSize.y - characterSize.y) {
+        this->character.setPosition(characterPosition.x, windowSize.y - characterSize.y);
+    }*/
 
 }
 
@@ -137,9 +155,26 @@ int Character::getHealth() const
 
 void Character::updateMovement()
 {
+    
     Entity::updateMovement();
     if(this->aBalloon !=nullptr){
     receiveBalloon(this->aBalloon);
+ /*Make ballon not go out of screen
+ * 	if (this->aBalloon->getPosX() < 0) {
+ * 		this->aBalloon->setPosition(0, this->getPosYOfRect());
+ * 	}
+ * 	else if (this->aBalloon->getPosX() + this->aBalloon->getSprite().getGlobalBounds().width > this->getWidth()) {
+ * 		this->aBalloon->setPosition(this->getWidth() - this->aBalloon->getSprite().getGlobalBounds().width, this->getPosYOfRect());
+ * 	}
+ */
+    /*if (this->aBalloon->getPosX() < 0) {
+        this->aBalloon->setPosition(0, this->getPosYOfRect());
+        
+    }
+    else if (this->aBalloon->getPosX() + this->aBalloon->getSprite().getGlobalBounds().width > this->getWidth()) {
+        this->aBalloon->setPosition(this->getWidth() - this->aBalloon->getSprite().getGlobalBounds().width, this->getPosYOfRect());
+        
+    }*/
     }
 }
 
