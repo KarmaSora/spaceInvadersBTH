@@ -10,7 +10,7 @@ Entity::Entity()
     tex.loadFromFile(this->texturePath);
     this->setTexture(tex);
     //changes the color of given image if any. If image not found then change color of rect to red -Karma
-    this->rectShape.setFillColor(sf::Color::Red);
+    this->rectShape.setFillColor(sf::Color::Green);
     //For debugging and coding perpus, can remove later.. -Karma
     //sets defult image for entity
     /*this->texture.loadFromFile("../Images/BlueBalloon.png");

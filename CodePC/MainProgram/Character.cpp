@@ -30,7 +30,7 @@ Character::Character(std::string texturePath, float xPos, float yPos, int speed,
 
 void Character::receiveBalloon(Balloon * theBalloon)
 {
-
+    //if(!theBalloon)
 	this->aBalloon = theBalloon;
 	this->aBalloon->setPosition(this->rectShape.getGlobalBounds().left, this->rectShape.getGlobalBounds().top - 85.f); 
 }
@@ -138,6 +138,9 @@ int Character::getHealth() const
 void Character::updateMovement()
 {
     Entity::updateMovement();
+    if(this->aBalloon !=nullptr){
+    receiveBalloon(this->aBalloon);
+    }
 }
 
 
