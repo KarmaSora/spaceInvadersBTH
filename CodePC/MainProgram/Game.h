@@ -18,7 +18,7 @@ private:
 	static const int WIDTH = 900;
 	static const int HEIGHT = 600;
 
-	std::vector<std::unique_ptr<Enemy>> enemies; /////////////////////////////new
+	std::vector<std::unique_ptr<Enemy>> enemies; 
 	sf::Texture enemyTexture;
 
 private:
@@ -45,4 +45,5 @@ private:
 public:
 	Game();
 	void run(); 
+	
 };
