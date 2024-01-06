@@ -25,18 +25,6 @@ Character::Character(std::string texturePath, float xPos, float yPos, int speed,
     
 }
 
-//Orginal constructor
-/*
-Character::Character(float windowWidth, float windowHeight, sf::Color color, float width, float height, float speed, int health)
-    : Entity(), aBalloon(nullptr), health(health)
-   // Entity(sf::Texture texture, float xPos, float yPos, int speed, bool alive, int dX, int dY, float windowWidth, float windowHeight); 
-{
-    this->rectShape.setSize(sf::Vector2f(width, height));
-    this->rectShape.setFillColor(color);
-    this->setPosition(windowWidth / 2, windowHeight - width);
-}
-*/
-
 
 
 
@@ -44,7 +32,7 @@ void Character::receiveBalloon(Balloon * theBalloon)
 {
 
 	this->aBalloon = theBalloon;
-	this->aBalloon->setPosition(this->rectShape.getGlobalBounds().left, this->rectShape.getGlobalBounds().top - 85.f); // 85.0 is the height of the Balloon, should use a memberfunction in Balloon for this
+	this->aBalloon->setPosition(this->rectShape.getGlobalBounds().left, this->rectShape.getGlobalBounds().top - 85.f); 
 }
 void Character::act()
 {
