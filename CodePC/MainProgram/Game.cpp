@@ -188,7 +188,7 @@ void Game::gameOverScreen()
 	sf::Event ev;
 
 	sf::Font gameOverFont;
-	gameOverFont.loadFromFile("../Fonts/space_invaders.ttf");
+	gameOverFont.loadFromFile("../../CodePC/Fonts/space_invaders.ttf");
 
 	sf::Text gameOverText;
 	gameOverText.setFont(gameOverFont);
@@ -199,7 +199,7 @@ void Game::gameOverScreen()
 	gameOverText.setPosition(190, 100);
 
 	sf::Font pressAnyKeyFont;
-	pressAnyKeyFont.loadFromFile("../Fonts/space_invaders.ttf");
+	pressAnyKeyFont.loadFromFile("../../CodePC/Fonts/space_invaders.ttf");
 
 	sf::Text pressAnyKeyText;
 	pressAnyKeyText.setFont(pressAnyKeyFont);
@@ -242,7 +242,7 @@ Game::Game()
 	/*this->balloon = new Balloon(3.0f);
 	this->character.receiveBalloon(this->balloon);*/
 	/////////////////////////////new:
-	enemyTexture.loadFromFile("../Images/invader1.png");
+	enemyTexture.loadFromFile("../../CodePC/Images/invader1.png");
 
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -275,7 +275,7 @@ void Game::run()
 
 void Game::registerScore(int ScoreToAppend)
 {
-	std::ofstream writeTo(this->scoreFilePath);
+	std::ofstream writeTo(this->scoreFilePath, std::ios::app);
 
 	if (writeTo.is_open()) {
 		writeTo << ScoreToAppend << std::endl;

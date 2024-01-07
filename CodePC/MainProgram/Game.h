@@ -19,7 +19,7 @@ private:
 	static const int HEIGHT = 600;
 
 	int GameScore = 0;
-	std::string scoreFilePath = "../Images/gameScore.txt";
+	std::string scoreFilePath = "../../CodePC/Images/gameScore.txt";
 	std::vector<std::unique_ptr<Enemy>> enemies; 
 	sf::Texture enemyTexture;
 
