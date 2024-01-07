@@ -275,14 +275,18 @@ void Game::run()
 
 void Game::registerScore(int ScoreToAppend)
 {
-	std::ofstream writeTo;
+	std::ofstream writeTo(this->scoreFilePath);
 
-	writeTo.open(this->scoreFilePath);
 	if (writeTo.is_open()) {
 		writeTo << ScoreToAppend << std::endl;
+		std::cout << "Score appended: " << ScoreToAppend << std::endl;
 	}
-	writeTo.close();
+	else {
+		std::cerr << "Error opening the file for writing." << std::endl;
+	}
+
 }
+
 
 std::string Game::readScore() const
 {
