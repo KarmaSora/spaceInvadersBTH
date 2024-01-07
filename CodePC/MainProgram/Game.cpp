@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <iostream>
-
+#include <fstream>
+#include <string>
 #include "Menu.h"
 
 //const float collisionThreshold = 7.0f; // Adjust as needed for collision detection
@@ -101,23 +102,7 @@ void Game::render()
 
 void Game::updateEnemies()
 {
-	//for (auto& enemy : enemies) {
-	//	enemy->update(timePerFrame.asSeconds()); // Pass in the time since last update
-
-	//	if (enemy->getPosition().x <= 0 || enemy->getPosition().x >= 860) {
-	//		for (auto& e : enemies) {
-	//			e->changeDirection();
-	//		}
-	//		break;
-	//	}
-
-	//	if (this->balloon->collidedWith(*enemy)) {
-	//		this->balloon->stopMoving();
-	//		this->character.receiveBalloon(this->balloon.get());
-
-	//	}
-	//}
-
+	
 	// Vector to store enemies marked for removal
 	std::vector<std::unique_ptr<Enemy>> enemiesToRemove;
 
@@ -143,6 +128,7 @@ void Game::updateEnemies()
 				// Mark the enemy for removal
 				enemiesToRemove.push_back(std::move(enemy));
 				it = enemies.erase(it);  // Increment 'it' after erasing
+				GameScore++;
 			}
 			else {
 				++it;  // Increment 'it' if no removal
@@ -160,9 +146,6 @@ void Game::updateEnemies()
 			return std::find(enemiesToRemove.begin(), enemiesToRemove.end(), enemy) != enemiesToRemove.end();
 		}),
 		enemies.end());
-
-
-
 
 }
 
@@ -246,6 +229,8 @@ void Game::gameOverScreen()
 }
 
 
+
+
 Game::Game()
 	: window(sf::VideoMode(WIDTH, HEIGHT), "Space Invaders"),
 	timePerFrame(sf::seconds(1.f / 60.f)),
@@ -284,4 +269,39 @@ void Game::run()
 		update();
 		render();
 	}
+	registerScore(this->GameScore);
 }
+
+
+void Game::registerScore(int ScoreToAppend)
+{
+	std::ofstream writeTo;
+
+	writeTo.open(this->scoreFilePath);
+	if (writeTo.is_open()) {
+		writeTo << ScoreToAppend << std::endl;
+	}
+	writeTo.close();
+}
+
+std::string Game::readScore() const
+{
+	std::string singleLine;
+	std::string totalScore;
+
+	std::ifstream readFile;
+	readFile.open(this->scoreFilePath);
+	if (readFile.is_open()) {
+		while(std::getline(readFile, singleLine)){
+			totalScore += singleLine;
+		
+		}
+	}
+	readFile.close();
+
+	
+
+	return totalScore;
+}
+
+

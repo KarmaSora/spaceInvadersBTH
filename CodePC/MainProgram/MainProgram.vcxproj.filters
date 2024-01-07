@@ -69,4 +69,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\Bin\Images\gameScore.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="..\Images\gameScore.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

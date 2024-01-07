@@ -18,6 +18,8 @@ private:
 	static const int WIDTH = 900;
 	static const int HEIGHT = 600;
 
+	int GameScore = 0;
+	std::string scoreFilePath = " ../Images/gameScore.txt";
 	std::vector<std::unique_ptr<Enemy>> enemies; 
 	sf::Texture enemyTexture;
 
@@ -42,8 +44,12 @@ private:
 	void updateEnemies();
 	void updateBullets();
 	void gameOverScreen();
+	void registerScore(int ScoreToAppend);
+	std::string readScore() const;
+
 public:
 	Game();
 	void run(); 
 	
 };
+

@@ -43,6 +43,10 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Obstacle.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\Bin\Images\gameScore.txt" />
+    <Text Include="..\Images\gameScore.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BFA3F943-8701-4E20-A183-D5C3C8375B61}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
