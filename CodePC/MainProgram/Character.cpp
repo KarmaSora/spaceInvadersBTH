@@ -1,7 +1,7 @@
 #include "Character.h"
 
 
-const float Character::BalloonHeightAdjustment = 85.0f;
+const float Character::BALLOONHEIGHTADJUSTMENT = 85.0f;
 
 Character::Character()
     : Entity(), aBalloon(nullptr), health(3)
@@ -100,7 +100,7 @@ void Character::setPosition(float xPos, float yPos)
     if (this->aBalloon != nullptr)
     {
         this->aBalloon->setPosition(getGlobalBounds().left,
-            getGlobalBounds().top - BalloonHeightAdjustment);
+            getGlobalBounds().top - BALLOONHEIGHTADJUSTMENT);
     }
 }
 

@@ -17,7 +17,7 @@ int main()
 	
 
 
-	bool allowGame = false;;
+	bool allowGame = false;
 
 	sf::RenderWindow menuWindow(sf::VideoMode(600, 500), "Space Invaders Menu");
 	sf::Event ev;
