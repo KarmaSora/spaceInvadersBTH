@@ -55,7 +55,7 @@ private:
 
 	void updateEnemies();
 	void updateBullets();
-	void gameOverScreen();
+	void gameOverScreen(std::string toDisplay);
 	void registerScore(int ScoreToAppend);
 	std::string readScore() const;
 
