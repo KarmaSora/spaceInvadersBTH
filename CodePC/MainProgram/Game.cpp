@@ -5,7 +5,7 @@
 #include "Menu.h"
 
 //const float collisionThreshold = 7.0f; // Adjust as needed for collision detection
-
+//karma is the best
 void Game::handleEvents()
 {
 	sf::Event event;
