@@ -12,6 +12,18 @@
 
 #include "Menu.h"
 
+
+/*
+
+protected
+textfil /lambda
+
+generisk??
+klass diagram
+
+
+
+*/
 class Game
 {
 private:

@@ -7,32 +7,33 @@ bool Enemy::getIsAlive() const
 
 sf::Vector2f Enemy::getPosition() const
 {
-    return shape.getPosition();
+    return rectShape.getPosition();
 }
 
 void Enemy::setPosition(float x, float y)
 {
-    shape.setPosition(x, y);
+    rectShape.setPosition(x, y);
 }
 
 Enemy::Enemy(float x, float y, const sf::Texture& texture, int firingDelay)
     : isAlive(true), speed(0.02f), frameCounter(0), gen(rd()), dis(100, 300), firingDelay(firingDelay)
 {
-    shape.setSize(sf::Vector2f(40.0f, 40.0f));
-    shape.setPosition(x, y);
-    shape.setTexture(&texture);
+    rectShape.setSize(sf::Vector2f(40.0f, 40.0f));
+    rectShape.setPosition(x, y);
+    rectShape.setTexture(&texture, true);
+    rectShape.setFillColor(sf::Color(255, 12, 213));
     direction = 1; //Start moving right
 }
 
 void Enemy::move()
 {
-    if (this != nullptr) shape.move(speed * direction, 0.f);
+    if (this != nullptr) rectShape.move(speed * direction, 0.f);
 }
 
 void Enemy::changeDirection()
 {
     direction *= -1; //Reverse
-    shape.move(0.f, 20.f); //Move down
+    rectShape.move(0.f, 20.f); //Move down
 }
 
 void Enemy::update(float deltaTime)
@@ -65,7 +66,7 @@ void Enemy::update(float deltaTime)
 void Enemy::draw(sf::RenderWindow& window)
 {
     if (this != nullptr && isAlive) {
-        window.draw(shape);
+        window.draw(rectShape);
         drawBullets(window);
 
     }
@@ -77,7 +78,7 @@ void Enemy::fireBullet()
 {
     float fireSpeed = 0.02f;
     float bulletDamage = 1.f;
-    Bullet bullet(shape.getPosition().x + shape.getSize().x / 2.f, shape.getPosition().y + shape.getSize().y, fireSpeed, bulletDamage);
+    Bullet bullet(rectShape.getPosition().x + rectShape.getSize().x / 2.f, rectShape.getPosition().y + rectShape.getSize().y, fireSpeed, bulletDamage);
     bullets.push_back(bullet);
 }
 
@@ -108,7 +109,7 @@ const std::vector<Bullet>& Enemy::getBullets() const
 
 sf::FloatRect Enemy::getBounds() const
 {
-    return this->shape.getGlobalBounds();
+    return this->rectShape.getGlobalBounds();
 }
 
 

@@ -8,7 +8,6 @@
 
 class Enemy : public Entity {
 private:
-    sf::RectangleShape shape;
     bool isAlive;
     float speed;
     int direction; // 1 for right, -1 for left

@@ -1,48 +1,4 @@
 #include "Bullet.h"
-//#include "Bullet.h"
-//
-//Bullet::Bullet(float startX, float startY, float bulletSpeed)
-//    : speed(bulletSpeed), isAlive(true)
-//{
-//	shape.setSize(sf::Vector2f(5.f, 5.f));
-//	shape.setPosition(startX, startY);
-//	shape.setFillColor(sf::Color::Red);
-//	//shape.setOrigin(5.f, 5.f);
-//}
-//
-//void Bullet::update()
-//{
-//	if (isAlive) {
-//		shape.move(0.f, -speed);
-//	}
-//}
-//
-//void Bullet::draw(sf::RenderTarget& target, sf::RenderStates states) const
-//{
-//	if (isAlive) {
-//		target.draw(shape, states);
-//	}
-//}
-//
-//bool Bullet::getIsAlive() const
-//{
-//	return isAlive;
-//}
-//
-//sf::Vector2f Bullet::getPosition() const
-//{
-//	return shape.getPosition();
-//}
-//
-//void Bullet::setPosition(float x, float y)
-//{
-//	shape.setPosition(x, y);
-//}
-
-//sf::Vector2f Bullet::getSize() const
-//{
-//	return shape.getSize();
-//}
 
 Bullet::Bullet()
 	: speed(0.f), active(false), damage(0), hasHitCharacter(false)

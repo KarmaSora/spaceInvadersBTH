@@ -7,7 +7,7 @@
 class Character : public Entity {
 private:
     Balloon* aBalloon;
-    static const float BalloonHeightAdjustment;
+    static const float BalloonHeightAdjustment; //make CAP
 
     int health;
 

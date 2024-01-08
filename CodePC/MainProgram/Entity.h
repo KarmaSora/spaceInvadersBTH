@@ -8,7 +8,10 @@ class Entity : public sf::Drawable {
 
 protected:
     sf::RectangleShape rectShape;
+    void moveRectShape(float x,float y);
+    
 private:
+    //sf::RectangleShape rectShape;
     float xPos, yPos;
     //sf::Image image;
     sf::Texture texture;
@@ -43,7 +46,7 @@ public:
     virtual void setPosition(float xPos, float yPos);
     virtual void setXPos(float xPos);
     virtual void setYPos(float yPos);
-    virtual void setTexture(const sf::Texture& texture);
+     void setTexture(const sf::Texture& texture);
     virtual void setSpeed(int newSpeed);
     virtual void setAlive(bool isAlive);
     virtual void setSprite(const sf::Sprite& newSprite);

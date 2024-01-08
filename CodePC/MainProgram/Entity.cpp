@@ -1,5 +1,10 @@
 #include "Entity.h"
 
+void Entity::moveRectShape(float x, float y)
+{
+    rectShape.move(x, y);
+}
+
 Entity::Entity()
 	//: alive(false), speed(10), xPos(400.f), yPos(400.f), dX(0), dY(0), widthHeight(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height)
     : texturePath("../../CodePC/Images/BlueBalloon.png"), xPos(400.f), yPos(532.f), speed(5), alive(false), dX(0), dY(0), widthHeight(900, 600)
