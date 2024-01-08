@@ -63,13 +63,7 @@ void Entity::setSpeed(int newSpeed) {
 void Entity::setAlive(bool isAlive) {
     this->alive = isAlive; 
 }
-void Entity::setSprite(const sf::Sprite& newSprite) { 
-    this->sprite = newSprite;
-}
-void Entity::setPosOfSprite(float xPos, float yPos)
-{
-    this->sprite.setPosition(xPos, yPos);
-}
+
 void Entity::setPosOfRect(float xPos, float yPos)
 {
     this->rectShape.setPosition(xPos, yPos);
@@ -89,7 +83,6 @@ void Entity::updateMovement()
     this->xPos += this->speed * this->dX;
     this->yPos += this->speed * this->dY;
     this->rectShape.setPosition(xPos, yPos);
-    this->sprite.setPosition(xPos, yPos);
 
 
 }
@@ -120,20 +113,12 @@ float Entity::getHeight() const {
     return this->widthHeight.y;
 }
 
-float Entity::getPosXOfSprite()
-{
-    return this->sprite.getPosition().x;
-}
 
 float Entity::getPosXOfRect()
 {
     return this->rectShape.getPosition().x;
 }
 
-float Entity::getPosYOfSprite()
-{
-    return this->sprite.getPosition().y;
-}
 
 float Entity::getPosYOfRect()
 {
@@ -180,10 +165,6 @@ bool Entity::isAlive() const
     return this->alive;
 }
 
-const sf::Sprite& Entity::getSprite() const
-{
-    return this->sprite;
-}
 
 
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const

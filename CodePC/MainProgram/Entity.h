@@ -16,7 +16,7 @@ private:
     //sf::Image image;
     sf::Texture texture;
     std::string texturePath;
-    sf::Sprite sprite;
+    //sf::Sprite sprite;
     sf::Vector2f widthHeight;
     sf::Vector2f position;
 
@@ -49,8 +49,8 @@ public:
      void setTexture(const sf::Texture& texture);
     virtual void setSpeed(int newSpeed);
     virtual void setAlive(bool isAlive);
-    virtual void setSprite(const sf::Sprite& newSprite);
-    virtual void setPosOfSprite(float xPos, float yPos);
+    //virtual void setSprite(const sf::Sprite& newSprite);
+    //virtual void setPosOfSprite(float xPos, float yPos);
     virtual void setPosOfRect(float xPos, float yPos);
 
     
@@ -68,16 +68,16 @@ public:
    virtual int getSpeed() const;
 
    virtual bool isAlive() const;
-   virtual const sf::Sprite& getSprite() const;
+   //virtual const sf::Sprite& getSprite() const;
 
     // Getters for widthHeight
     virtual sf::Vector2f getWidthHeight() const;
     virtual float getWidth() const;
     virtual float getHeight() const;
 
-     virtual float getPosXOfSprite();
+     //virtual float getPosXOfSprite();
      virtual float getPosXOfRect();
-     virtual float getPosYOfSprite();
+     //virtual float getPosYOfSprite();
      virtual float getPosYOfRect();
 
     // Getters for position
