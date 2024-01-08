@@ -105,8 +105,8 @@ void Game::updateEnemies()
 					e->changeDirection();
 				}
 				// Don't break here, just mark the enemy for removal
-				enemiesToRemove.push_back(std::move(enemy));
-				it = enemies.erase(it);  // Increment 'it' after erasing
+				//enemiesToRemove.push_back(std::move(enemy)); --Karma
+				//it = enemies.erase(it);  // Increment 'it' after erasing --Karma
 			}
 			else if (this->balloon->collidedWith(*enemy)) {
 				this->balloon->stopMoving();
