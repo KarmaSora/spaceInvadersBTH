@@ -7,11 +7,14 @@
 class Entity : public sf::Drawable {
 
 protected:
-    sf::RectangleShape rectShape;
-    void moveRectShape(float x,float y);
+    /*Code suggested by Betty
+    void moveRectShape(float x, float y);
+    */
+    //sf::RectangleShape rectShape;
     
 private:
-    //sf::RectangleShape rectShape;
+    sf::RectangleShape rectShape;
+
     float xPos, yPos;
     //sf::Image image;
     sf::Texture texture;
@@ -29,27 +32,39 @@ public:
     Entity();
     Entity(std::string texturePath, float xPos, float yPos, int speed, bool alive, int dX, int dY, float windowWidth, float windowHeight);
    
+    //functions to contorl sf::rectangle rectShape
+    sf::RectangleShape getRectangle();
+    void setRectangle(const sf::RectangleShape &rectShape);
+    sf::Vector2f getPosition();
+    //virtual void setPosition(float xPos, float yPos);
+    void setSize(const sf::Vector2f size);
+    sf::Vector2f getSize();
+    sf::FloatRect getGlobalBounds();
+
 
     //to make the class abstract
     /*
     update the xPos and yPos of entity.
     */
-    virtual void updateMovement() = 0;
+    virtual void updateMovement() = 0; 
 
     //Setters&Getters
         // Setters
         // Setters for position
     void setDX(const int dX);
     void setDY(const int dY);
-    virtual void setPosition(float xPos, float yPos);
+    virtual void setPosition(float xPos, float yPos); 
     void setXPos(float xPos);
     void setYPos(float yPos);
-    void setTexture(const sf::Texture& texture);
+    void setTexture(const sf::Texture& texture, bool resetRect=false);
     void setSpeed(int newSpeed);
     void setAlive(bool isAlive);
     void setPosOfRect(float xPos, float yPos);
+    void setFillColor(sf::Color color);
+    sf::Color getFillColor();
+    virtual void move(float offsetX, float offsetY);
 
-    
+
         // Setters for widthHeight
     void setWidth(float width);
     void setHeight(float height);

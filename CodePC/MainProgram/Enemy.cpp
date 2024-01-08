@@ -7,33 +7,38 @@ bool Enemy::getIsAlive() const
 
 sf::Vector2f Enemy::getPosition() const
 {
-    return rectShape.getPosition();
+    return Entity::getPosition();
 }
 
 void Enemy::setPosition(float x, float y)
 {
-    rectShape.setPosition(x, y);
+    Entity::setPosition(x, y);
 }
 
 Enemy::Enemy(float x, float y, const sf::Texture& texture, int firingDelay)
-    : isAlive(true), speed(0.02f), frameCounter(0), gen(rd()), dis(100, 300), firingDelay(firingDelay)
+    : isAlive(true), frameCounter(0), gen(rd()), dis(100, 300), firingDelay(firingDelay)
 {
-    rectShape.setSize(sf::Vector2f(40.0f, 40.0f));
-    rectShape.setPosition(x, y);
-    rectShape.setTexture(&texture, true);
-    rectShape.setFillColor(sf::Color(255, 12, 213));
+    setSpeed(0.02f);
+
+    setSize(sf::Vector2f(40.0f, 40.0f));
+    setPosition(x, y);
+    setTexture(texture, true);
+    setFillColor(sf::Color(255, 12, 213));
     direction = 1; //Start moving right
 }
 
 void Enemy::move()
 {
-    if (this != nullptr) rectShape.move(speed * direction, 0.f);
+    if (this != nullptr) {
+        Entity::move(getSpeed() * direction, 0.f);
+        //Entity::updateMovement();
+    }
 }
 
 void Enemy::changeDirection()
 {
     direction *= -1; //Reverse
-    rectShape.move(0.f, 20.f); //Move down
+    Entity::move(0.f, 20.f); //Move down
 }
 
 void Enemy::update(float deltaTime)
@@ -66,7 +71,7 @@ void Enemy::update(float deltaTime)
 void Enemy::draw(sf::RenderWindow& window)
 {
     if (this != nullptr && isAlive) {
-        window.draw(rectShape);
+        window.draw(getRectangle());
         drawBullets(window);
 
     }
@@ -78,7 +83,7 @@ void Enemy::fireBullet()
 {
     float fireSpeed = 0.02f;
     float bulletDamage = 1.f;
-    Bullet bullet(rectShape.getPosition().x + rectShape.getSize().x / 2.f, rectShape.getPosition().y + rectShape.getSize().y, fireSpeed, bulletDamage);
+    Bullet bullet(getPosition().x + getSize().x / 2.f, getPosition().y +getSize().y, fireSpeed, bulletDamage);
     bullets.push_back(bullet);
 }
 
@@ -107,9 +112,9 @@ const std::vector<Bullet>& Enemy::getBullets() const
     return bullets;
 }
 
-sf::FloatRect Enemy::getBounds() const
+sf::FloatRect Enemy::getBounds() 
 {
-    return this->rectShape.getGlobalBounds();
+    return getGlobalBounds();
 }
 
 

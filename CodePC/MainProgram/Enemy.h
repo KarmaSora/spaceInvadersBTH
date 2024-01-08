@@ -9,7 +9,7 @@
 class Enemy : public Entity {
 private:
     bool isAlive;
-    float speed;
+  
     int direction; // 1 for right, -1 for left
 
     std::vector<Bullet> bullets;
@@ -43,7 +43,7 @@ public:
     const std::vector<Bullet>& getBullets() const;
 
 
-    sf::FloatRect getBounds() const;
+    sf::FloatRect getBounds();
 
 
     //forced to add as Entity became abstract

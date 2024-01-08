@@ -1,9 +1,10 @@
 #include "Entity.h"
 
+/* Code suggested by Betty..
 void Entity::moveRectShape(float x, float y)
 {
     rectShape.move(x, y);
-}
+}*/
 
 Entity::Entity()
     : texturePath("../../CodePC/Images/BlueBalloon.png"), xPos(400.f), yPos(532.f), speed(5), alive(false), dX(0), dY(0), widthHeight(900, 600)
@@ -38,6 +39,46 @@ Entity::Entity(std::string texturePath, float xPos, float yPos, int speed, bool 
 
 }
 
+sf::RectangleShape Entity::getRectangle()
+{
+    return this->rectShape;
+}
+
+void Entity::setRectangle(const sf::RectangleShape& rectShape)
+{
+    this->rectShape = rectShape;
+}
+
+sf::Vector2f Entity::getPosition()
+{
+    this->rectShape.getSize();
+    return this->rectShape.getPosition();
+}
+
+void Entity::setPosition(float xPos,float yPos)
+{
+    this->position.x = xPos;
+    this->position.y = yPos;
+    this->rectShape.setPosition(xPos,yPos);
+}
+
+void Entity::setSize(const sf::Vector2f size)
+{
+    this->rectShape.setSize(size);
+}
+
+sf::Vector2f Entity::getSize()
+{
+    return this->rectShape.getSize();
+}
+
+sf::FloatRect Entity::getGlobalBounds()
+{
+    return this->rectShape.getGlobalBounds();
+}
+
+
+
 
 
 //Setters&Getters
@@ -51,9 +92,9 @@ void Entity::setYPos(float yPos) {
     setPosition(this->xPos, yPos);
 
 }
-void Entity::setTexture(const sf::Texture& texture) { 
+void Entity::setTexture(const sf::Texture& texture, bool resetRect) { 
     this->texture = texture; 
-    this->rectShape.setTexture(&this->texture);
+    this->rectShape.setTexture(&this->texture, resetRect);
 }
 void Entity::setSpeed(int newSpeed) {
     this->speed = newSpeed; 
@@ -67,6 +108,18 @@ void Entity::setPosOfRect(float xPos, float yPos)
 {
     this->rectShape.setPosition(xPos, yPos);
 }
+void Entity::setFillColor(sf::Color color)
+{
+    this->rectShape.setFillColor(color);
+}
+sf::Color Entity::getFillColor()
+{
+    return this->rectShape.getFillColor();
+}
+void Entity::move(float offsetX, float offsetY)
+{
+    this->rectShape.move(offsetX, offsetY);
+}
 // Setters for widthHeight
 void Entity::setWidth(float width) {
     this->widthHeight.x = width;
@@ -79,8 +132,8 @@ void Entity::setHeight(float height) {
 
 void Entity::updateMovement()
 {
-    this->xPos += this->speed * this->dX;
-    this->yPos += this->speed * this->dY;
+    this->xPos += (this->speed * this->dX);
+    this->yPos += (this->speed * this->dY);
     this->rectShape.setPosition(xPos, yPos);
 
 
@@ -94,10 +147,6 @@ void Entity::setDY(const int dY)
     this->dY = dY;
 }
 // Setters for position
-void Entity::setPosition(float xPos, float yPos) {
-    this->position.x = xPos;
-    this->position.y = yPos;
-}
 
 // Getters for widthHeight
 sf::Vector2f Entity::getWidthHeight() const {

@@ -63,7 +63,7 @@ bool Balloon::collidedWith(const Obstacle& obstacle)
 	return this->sprite.getGlobalBounds().intersects(obstacle.getBounds());
 }
 
-bool Balloon::collidedWith(const Enemy& enemy)
+bool Balloon::collidedWith( Enemy& enemy)
 {
 	return this->sprite.getGlobalBounds().intersects(enemy.getBounds());
 }

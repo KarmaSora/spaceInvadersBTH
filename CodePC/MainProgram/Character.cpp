@@ -6,8 +6,8 @@ const float Character::BalloonHeightAdjustment = 85.0f;
 Character::Character()
     : Entity(), aBalloon(nullptr), health(3)
 {
-    this->rectShape.setPosition(600 / 2, 800 - 300);
-    this->rectShape.setSize(sf::Vector2f(90.f, 60.f));
+    setPosition(600 / 2, 800 - 300);
+    setSize(sf::Vector2f(90.f, 60.f));
     sf::Texture tex;
    
     //// Defult look for player, Curently blue ballon image
@@ -32,7 +32,7 @@ void Character::receiveBalloon(Balloon * theBalloon)
 {
     //if(!theBalloon)
 	this->aBalloon = theBalloon;
-	this->aBalloon->setPosition(this->rectShape.getGlobalBounds().left, this->rectShape.getGlobalBounds().top - 85.f); 
+	this->aBalloon->setPosition(getGlobalBounds().left, getGlobalBounds().top - 85.f); 
 }
 void Character::act()
 {
@@ -76,29 +76,12 @@ void Character::act()
     }
     //prevents going right, outside window, 
     // the xPosition      +      the width of the rectangle  >=    the width of the screen 
-    if (this->getPosXOfRect() + this->rectShape.getSize().x >= this->getWidth() ) {
+    if (this->getPosXOfRect() + getSize().x >= this->getWidth() ) {
 
-        this->setXPos(this->getWidth()-this->getSize().x);
+        this->setXPos(getWidth()- getSize().x);
 
     }
-    
-
-   /* if (this->getPosXOfRect() < 0 && this->aBalloon->getPosX() < 0) {
-        this->rectShape.setPosition(0, this->getPosYOfRect());
-        this->aBalloon->setPosition(this->rectShape.getGlobalBounds().left, this->rectShape.getGlobalBounds().top - BalloonHeightAdjustment);
-
-    }*/
-    /*else if (characterPosition.x > windowSize.x - characterSize.x) {
-        this->character.setPosition(windowSize.x - characterSize.x, characterPosition.y);
-    }
-
-    if (characterPosition.y < 0) {
-        this->character.setPosition(characterPosition.x, 0);
-    }
-    else if (characterPosition.y > windowSize.y - characterSize.y) {
-        this->character.setPosition(characterPosition.x, windowSize.y - characterSize.y);
-    }*/
-
+   
 }
 
 void Character::releaseBalloon()
@@ -107,35 +90,23 @@ void Character::releaseBalloon()
     this->aBalloon = nullptr;
 }
 
-void Character::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-    target.draw(this->rectShape);
-}
 
-// New changes:
-sf::Vector2f Character::getPosition() const
-{
-    return this->Entity::getPosition();
-}
 
-sf::Vector2f Character::getSize() const
-{
-    return this->rectShape.getSize();
-}
 
-void Character::setPosition(float x, float y)
+
+void Character::setPosition(float xPos, float yPos)
 {
-    this->Entity::setPosition(x, y);
+    this->Entity::setPosition(xPos, yPos);
     if (this->aBalloon != nullptr)
     {
-        this->aBalloon->setPosition(this->rectShape.getGlobalBounds().left,
-            this->rectShape.getGlobalBounds().top - BalloonHeightAdjustment);
+        this->aBalloon->setPosition(getGlobalBounds().left,
+            getGlobalBounds().top - BalloonHeightAdjustment);
     }
 }
 
 bool Character::isCollidingWith(const Bullet& bullet)
 {
-    return this->rectShape.getGlobalBounds().intersects(bullet.getBounds());
+    return getGlobalBounds().intersects(bullet.getBounds());
 }
 
 void Character::takeDamage(int damage)
@@ -143,9 +114,9 @@ void Character::takeDamage(int damage)
     this->health -= damage;
 }
 
-sf::FloatRect Character::getBounds() const
+sf::FloatRect Character::getBounds() 
 {
-    return this->rectShape.getGlobalBounds();
+    return getGlobalBounds();
 }
 
 int Character::getHealth() const
@@ -159,123 +130,8 @@ void Character::updateMovement()
     Entity::updateMovement();
     if(this->aBalloon !=nullptr){
     receiveBalloon(this->aBalloon);
- /*Make ballon not go out of screen
- * 	if (this->aBalloon->getPosX() < 0) {
- * 		this->aBalloon->setPosition(0, this->getPosYOfRect());
- * 	}
- * 	else if (this->aBalloon->getPosX() + this->aBalloon->getSprite().getGlobalBounds().width > this->getWidth()) {
- * 		this->aBalloon->setPosition(this->getWidth() - this->aBalloon->getSprite().getGlobalBounds().width, this->getPosYOfRect());
- * 	}
- */
-    /*if (this->aBalloon->getPosX() < 0) {
-        this->aBalloon->setPosition(0, this->getPosYOfRect());
-        
-    }
-    else if (this->aBalloon->getPosX() + this->aBalloon->getSprite().getGlobalBounds().width > this->getWidth()) {
-        this->aBalloon->setPosition(this->getWidth() - this->aBalloon->getSprite().getGlobalBounds().width, this->getPosYOfRect());
-        
-    }*/
+
     }
 }
 
 
-
-//#include "Character.h"
-//const float Character::BalloonHeightAdjustment = 85.0f;
-//
-//void Character::receiveBalloon(Balloon * theBalloon)
-//{
-//
-//	this->aBallon = theBalloon;
-//	this->aBallon->setPosition(this->rectShape.getGlobalBounds().left, this->rectShape.getGlobalBounds().top - 85.f); // 85.0 is the height of the Balloon, should use a memberfunction in Balloon for this
-//}
-//
-//Character::Character(float windowWidth, float windowHeight, sf::Color color, float width, float height, float speed, int health)
-//	:rectShape(sf::Vector2f(width,height)), aBallon(nullptr), speed(speed), health(health)
-//{
-//	this->rectShape.setFillColor(color);
-//	this->rectShape.setPosition(windowWidth/2, windowHeight - width);
-//}
-//
-//void Character::act()
-//{
-//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-//	{
-//		this->rectShape.move(-this->speed, 0);
-//		if (this->aBallon !=  nullptr)
-//		{
-//			this->aBallon->setPosition(this->rectShape.getGlobalBounds().left, this->rectShape.getGlobalBounds().top - 85.f);
-//		}
-//	}
-//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-//	{
-//		this->rectShape.move(this->speed, 0);
-//		if (this->aBallon != nullptr )
-//		{
-//			this->aBallon->setPosition(this->rectShape.getGlobalBounds().left, this->rectShape.getGlobalBounds().top - 85.f);
-//		}
-//	}
-//	
-//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-//	{
-//		if (this->aBallon != nullptr)
-//		{
-//			this->releaseBalloon();
-//		}
-//	}
-//}
-//
-//
-//void Character::releaseBalloon() 
-//{
-//	this->aBallon->go();
-//	this->aBallon = nullptr;
-//}
-//
-//void Character::draw(sf::RenderTarget & target, sf::RenderStates states) const
-//{
-//	target.draw(this->rectShape);
-//}
-////new changes:
-//sf::Vector2f Character::getPosition() const
-//{
-//	return this->rectShape.getPosition();
-//}
-//
-//sf::Vector2f Character::getSize() const
-//{
-//	return this->rectShape.getSize();
-//}
-//
-//void Character::setPosition(float x, float y)
-//{
-//	this->rectShape.setPosition(x, y);
-//	if (this->aBallon != nullptr) {
-//		this->aBallon->setPosition(this->rectShape.getGlobalBounds().left,
-//			this->rectShape.getGlobalBounds().top - BalloonHeightAdjustment);
-//	}
-//}
-//
-//bool Character::isCollidingWith(const Bullet& bullet)
-//{
-//	//this->health--;
-//	return this->rectShape.getGlobalBounds().intersects(bullet.getBounds());
-//}
-//
-//void Character::takeDamage(int damage)
-//{
-//	this->health -= damage;
-//	/*if (health <= 0) {
-//		std::cout << "Player has been defeated!" << std::endl;
-//	}*/
-//}
-//
-//sf::FloatRect Character::getBounds() const
-//{
-//	return this->rectShape.getGlobalBounds();
-//}
-//
-//int Character::getHealth() const
-//{
-//	return this->health;
-//}

@@ -22,7 +22,7 @@ public:
 	float getPosY() const;
 	sf::Sprite getSprite() const;
 	bool collidedWith(const Obstacle& obstacle);
-	bool collidedWith(const Enemy& enemy);
+	bool collidedWith( Enemy& enemy);
 	// Inherited via Drawable
 	virtual void draw(sf::RenderTarget & target,sf::RenderStates states) const override;
 };

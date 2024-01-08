@@ -19,16 +19,14 @@ public:
     void receiveBalloon(Balloon* theBalloon) ;
     void releaseBalloon();
 
-    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
     // New getters, setters
-    sf::Vector2f getPosition() const override;
-    sf::Vector2f getSize() const ;
-    void setPosition(float x, float y) override;
+    void setPosition(float xPos, float yPos) override;
+
 
     bool isCollidingWith(const Bullet& bullet);
     void takeDamage(int damage);
-    sf::FloatRect getBounds() const;
+    sf::FloatRect getBounds();
 
     int getHealth() const;
 
