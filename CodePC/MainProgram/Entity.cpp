@@ -7,7 +7,7 @@ void Entity::moveRectShape(float x, float y)
 }*/
 
 Entity::Entity()
-    : texturePath("../../CodePC/Images/BlueBalloon.png"), xPos(400.f), yPos(532.f), speed(5), alive(false), dX(0), dY(0), widthHeight(900, 600)
+    : texturePath("../../CodePC/Images/BlueBalloon.png"), xPos(400.f), yPos(532.f), speed(5.f), alive(false), dX(0), dY(0), widthHeight(900, 600)
 
 {
     sf::Texture tex;
@@ -29,7 +29,7 @@ Entity::Entity()
 }
 
 
-Entity::Entity(std::string texturePath, float xPos, float yPos, int speed, bool alive, int dX, int dY, float windowWidth, float windowHeight)
+Entity::Entity(std::string texturePath, float xPos, float yPos, float speed, bool alive, int dX, int dY, float windowWidth, float windowHeight)
 	: texturePath(texturePath), xPos(xPos), yPos(yPos), speed(speed), alive(alive), dX(dX), dY(dY), widthHeight(windowWidth, windowHeight)
 {
     this->texture.loadFromFile(this->texturePath);
@@ -51,7 +51,7 @@ void Entity::setRectangle(const sf::RectangleShape& rectShape)
 
 sf::Vector2f Entity::getPosition()
 {
-    this->rectShape.getSize();
+    //this->rectShape.getSize();
     return this->rectShape.getPosition();
 }
 
@@ -96,7 +96,7 @@ void Entity::setTexture(const sf::Texture& texture, bool resetRect) {
     this->texture = texture; 
     this->rectShape.setTexture(&this->texture, resetRect);
 }
-void Entity::setSpeed(int newSpeed) {
+void Entity::setSpeed(float newSpeed) {
     this->speed = newSpeed; 
 }
 
@@ -175,7 +175,7 @@ float Entity::getPosYOfRect()
 
 // Getters for position
 sf::Vector2f Entity::getPosition() const {
-    return this->position;
+    return this->rectShape.getPosition(); //--Vahid
 }
 
 int Entity::getDX() const
@@ -203,7 +203,7 @@ const sf::Texture& Entity::getTexture() const
     return this->texture;
 }
 
-int Entity::getSpeed() const
+float Entity::getSpeed() const
 {
     return this->speed;
 }

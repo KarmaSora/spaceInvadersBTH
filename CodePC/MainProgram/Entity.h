@@ -21,16 +21,17 @@ private:
     std::string texturePath;
     //sf::Sprite sprite;
     sf::Vector2f widthHeight;
-    sf::Vector2f position;
+    sf::Vector2f position; //here?
 
 
-    int speed, dX , dY;
+    float speed;
+    int dX, dY;
     bool alive;
 
 public:
     // Constructor and other member functions...
     Entity();
-    Entity(std::string texturePath, float xPos, float yPos, int speed, bool alive, int dX, int dY, float windowWidth, float windowHeight);
+    Entity(std::string texturePath, float xPos, float yPos, float speed, bool alive, int dX, int dY, float windowWidth, float windowHeight);
    
     //functions to contorl sf::rectangle rectShape
     sf::RectangleShape getRectangle();
@@ -57,7 +58,7 @@ public:
     void setXPos(float xPos);
     void setYPos(float yPos);
     void setTexture(const sf::Texture& texture, bool resetRect=false);
-    void setSpeed(int newSpeed);
+    void setSpeed(float newSpeed);
     void setAlive(bool isAlive);
     void setPosOfRect(float xPos, float yPos);
     void setFillColor(sf::Color color);
@@ -76,7 +77,7 @@ public:
     float getXPos() const;
     float getYPos() const;
     const sf::Texture& getTexture() const;
-    int getSpeed() const;
+    float getSpeed() const;
 
     bool isAlive() const;
 
@@ -92,6 +93,7 @@ public:
      virtual sf::Vector2f getPosition() const;
 
      void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
 };
 
 #endif

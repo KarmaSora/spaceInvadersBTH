@@ -26,6 +26,7 @@ public:
 
     Enemy(float x, float y, const sf::Texture& texture, int firingDelay);
 
+
     void move();
     void changeDirection();
     void update(float deltaTime);

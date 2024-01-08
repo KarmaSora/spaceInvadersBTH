@@ -27,14 +27,26 @@ Enemy::Enemy(float x, float y, const sf::Texture& texture, int firingDelay)
     direction = 1; //Start moving right
 }
 
+
 void Enemy::move()
 {
     if (this != nullptr) {
-        Entity::move(getSpeed() * direction, 0.f);
+        //std::cout << Entity::getSpeed() * direction << std::endl;
+        //std::cout << direction << std::endl;
+        Entity::move(Entity::getSpeed() * direction, 0.f);
         //Entity::updateMovement();
     }
 }
-
+/*Why does this never being called?
+* I think it is because the enemy is never colliding with the window
+* I think the enemy is colliding with the window, but the enemy is not being deleted
+* I think the enemy is not being deleted because the enemy is not colliding with the window
+* I think the enemy is not colliding with the window because the enemy is not being deleted
+* I think the enemy is not being deleted because the enemy is not colliding with the window
+* I think the enemy is not colliding with the window because the enemy is not being deleted
+* I think the enemy is not being deleted because the enemy is not colliding with the window
+* I think the enemy is not colliding with the window because the enemy is not being deleted
+*/
 void Enemy::changeDirection()
 {
     direction *= -1; //Reverse
