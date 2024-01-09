@@ -38,10 +38,6 @@ void Bullet::deactivate()
 	active = false;
 }
 
-//sf::FloatRect Bullet::getGlobalBounds() const
-//{
-//	return shape.getGlobalBounds();
-//}
 
 int Bullet::getDamage() const
 {

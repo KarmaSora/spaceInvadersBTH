@@ -4,8 +4,6 @@
 #include <string>
 #include "Menu.h"
 
-//const float collisionThreshold = 7.0f; // Adjust as needed for collision detection
-//karma is the best
 void Game::handleEvents()
 {
 	sf::Event event;
@@ -118,11 +116,11 @@ void Game::updateEnemies()
 				GameScore++;
 			}
 			else {
-				++it;  // Increment 'it' if no removal
+				++it;  //Increment 'it' if no removal
 			}
 		}
 		else {
-			// Increment 'it' if the enemy is null
+			//Increment 'it' if the enemy is null
 			it = enemies.erase(it);
 		}
 	}
@@ -139,18 +137,10 @@ void Game::updateEnemies()
 void Game::updateBullets()
 {
 	for (auto& enemy : enemies) {
-		// Assuming some threshold for collision, adjust as needed
+		//Assuming some threshold for collision, adjust as needed
 		enemy->updateBullets(timePerFrame.asSeconds());
 
 		for (auto& bullet : enemy->getBullets()) {
-			/*sf::FloatRect characterBounds = character.getBounds();
-			sf::FloatRect bulletBounds = bullet.getBounds();*/
-
-			//if (characterBounds.intersects(bulletBounds)) {
-			//	character.takeDamage(bullet.getDamage());
-			//	std::cout << "Character Hit! Damage: " << bullet.getDamage() << std::endl;
-			//	//bullet.deactivate();
-			//}
 			if (!bullet.hasHit()) {
 				sf::FloatRect characterBounds = character.getBounds();
 				sf::FloatRect bulletBounds = bullet.getBounds();
@@ -158,10 +148,8 @@ void Game::updateBullets()
 				if (characterBounds.intersects(bulletBounds)) {
 					character.takeDamage(bullet.getDamage());
 					std::cout << "Character Hit! Damage: " << bullet.getDamage() << std::endl;
-					//bullet.deactivate();  // Assuming there's a method to deactivate the bullet
-					//bullet.markAsHit();   // Mark the bullet as hit to prevent multiple hits
 					const_cast<Bullet&>(bullet).markAsHit();  // Cast away const-ness to call non-const member
-					const_cast<Bullet&>(bullet).deactivate();  // Cast away const-ness to call non-const member
+					const_cast<Bullet&>(bullet).deactivate();
 				}
 			}
 		}
@@ -221,14 +209,10 @@ void Game::gameOverScreen(std::string toDiplay)
 Game::Game()
 	: window(sf::VideoMode(WIDTH, HEIGHT), "Space Invaders"),
 	timePerFrame(sf::seconds(1.f / 60.f)),
-	elapsedTimeSinceLastUpdate(sf::Time::Zero), obstacle(HEIGHT, WIDTH, sf::Color::Yellow)	//,
-	//character(WIDTH, HEIGHT, sf::Color::Green, 40.0f, 40.0f, 6.0f), obstacle(HEIGHT, WIDTH, sf::Color::Yellow)
+	elapsedTimeSinceLastUpdate(sf::Time::Zero), obstacle(HEIGHT, WIDTH, sf::Color::Yellow)
 {
 	this->balloon = std::make_unique<Balloon>(3.0f);
-	this->character.receiveBalloon(this->balloon.get()); // Assuming receiveBalloon takes a raw pointer
-	/*this->balloon = new Balloon(3.0f);
-	this->character.receiveBalloon(this->balloon);*/
-	/////////////////////////////new:
+	this->character.receiveBalloon(this->balloon.get());
 	enemyTexture.loadFromFile("../../CodePC/Images/invader1.png");
 
 	std::random_device rd;
@@ -237,8 +221,7 @@ Game::Game()
 
 	for (int row = 0; row < 3; row++) {
 		for (int col = 0; col < 8; col++) {
-			int firingDelay = firingDelayDistribution(gen);  // Random firing delay for each enemy
-			//enemies.push_back(std::make_unique<Enemy>(col * 60.0f, row * 60.0f, enemyTexture, firingDelay));
+			int firingDelay = firingDelayDistribution(gen);  //Random firing delay for each enemy
 			auto newEnemy = std::make_unique<Enemy>(col * 60.0f, row * 60.0f, enemyTexture, firingDelay);
 			enemies.push_back(std::move(newEnemy));
 		}

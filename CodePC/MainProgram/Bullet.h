@@ -20,9 +20,6 @@ public:
     // Set the bullet to inactive
     void deactivate();
 
-    // Get the global bounds of the bullet for collision detection
-    //sf::FloatRect getGlobalBounds() const;
-
     int getDamage() const;
     sf::FloatRect getBounds() const;
 
@@ -35,10 +32,10 @@ private:
     sf::RectangleShape shape;
     float speed;
     bool active;
-    bool hasHitCharacter;  // Flag to track whether the bullet has hit the character
+    bool hasHitCharacter;  //Flag to track
     int damage;
 
-    // Private helper method to set the bullet's appearance
+    //Private helper method to set the bullet's appearance
     void initShape();
 };
 

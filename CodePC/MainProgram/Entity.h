@@ -6,7 +6,6 @@
 
 class Entity : public sf::Drawable {
 
-protected:
     /*Code suggested by Betty
     void moveRectShape(float x, float y);
     */
@@ -16,10 +15,8 @@ private:
     sf::RectangleShape rectShape;
 
     float xPos, yPos;
-    //sf::Image image;
     sf::Texture texture;
     std::string texturePath;
-    //sf::Sprite sprite;
     sf::Vector2f widthHeight;
     sf::Vector2f position; //here?
 
@@ -29,15 +26,12 @@ private:
     bool alive;
 
 public:
-    // Constructor and other member functions...
     Entity();
     Entity(std::string texturePath, float xPos, float yPos, float speed, bool alive, int dX, int dY, float windowWidth, float windowHeight);
    
-    //functions to contorl sf::rectangle rectShape
     sf::RectangleShape getRectangle();
     void setRectangle(const sf::RectangleShape &rectShape);
     sf::Vector2f getPosition();
-    //virtual void setPosition(float xPos, float yPos);
     void setSize(const sf::Vector2f size);
     sf::Vector2f getSize();
     sf::FloatRect getGlobalBounds();

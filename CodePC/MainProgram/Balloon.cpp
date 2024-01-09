@@ -4,7 +4,6 @@
 Balloon::Balloon(float speed)
 	:speed(speed), moves(false)
 {
-	//C:/Users/Anv1/Desktop/spaceInvader/spaceInvadersBTH/Bin/Images
 	this->texture.loadFromFile("../Images/BlueBalloon.png");
 	this->sprite.setTexture(this->texture);
 }
@@ -40,14 +39,12 @@ void Balloon::setPosition(float xPos, float yPos)
 
 float Balloon::getPosX() const
 {
-	//return this->sprite.getGlobalBounds().left;
 	return this->sprite.getPosition().x;
 
 }
 
 float Balloon::getPosY() const
 {
-	//returnthis->sprite.getGlobalBounds().top;
 	return this->sprite.getPosition().y;
 	
 

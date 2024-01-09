@@ -22,7 +22,6 @@ int main()
 	sf::RenderWindow menuWindow(sf::VideoMode(600, 500), "Space Invaders Menu");
 	sf::Event ev;
 
-	//new:
 	sf::Font font;
 	font.loadFromFile("../Fonts/space_invaders.ttf");
 		
@@ -35,17 +34,8 @@ int main()
 	menuText.setStyle(sf::Text::Bold);
 	menuText.setPosition(90.0f, 100.0f);
 
-	////Hint: "Press Space to Start"
-
-	//sf::Text menuHint;
-	//menuHint.setFont(font);
-	//menuHint.setString("Press Space to Start");
-	//menuHint.setCharacterSize(20);
-	//menuHint.setFillColor(sf::Color::Green);
-	//menuHint.setStyle(sf::Text::Italic);
-	//menuHint.setPosition(169.0f, 400.0f);
-	//
-	 // Create "Start" text
+	
+	// "Start" text
 	sf::Text startText;
 	startText.setFont(font);
 	startText.setString("Start Game");
@@ -54,7 +44,7 @@ int main()
 	startText.setStyle(sf::Text::Bold);
 	startText.setPosition(200.0f, 250.0f);
 
-	// Create "Quit" text
+	// "Quit" text
 	sf::Text quitText;
 	quitText.setFont(font);
 	quitText.setString("Quit");
@@ -72,10 +62,7 @@ int main()
 			switch (ev.type)
 			{
 			case sf::Event::KeyPressed:
-				/*if (ev.key.code == sf::Keyboard::Space) {
-					menuWindow.close();
-					allowGame = true;
-				}*/
+				
 				if (ev.key.code == sf::Keyboard::Up) {
 					selectedOption = (selectedOption - 1 + 2) % 2;
 				}
@@ -98,7 +85,7 @@ int main()
 		}
 		menuWindow.clear(sf::Color(0,0,0));
 
-		// Highlight the selected option
+		//Highlight the selected option
 		startText.setFillColor(selectedOption == 0 ? sf::Color::Yellow : sf::Color::Green);
 		quitText.setFillColor(selectedOption == 1 ? sf::Color::Yellow : sf::Color::Green);
 
@@ -106,7 +93,6 @@ int main()
 		menuWindow.draw(quitText);
 
 		menuWindow.draw(menuText);
-		//menuWindow.draw(menuHint);
 		menuWindow.display();
 
 	}

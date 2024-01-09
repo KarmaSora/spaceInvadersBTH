@@ -10,12 +10,7 @@ Character::Character()
     setSize(sf::Vector2f(90.f, 60.f));
     sf::Texture tex;
    
-    //// Defult look for player, Curently blue ballon image
-    //tex.loadFromFile("../Images/BlueBalloon.png");
-    //this->setTexture(tex);
-    ////changes the color of given image if any. If image not found then change color of rect to red -Karma
-    //this->rectShape.setFillColor(sf::Color::Red);
-    //this->setPosition(600 / 2, 800 - 300);
+  
 
 }
 
@@ -30,7 +25,6 @@ Character::Character(std::string texturePath, float xPos, float yPos, int speed,
 
 void Character::receiveBalloon(Balloon * theBalloon)
 {
-    //if(!theBalloon)
 	this->aBalloon = theBalloon;
 	this->aBalloon->setPosition(getGlobalBounds().left, getGlobalBounds().top - 85.f); 
 }
@@ -41,13 +35,11 @@ void Character::act()
     this->updateMovement();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
-    //std::cout << "enterd act func in character, Left was Pressed\n";
         this->setDX(-1);
         this->updateMovement();        
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
-       // std::cout << "enterd act func in character, Right was Pressed\n";
 
         this->setDX(1);
         this->updateMovement();
@@ -61,9 +53,6 @@ void Character::act()
         }
     }
 
-    //keep character within window, Character bounds 
-    //prevents going to left, outside of window
-
 
 
   
@@ -72,7 +61,6 @@ void Character::act()
         //change the 5 later to the width of image... //Karma
         this->setXPos(0);
 
-        //this->setXPos(400);   
     }
     //prevents going right, outside window, 
     // the xPosition      +      the width of the rectangle  >=    the width of the screen 

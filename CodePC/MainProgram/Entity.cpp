@@ -51,7 +51,6 @@ void Entity::setRectangle(const sf::RectangleShape& rectShape)
 
 sf::Vector2f Entity::getPosition()
 {
-    //this->rectShape.getSize();
     return this->rectShape.getPosition();
 }
 
@@ -82,7 +81,6 @@ sf::FloatRect Entity::getGlobalBounds()
 
 
 //Setters&Getters
-    // Setters
 void Entity::setXPos(float xPos) { 
     this->xPos = xPos;
     setPosition(xPos, this->yPos);
@@ -146,7 +144,6 @@ void Entity::setDY(const int dY)
 {
     this->dY = dY;
 }
-// Setters for position
 
 // Getters for widthHeight
 sf::Vector2f Entity::getWidthHeight() const {
@@ -175,7 +172,7 @@ float Entity::getPosYOfRect()
 
 // Getters for position
 sf::Vector2f Entity::getPosition() const {
-    return this->rectShape.getPosition(); //--Vahid
+    return this->rectShape.getPosition();
 }
 
 int Entity::getDX() const

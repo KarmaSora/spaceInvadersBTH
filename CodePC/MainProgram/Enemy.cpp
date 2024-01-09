@@ -18,7 +18,7 @@ void Enemy::setPosition(float x, float y)
 Enemy::Enemy(float x, float y, const sf::Texture& texture, int firingDelay)
     : isAlive(true), frameCounter(0), gen(rd()), dis(100, 300), firingDelay(firingDelay)
 {
-    setSpeed(0.2f);
+    setSpeed(0.02f);
 
     setSize(sf::Vector2f(40.0f, 40.0f));
     setPosition(x, y);
@@ -31,22 +31,10 @@ Enemy::Enemy(float x, float y, const sf::Texture& texture, int firingDelay)
 void Enemy::move()
 {
     if (this != nullptr) {
-        //std::cout << Entity::getSpeed() * direction << std::endl;
-        //std::cout << direction << std::endl;
         Entity::move(Entity::getSpeed() * direction, 0.f);
-        //Entity::updateMovement();
     }
 }
-/*Why does this never being called?
-* I think it is because the enemy is never colliding with the window
-* I think the enemy is colliding with the window, but the enemy is not being deleted
-* I think the enemy is not being deleted because the enemy is not colliding with the window
-* I think the enemy is not colliding with the window because the enemy is not being deleted
-* I think the enemy is not being deleted because the enemy is not colliding with the window
-* I think the enemy is not colliding with the window because the enemy is not being deleted
-* I think the enemy is not being deleted because the enemy is not colliding with the window
-* I think the enemy is not colliding with the window because the enemy is not being deleted
-*/
+
 void Enemy::changeDirection()
 {
     direction *= -1; //Reverse
@@ -59,19 +47,12 @@ void Enemy::update(float deltaTime)
         move(); //Move the enemy
 
 
-        //ADD SHOOTING HERE:
-        // Increment the frame count for each enemy
+        //Shooting:
         frameCounter += deltaTime;
-
-        // Fire a bullet every slower frames
-        //if (frameCounter >= slowerFrameRate * 500) {
-        //    fireBullet();
-        //    frameCounter = 0;  // Reset the frame count
-        //}
 
         if (frameCounter >= firingDelay) {
             fireBullet();
-            frameCounter = 0;  // Reset the frame count
+            frameCounter = 0;  // Reset
         }
 
         // Update bullets
@@ -101,12 +82,12 @@ void Enemy::fireBullet()
 
 void Enemy::updateBullets(float deltaTime)
 {
-    // Update each bullet's position
+    //Update each bullet's position
     for (auto& bullet : bullets) {
         bullet.update(deltaTime);
     }
 
-    // Remove inactive bullets (out of bounds)
+    //Remove inactive bullets (out of bounds)
     bullets.erase(std::remove_if(bullets.begin(), bullets.end(),
         [](const Bullet& bullet) { return !bullet.isActive(); }),
         bullets.end());
