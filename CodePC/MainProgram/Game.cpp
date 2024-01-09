@@ -61,7 +61,7 @@ void Game::update()
 		updateBullets(); // Update bullets
 
 		if (character.getHealth() == 0) {
-			gameOverScreen("Space Invaders Gameover Menu"); //Game over if character health is 0
+			gameScreen("Game\nover!"); //Game over if character health is 0
 		}
 	}
 }
@@ -156,7 +156,7 @@ void Game::updateBullets()
 	}
 }
 
-void Game::gameOverScreen(std::string toDiplay)
+void Game::gameScreen(std::string toDiplay)
 {
 	window.close();
 	sf::RenderWindow menuWindow(sf::VideoMode(600, 500), toDiplay);
@@ -168,10 +168,20 @@ void Game::gameOverScreen(std::string toDiplay)
 	sf::Text gameOverText;
 	gameOverText.setFont(gameOverFont);
 	gameOverText.setString(toDiplay);
-	gameOverText.setCharacterSize(70);
-	gameOverText.setFillColor(sf::Color::Red);
+	gameOverText.setCharacterSize(90);
+	if (toDiplay == "Game\nover!") {
+		gameOverText.setFillColor(sf::Color::Red);
+	}
+	else {
+		gameOverText.setFillColor(sf::Color::Yellow);
+	}
 	gameOverText.setStyle(sf::Text::Bold);
-	gameOverText.setPosition(190, 100);
+	if (toDiplay == "Game\nover!") {
+		gameOverText.setPosition(190, 100);
+	}
+	else {
+		gameOverText.setPosition(100, 100);
+	}
 
 	sf::Font pressAnyKeyFont;
 	pressAnyKeyFont.loadFromFile("../../CodePC/Fonts/space_invaders.ttf");
@@ -242,7 +252,7 @@ void Game::run()
 	
 	registerScore(this->GameScore);
 	if(this->GameScore ==24){ 
-		gameOverScreen("you win!");
+		gameScreen("You won!");
 	}
 
 }
