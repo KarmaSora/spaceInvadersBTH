@@ -153,6 +153,7 @@ void Game::updateBullets()
 				if (characterBounds.intersects(bulletBounds)) {
 					character.takeDamage(bullet.getDamage());
 					std::cout << "Character Hit! Damage: " << bullet.getDamage() << std::endl;
+					std::cout << "Lives remaining: " << character.getHealth() << std::endl;
 					const_cast<Bullet&>(bullet).markAsHit();  // Cast away const-ness to call non-const member
 					const_cast<Bullet&>(bullet).deactivate();
 				}

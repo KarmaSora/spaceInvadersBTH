@@ -1,14 +1,18 @@
 #include "Bullet.h"
 
 Bullet::Bullet()
-	: speed(0.f), active(false), damage(0), hasHitCharacter(false)
+	:  damage(1), hasHitCharacter(false)
 {
+	Entity::setSpeed(0.f);
+	Entity::setAlive(false);
 	initShape();
 }
 
 Bullet::Bullet(float startX, float startY, float speed, float damage)
-	: speed(speed), active(true), damage(damage), hasHitCharacter(false)
+	:  damage(damage), hasHitCharacter(false)
 {
+	Entity::setSpeed(speed);
+	Entity::setAlive(true);
 	initShape();
 	shape.setPosition(startX, startY);
 }
@@ -16,7 +20,7 @@ Bullet::Bullet(float startX, float startY, float speed, float damage)
 
 void Bullet::update(float deltaTime)
 {
-	float movement = speed * deltaTime;
+	float movement = Entity::getSpeed() * deltaTime;
 	shape.move(0.f, movement);
 	if (shape.getPosition().y > 600.f) {
 		deactivate();
@@ -30,12 +34,12 @@ void Bullet::draw(sf::RenderWindow& window) const
 
 bool Bullet::isActive() const
 {
-	return active;
+	return Entity::isAlive();
 }
 
 void Bullet::deactivate()
 {
-	active = false;
+	Entity::setAlive(false);
 }
 
 

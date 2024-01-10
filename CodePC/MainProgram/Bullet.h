@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
+
 class Bullet : public Entity{
 public:
     Bullet();
@@ -32,8 +33,6 @@ public:
 private:
     // Bullet attributes
     sf::RectangleShape shape;
-    float speed;
-    bool active;
     bool hasHitCharacter;  //Flag to track
     int damage;
 
