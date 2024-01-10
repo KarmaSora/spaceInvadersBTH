@@ -48,6 +48,10 @@ private:
 	sf::Sprite background;
 	sf::Texture backgroundTexture;
 
+	//Hearts:
+	sf::Texture heartTexture;
+	std::vector<sf::Sprite> lifeSprites;  // Add this vector
+	sf::Sprite lifeSprite;
 
 	Obstacle obstacle;
 	Character character;

@@ -78,10 +78,13 @@ void Game::render()
 	this->window.clear();
 
 	this->window.draw(background);
+	
 
 	this->window.draw(this->character);
 	this->window.draw(*this->balloon);
 	this->window.draw(this->obstacle);
+
+
 
 	//////
 	updateEnemies();
@@ -89,6 +92,10 @@ void Game::render()
 		if (enemy != nullptr) enemy->draw(window);
 	}
 	//////
+	for (int i = 0; i < character.getHealth(); ++i) {
+		window.draw(lifeSprites[i]);
+
+	}
 
 	this->window.display();
 }
@@ -186,7 +193,7 @@ void Game::gameScreen(std::string toDiplay)
 	}
 	gameOverText.setStyle(sf::Text::Bold);
 	if (toDiplay == "Game\nover!") {
-		gameOverText.setPosition(190, 100);
+		gameOverText.setPosition(150, 100);
 	}
 	else {
 		gameOverText.setPosition(100, 100);
@@ -247,6 +254,19 @@ Game::Game()
 	}
 	backgroundTexture.loadFromFile("../Images/stars1.png");
 	background.setTexture(backgroundTexture);
+
+	//Hearts:
+	heartTexture.loadFromFile("../../CodePC/Images/pixel-heart.png");
+	
+	for (int i = 0; i < 3; ++i) {
+		lifeSprite.setTexture(heartTexture);
+		
+		lifeSprite.setPosition(10 + i * 30, 10);
+
+		lifeSprite.setScale(0.03, 0.03);
+		lifeSprites.push_back(lifeSprite);
+	}
+
 }
 
 void Game::run()
