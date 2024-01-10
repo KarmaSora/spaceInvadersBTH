@@ -56,8 +56,6 @@ sf::Vector2f Entity::getPosition()
 
 void Entity::setPosition(float xPos,float yPos)
 {
-    this->position.x = xPos;
-    this->position.y = yPos;
     this->rectShape.setPosition(xPos,yPos);
 }
 
@@ -75,7 +73,6 @@ sf::FloatRect Entity::getGlobalBounds()
 {
     return this->rectShape.getGlobalBounds();
 }
-
 
 
 
@@ -185,13 +182,6 @@ int Entity::getDY() const
     return this->dY;
 }
 
-float Entity::getXPos() const {
-    return this->position.x;
-}
-
-float Entity::getYPos() const {
-    return this->position.y;
-}
 
 
 

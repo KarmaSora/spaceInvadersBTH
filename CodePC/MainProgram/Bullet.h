@@ -2,8 +2,8 @@
 #define BULLET_H
 
 #include <SFML/Graphics.hpp>
-
-class Bullet{
+#include "Entity.h"
+class Bullet : public Entity{
 public:
     Bullet();
     Bullet(float startX, float startY, float speed, float damage);
@@ -27,6 +27,8 @@ public:
 
     bool hasHit() const;
     void markAsHit();
+
+    void updateMovement() override;
 private:
     // Bullet attributes
     sf::RectangleShape shape;

@@ -64,6 +64,11 @@ void Bullet::markAsHit()
 	hasHitCharacter = true;
 }
 
+void Bullet::updateMovement()
+{
+	update(0.0f);	
+}
+
 void Bullet::initShape()
 {
 	shape.setSize(sf::Vector2f(5, 10));

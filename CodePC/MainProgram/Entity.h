@@ -18,7 +18,6 @@ private:
     sf::Texture texture;
     std::string texturePath;
     sf::Vector2f widthHeight;
-    sf::Vector2f position; //here?
 
 
     float speed;
