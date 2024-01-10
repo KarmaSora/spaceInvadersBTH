@@ -12,6 +12,10 @@
 
 #include "Menu.h"
 
+#include "SFML/Audio/Music.hpp"
+#include "SFML/Audio/Sound.hpp"
+#include "SFML/Audio/SoundBuffer.hpp"
+
 
 /*
 
@@ -58,7 +62,6 @@ private:
 	void gameScreen(std::string toDisplay);
 	void registerScore(int ScoreToAppend);
 	std::string readScore() const;
-
 public:
 	Game();
 	void run(); 

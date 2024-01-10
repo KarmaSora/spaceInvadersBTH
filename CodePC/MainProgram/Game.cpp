@@ -241,23 +241,6 @@ Game::Game()
 			enemies.push_back(std::move(newEnemy));
 		}
 	}
-
-
-	sf::SoundBuffer buffer;
-	//buffer.loadFromFile("../../CodePC/Music/Pixel-Peeker-Polka-faster_chosic.com_.wav");
-	if (!buffer.loadFromFile("../../CodePC/Music/Pixel-Peeker-Polka-faster_chosic.com_.wav"));
-		std::cout << "ERORRRR"; // error
-
-	/*sf::Sound sound;
-	sound.setBuffer(buffer);
-	sound.play();*/
-
-	/*
-	Pixel Peeker Polka – faster by Kevin MacLeod | https://incompetech.com/
-	Music promoted by https://www.chosic.com/free-music/all/
-	Creative Commons CC BY 3.0
-	https://creativecommons.org/licenses/by/3.0/
-	*/
 }
 
 void Game::run()
