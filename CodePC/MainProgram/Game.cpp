@@ -4,6 +4,10 @@
 #include <string>
 #include "Menu.h"
 
+#include "SFML/Audio/Music.hpp"
+#include "SFML/Audio/Sound.hpp"
+#include "SFML/Audio/SoundBuffer.hpp"
+
 void Game::handleEvents()
 {
 	sf::Event event;
@@ -22,6 +26,7 @@ void Game::update()
 		window.close();
 		//exit(0);
 	}
+
 	//WTFTHis is bullshit
 	//WTF COMMITS CHANGES
 
@@ -236,6 +241,23 @@ Game::Game()
 			enemies.push_back(std::move(newEnemy));
 		}
 	}
+
+
+	sf::SoundBuffer buffer;
+	//buffer.loadFromFile("../../CodePC/Music/Pixel-Peeker-Polka-faster_chosic.com_.wav");
+	if (!buffer.loadFromFile("../../CodePC/Music/Pixel-Peeker-Polka-faster_chosic.com_.wav"));
+		std::cout << "ERORRRR"; // error
+
+	/*sf::Sound sound;
+	sound.setBuffer(buffer);
+	sound.play();*/
+
+	/*
+	Pixel Peeker Polka – faster by Kevin MacLeod | https://incompetech.com/
+	Music promoted by https://www.chosic.com/free-music/all/
+	Creative Commons CC BY 3.0
+	https://creativecommons.org/licenses/by/3.0/
+	*/
 }
 
 void Game::run()

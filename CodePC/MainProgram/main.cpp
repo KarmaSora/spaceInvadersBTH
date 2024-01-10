@@ -4,6 +4,7 @@
 #pragma comment(lib, "sfml-window-d.lib")
 #pragma comment(lib, "sfml-system-d.lib")
 #pragma comment(lib, "sfml-graphics-d.lib")
+#pragma comment(lib, "sfml-audio-d.lib") //To include music
 #else
 #pragma comment(lib, "sfml-window.lib")
 #pragma comment(lib, "sfml-system.lib")
