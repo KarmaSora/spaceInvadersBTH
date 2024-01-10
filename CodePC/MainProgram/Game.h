@@ -45,6 +45,10 @@ private:
 	sf::Time timePerFrame;
 	sf::Time elapsedTimeSinceLastUpdate;
 
+	sf::Sprite background;
+	sf::Texture backgroundTexture;
+
+
 	Obstacle obstacle;
 	Character character;
 	Bullet bullet;

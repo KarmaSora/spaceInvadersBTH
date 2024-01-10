@@ -4,10 +4,6 @@
 
 class Menu : public	sf::Drawable {
 private:
-	int currentFrame = 0;
-	sf::Clock clock;
-	sf::Time frameDuration;
-	std::vector<sf::Texture> frames;
 
 	sf::Texture texture;
 	sf::Sprite sprite;

@@ -133,33 +133,18 @@ void Menu::run()
         }
         window.clear(sf::Color(0, 0, 0));
 
-        //Highlight the selected option
         start.setFillColor(selectedOption == 0 ? sf::Color::Yellow : sf::Color::Green);
         exit.setFillColor(selectedOption == 1 ? sf::Color::Yellow : sf::Color::Green);
 
-        // Load images for animation
         
         
-        //texture.loadFromFile("../Images/stars" + std::to_string(1) + ".png");
         texture.loadFromFile("../Images/stars1.png");
 
-        //frames.push_back(texture);
         
 
         // Create sprite to display frames
         sprite.setTexture(texture);
 
-        // Animation variables
-        frameDuration = sf::seconds(0.2f);
-
-       
-
-            // Update animation
-       /* if (clock.getElapsedTime() > frameDuration) {
-                currentFrame = (currentFrame + 1) % frames.size();
-                sprite.setTexture(frames[currentFrame]);
-                clock.restart();
-        }*/
 
         window.draw(sprite);
         window.draw(*this);

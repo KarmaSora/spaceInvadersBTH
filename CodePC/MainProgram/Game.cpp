@@ -76,6 +76,9 @@ void Game::render()
 
 
 	this->window.clear();
+
+	this->window.draw(background);
+
 	this->window.draw(this->character);
 	this->window.draw(*this->balloon);
 	this->window.draw(this->obstacle);
@@ -242,6 +245,8 @@ Game::Game()
 			enemies.push_back(std::move(newEnemy));
 		}
 	}
+	backgroundTexture.loadFromFile("../Images/stars1.png");
+	background.setTexture(backgroundTexture);
 }
 
 void Game::run()

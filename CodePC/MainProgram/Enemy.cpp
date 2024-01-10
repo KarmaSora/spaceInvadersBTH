@@ -18,7 +18,7 @@ void Enemy::setPosition(float x, float y)
 Enemy::Enemy(float x, float y, const sf::Texture& texture, int firingDelay)
     : isAlive(true), frameCounter(0), gen(rd()), dis(100, 300), firingDelay(firingDelay)
 {
-    setSpeed(0.02f);
+    setSpeed(0.05f);
 
     setSize(sf::Vector2f(40.0f, 40.0f));
     setPosition(x, y);
