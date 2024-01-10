@@ -1,8 +1,7 @@
 #include "Menu.h"
 
 Menu::Menu()
-    : window(sf::VideoMode(WINDOWWIDTH, WINDOWHEIGHT), "Space Invaders Menu", sf::Style::Close, sf::ContextSettings(0, 0, 8)),
-    startGame(false)
+    : window(sf::VideoMode(WINDOWWIDTH, WINDOWHEIGHT), "Space Invaders Menu")
 {
     window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(true);
@@ -26,17 +25,20 @@ Menu::Menu()
 
     //title: 
     setTextProperties(title, "SPACE INVADERS", 45,
-        sf::Color::Green, WINDOWWIDTH / 2 - 150, WINDOWHEIGHT / 4);
+        sf::Color::Green, WINDOWWIDTH / 2 - 220, WINDOWHEIGHT / 4 - 20);
     //start:
-    setTextProperties(start, "Start Game", 30, sf::Color::Green, WINDOWWIDTH / 2 - 80, WINDOWHEIGHT / 2);
+    setTextProperties(start, "Start Game", 30, sf::Color::Green, WINDOWWIDTH / 2 - 120, WINDOWHEIGHT / 2);
     //middle:
-    setTextProperties(middle, "You get 3 lives, use them well..", 30, sf::Color::Red, WINDOWWIDTH / 2 - 100, WINDOWHEIGHT / 2 + 50);
+    setTextProperties(middle, "You get 3 lives, use them well..", 20, sf::Color::Red, WINDOWWIDTH / 2 - 200, WINDOWHEIGHT / 2 + 150);
     //exit:
-    setTextProperties(exit, "Quit", 30, sf::Color::Green, WINDOWWIDTH / 2 - 30, WINDOWHEIGHT / 2 + 50);
+    setTextProperties(exit, "Quit", 30, sf::Color::Green, WINDOWWIDTH / 2 - 60, WINDOWHEIGHT / 2 + 50);
 
 	/*window.draw(*this);
 
 	window.display();*/
+
+ 
+    //sprite.setScale(1.5, 1.5);
 }
 
 Menu::Menu(int xPos, int yPos, sf::Color color, sf::Text title,
@@ -44,15 +46,16 @@ Menu::Menu(int xPos, int yPos, sf::Color color, sf::Text title,
 
     : title(title), start(start),
     exit(exit), font(font)
-
 {
     
 }
 
 void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
+
     target.draw(title);
     target.draw(start);
+    target.draw(middle);
     target.draw(exit);
 }
 
@@ -134,12 +137,34 @@ void Menu::run()
         start.setFillColor(selectedOption == 0 ? sf::Color::Yellow : sf::Color::Green);
         exit.setFillColor(selectedOption == 1 ? sf::Color::Yellow : sf::Color::Green);
 
-        window.draw(start);
-        window.draw(middle);
-        window.draw(exit);
+        // Load images for animation
+        
+        
+        //texture.loadFromFile("../Images/stars" + std::to_string(1) + ".png");
+        texture.loadFromFile("../Images/stars1.png");
 
-        window.draw(title);
+        //frames.push_back(texture);
+        
+
+        // Create sprite to display frames
+        sprite.setTexture(texture);
+
+        // Animation variables
+        frameDuration = sf::seconds(0.2f);
+
+       
+
+            // Update animation
+       /* if (clock.getElapsedTime() > frameDuration) {
+                currentFrame = (currentFrame + 1) % frames.size();
+                sprite.setTexture(frames[currentFrame]);
+                clock.restart();
+        }*/
+
+        window.draw(sprite);
+        window.draw(*this);
         window.display();
+        
 
     }
 

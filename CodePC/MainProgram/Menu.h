@@ -4,6 +4,13 @@
 
 class Menu : public	sf::Drawable {
 private:
+	int currentFrame = 0;
+	sf::Clock clock;
+	sf::Time frameDuration;
+	std::vector<sf::Texture> frames;
+
+	sf::Texture texture;
+	sf::Sprite sprite;
 	bool startGame;
 	sf::Event event;
 	sf::Font font;
@@ -13,7 +20,7 @@ private:
 	sf::Text start;
 	sf::Text middle;
 	sf::Text exit;
-	const float WINDOWWIDTH = 600, WINDOWHEIGHT = 500;
+	const float WINDOWWIDTH = 800, WINDOWHEIGHT = 600;
 	sf::RenderWindow window;
 public:
 	Menu();
