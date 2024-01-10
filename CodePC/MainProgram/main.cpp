@@ -37,8 +37,11 @@ int main()
 	sf::Event ev;
 
 	sf::Font font;
+	sf::Font font2;
+
 	font.loadFromFile("../Fonts/space_invaders.ttf");
-		
+	font2.loadFromFile("../Fonts/MachineStd-Bold.otf");
+
 	//Menu text "SPACE INVADERS"
 	sf::Text menuText;
 	menuText.setFont(font);
@@ -55,8 +58,16 @@ int main()
 	startText.setString("Start Game");
 	startText.setCharacterSize(24);
 	startText.setFillColor(sf::Color::Green);
-	startText.setStyle(sf::Text::Bold);
+	startText.setStyle(sf::Text::Regular);
 	startText.setPosition(200.0f, 250.0f);
+
+	sf::Text middleText;
+	middleText.setFont(font2);
+	middleText.setString("You get 3 lives, use them well..");
+	middleText.setCharacterSize(36);
+	middleText.setFillColor(sf::Color::Red);
+	//middleText.setStyle(sf::Text::Bold);
+	middleText.setPosition(90.0f, 450.0f);
 
 	// "Quit" text
 	sf::Text quitText;
@@ -104,6 +115,7 @@ int main()
 		quitText.setFillColor(selectedOption == 1 ? sf::Color::Yellow : sf::Color::Green);
 
 		menuWindow.draw(startText);
+		menuWindow.draw(middleText);
 		menuWindow.draw(quitText);
 
 		menuWindow.draw(menuText);
