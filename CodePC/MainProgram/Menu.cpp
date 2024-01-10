@@ -1,33 +1,52 @@
 #include "Menu.h"
 
 Menu::Menu()
-    : windowWidth(600), windowHeight(600), xPos(250), yPos(400), color(250, 0, 0, 0), font(), title("title", font), start("start", font)
-    , exit("exit", font)
+    : window(sf::VideoMode(WINDOWWIDTH, WINDOWHEIGHT), "Space Invaders Menu", sf::Style::Close, sf::ContextSettings(0, 0, 8)),
+    startGame(false)
 {
-    this->rectShape.setFillColor(color);
+    window.setFramerateLimit(60);
+	window.setVerticalSyncEnabled(true);
+	window.setKeyRepeatEnabled(false);
+	window.setMouseCursorVisible(true);
+	window.setMouseCursorGrabbed(false);
+	window.setActive(true);
+	window.requestFocus();
+	window.clear(sf::Color::Black);
 
-}
-
-Menu::Menu(float windowWidth, float windowHeight, int xPos, int yPos, sf::Color color, sf::Text title,
-    sf::Text start, sf::Text exit, sf::Font font)
-
-    : windowWidth(windowWidth), windowHeight(windowHeight), xPos(xPos), yPos(yPos),
-    color(color),  title(title), start(start),
-    exit(exit), font(font)
-
-{
-    font.loadFromFile("../Fonts/AeogoProTry-Bold.ttf");
-    if (!font.loadFromFile("../Fonts/AeogoProTry-Bold.ttf")) {
+    if (!font.loadFromFile("../Fonts/space_invaders.ttf")) {
         std::cerr << "Error loading font file" << std::endl;
         std::exit(EXIT_FAILURE);
     }
+    if (!font2.loadFromFile("../Fonts/MachineStd-Bold.otf")) {
+        std::cerr << "Error loading font file" << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
+
+
+
     //title: 
-    setTextProperties(title, "Space Invaders", 40,
-        sf::Color::White, windowHeight / 2 - 150, windowHeight / 4);
+    setTextProperties(title, "SPACE INVADERS", 45,
+        sf::Color::Green, WINDOWWIDTH / 2 - 150, WINDOWHEIGHT / 4);
     //start:
-    setTextProperties(start, "Start Game", 30, sf::Color::White, windowWidth / 2 - 80, windowHeight / 2);
+    setTextProperties(start, "Start Game", 30, sf::Color::Green, WINDOWWIDTH / 2 - 80, WINDOWHEIGHT / 2);
+    //middle:
+    setTextProperties(middle, "You get 3 lives, use them well..", 30, sf::Color::Red, WINDOWWIDTH / 2 - 100, WINDOWHEIGHT / 2 + 50);
     //exit:
-    setTextProperties(exit, "Exit", 30, sf::Color::White, windowWidth / 2 - 30, windowHeight / 2 + 50);
+    setTextProperties(exit, "Quit", 30, sf::Color::Green, WINDOWWIDTH / 2 - 30, WINDOWHEIGHT / 2 + 50);
+
+	/*window.draw(*this);
+
+	window.display();*/
+}
+
+Menu::Menu(int xPos, int yPos, sf::Color color, sf::Text title,
+    sf::Text start, sf::Text exit, sf::Font font)
+
+    : title(title), start(start),
+    exit(exit), font(font)
+
+{
+    
 }
 
 void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -37,9 +56,18 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(exit);
 }
 
-int Menu::handleInput(sf::RenderWindow& window)
+void Menu::setTextProperties(sf::Text& text, const std::string& string, int characterSize, sf::Color color, float xPos, float yPos)
 {
-    sf::Event event;
+    text.setFont(font);
+	text.setString(string);
+	text.setCharacterSize(characterSize);
+	text.setFillColor(color);
+	text.setStyle(sf::Text::Bold);
+	text.setPosition(xPos, yPos);
+}
+
+int Menu::handleInput(sf::Event event)
+{
 
     while (window.pollEvent(event)) {
         switch (event.type) {
@@ -70,71 +98,54 @@ int Menu::handleInput(sf::RenderWindow& window)
     return 0; //stays at menu
 }
 
-void Menu::setXPos(int xPos)
+void Menu::run()
 {
-    this->xPos = xPos;
+    while (window.isOpen())
+    {
+        while (window.pollEvent(event))
+        {
+            switch (event.type)
+            {
+            case sf::Event::KeyPressed:
+
+                if (event.key.code == sf::Keyboard::Up) {
+                    selectedOption = (selectedOption - 1 + 2) % 2;
+                }
+                else if (event.key.code == sf::Keyboard::Down) {
+                    selectedOption = (selectedOption + 1) % 2;
+                }
+                else if (event.key.code == sf::Keyboard::Enter) {
+                    if (selectedOption == 0) {
+                        window.close();
+                        startGame = true;
+                    }
+                    else if (selectedOption == 1) {
+                        window.close();
+                    }
+                }
+                break;
+            default:
+                break;
+            }
+        }
+        window.clear(sf::Color(0, 0, 0));
+
+        //Highlight the selected option
+        start.setFillColor(selectedOption == 0 ? sf::Color::Yellow : sf::Color::Green);
+        exit.setFillColor(selectedOption == 1 ? sf::Color::Yellow : sf::Color::Green);
+
+        window.draw(start);
+        window.draw(middle);
+        window.draw(exit);
+
+        window.draw(title);
+        window.display();
+
+    }
+
 }
 
-void Menu::setYPos(int yPos)
+bool Menu::getStartGame()
 {
-    this->yPos = yPos;
-}
-
-int Menu::getXPos()
-{
-    return this->xPos;
-}
-
-int Menu::getYPos()
-{
-    return yPos;
-}
-
-void Menu::setFont(sf::Font font)
-{
-    this->font = font;
-}
-
-void Menu::setTitle(sf::Text title)
-{
-    this->title = title;
-}
-
-void Menu::setStart(sf::Text start)
-{
-    this->start = start;
-}
-
-void Menu::setExit(sf::Text exit)
-{
-    this->exit = exit;
-}
-
-sf::Font Menu::getFont()
-{
-    return this->font;
-}
-
-sf::Text Menu::getTitle()
-{
-    return this->title;
-}
-
-sf::Text Menu::getStart()
-{
-    return this->start;
-}
-
-sf::Text Menu::getExit()
-{
-    return this->exit;
-}
-
-void Menu::setTextProperties(sf::Text& text, const std::string& content, unsigned int size, const sf::Color& color, float x, float y)
-{
-    text.setFont(font);
-    text.setString(content);
-    text.setCharacterSize(size);
-    text.setFillColor(color);
-    text.setPosition(x, y);
+	return startGame;
 }

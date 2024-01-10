@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Menu.h"
 #include <ctime>
 #ifdef _DEBUG
 #pragma comment(lib, "sfml-window-d.lib")
@@ -31,100 +32,11 @@ int main()
 		*/
 	}
 
-	bool allowGame = false;
-
-	sf::RenderWindow menuWindow(sf::VideoMode(600, 500), "Space Invaders Menu");
-	sf::Event ev;
-
-	sf::Font font;
-	sf::Font font2;
-
-	font.loadFromFile("../Fonts/space_invaders.ttf");
-	font2.loadFromFile("../Fonts/MachineStd-Bold.otf");
-
-	//Menu text "SPACE INVADERS"
-	sf::Text menuText;
-	menuText.setFont(font);
-	menuText.setString("SPACE INVADERS");
-	menuText.setCharacterSize(45);
-	menuText.setFillColor(sf::Color::Green);
-	menuText.setStyle(sf::Text::Bold);
-	menuText.setPosition(90.0f, 100.0f);
-
-	
-	// "Start" text
-	sf::Text startText;
-	startText.setFont(font);
-	startText.setString("Start Game");
-	startText.setCharacterSize(24);
-	startText.setFillColor(sf::Color::Green);
-	startText.setStyle(sf::Text::Regular);
-	startText.setPosition(200.0f, 250.0f);
-
-	sf::Text middleText;
-	middleText.setFont(font2);
-	middleText.setString("You get 3 lives, use them well..");
-	middleText.setCharacterSize(36);
-	middleText.setFillColor(sf::Color::Red);
-	//middleText.setStyle(sf::Text::Bold);
-	middleText.setPosition(90.0f, 450.0f);
-
-	// "Quit" text
-	sf::Text quitText;
-	quitText.setFont(font);
-	quitText.setString("Quit");
-	quitText.setCharacterSize(24);
-	quitText.setFillColor(sf::Color::Green);
-	quitText.setStyle(sf::Text::Bold);
-	quitText.setPosition(250.0f, 300.0f);
-
-	int selectedOption = 0;  // 0 for "Start", 1 for "Quit"
-
-	while (menuWindow.isOpen())
-	{
-		while (menuWindow.pollEvent(ev))
-		{
-			switch (ev.type)
-			{
-			case sf::Event::KeyPressed:
-				
-				if (ev.key.code == sf::Keyboard::Up) {
-					selectedOption = (selectedOption - 1 + 2) % 2;
-				}
-				else if (ev.key.code == sf::Keyboard::Down) {
-					selectedOption = (selectedOption + 1) % 2;
-				}
-				else if (ev.key.code == sf::Keyboard::Enter) {
-					if (selectedOption == 0) {
-						menuWindow.close();
-						allowGame = true;
-					}
-					else if (selectedOption == 1) {
-						menuWindow.close();
-					}
-				}
-				break;
-			default:
-				break;
-			}
-		}
-		menuWindow.clear(sf::Color(0,0,0));
-
-		//Highlight the selected option
-		startText.setFillColor(selectedOption == 0 ? sf::Color::Yellow : sf::Color::Green);
-		quitText.setFillColor(selectedOption == 1 ? sf::Color::Yellow : sf::Color::Green);
-
-		menuWindow.draw(startText);
-		menuWindow.draw(middleText);
-		menuWindow.draw(quitText);
-
-		menuWindow.draw(menuText);
-		menuWindow.display();
-
-	}
+	Menu menu;
+	menu.run();
 
 	Game game;
-	if(allowGame){
+	if(menu.getStartGame()){
 	game.run();
 	}
 	return 0;
