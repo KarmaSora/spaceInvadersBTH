@@ -8,7 +8,7 @@ Bullet::Bullet()
 	initShape();
 }
 
-Bullet::Bullet(float startX, float startY, float speed, float damage)
+Bullet::Bullet(float startX, float startY, float speed, int damage)
 	:  damage(damage), hasHitCharacter(false)
 {
 	Entity::setSpeed(speed);

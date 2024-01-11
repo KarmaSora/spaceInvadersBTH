@@ -8,7 +8,6 @@ private:
 	sf::Texture texture;
 	sf::Sprite sprite;
 	bool startGame;
-	sf::Event event;
 	sf::Font font;
 	sf::Font font2;
 	int selectedOption = 0;  // 0 for "Start", 1 for "Quit"
@@ -16,13 +15,14 @@ private:
 	sf::Text start;
 	sf::Text middle;
 	sf::Text exit;
-	const float WINDOWWIDTH = 800, WINDOWHEIGHT = 600;
+	static const int WIDTH = 900;
+	static const int HEIGHT = 600;
 	sf::RenderWindow window;
 public:
 	Menu();
 	Menu(int xPos, int yPos, sf::Color color, sf::Text title,
 		sf::Text start, sf::Text exit, sf::Font font);
-	int handleInput(sf::Event event);
+	int handleInput();
 	void run();
 	bool getStartGame();
 private:

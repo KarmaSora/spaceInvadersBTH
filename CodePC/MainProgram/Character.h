@@ -13,7 +13,7 @@ private:
 
 public:
     Character();
-    Character(std::string texturePath, float xPos, float yPos, int speed, bool alive, int dX, int dY, float windowWidth, float windowHeight,int health = 3);
+    Character(std::string texturePath, float xPos, float yPos, float speed, bool alive, int dX, int dY, float windowWidth, float windowHeight,int health = 3);
 
     void act();
     void receiveBalloon(Balloon* theBalloon) ;

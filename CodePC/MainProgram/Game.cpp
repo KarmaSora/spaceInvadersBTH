@@ -258,12 +258,12 @@ Game::Game()
 	//Hearts:
 	heartTexture.loadFromFile("../../CodePC/Images/pixel-heart.png");
 	
-	for (int i = 0; i < 3; ++i) {
+	for (float i = 0; i < 3; ++i) {
 		lifeSprite.setTexture(heartTexture);
 		
-		lifeSprite.setPosition(10 + i * 30, 10);
+		lifeSprite.setPosition(10.f + i * 30.f, 10.f);
 
-		lifeSprite.setScale(0.03, 0.03);
+		lifeSprite.setScale(0.03f, 0.03f);
 		lifeSprites.push_back(lifeSprite);
 	}
 

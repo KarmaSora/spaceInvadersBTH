@@ -7,7 +7,7 @@
 class Bullet : public Entity{
 public:
     Bullet();
-    Bullet(float startX, float startY, float speed, float damage);
+    Bullet(float startX, float startY, float speed, int damage);
 
     // Update the bullet's position
     void update(float deltaTime);

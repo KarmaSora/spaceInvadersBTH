@@ -75,7 +75,7 @@ void Enemy::draw(sf::RenderWindow& window)
 void Enemy::fireBullet()
 {
     float fireSpeed = 0.02f;
-    float bulletDamage = 1.f;
+    int bulletDamage = 1;
     Bullet bullet(getPosition().x + getSize().x / 2.f, getPosition().y +getSize().y, fireSpeed, bulletDamage);
     bullets.push_back(bullet);
 }

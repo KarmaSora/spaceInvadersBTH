@@ -14,7 +14,7 @@ Character::Character()
 
 }
 
-Character::Character(std::string texturePath, float xPos, float yPos, int speed, bool alive, int dX, int dY, float windowWidth, float windowHeight, int health)
+Character::Character(std::string texturePath, float xPos, float yPos, float speed, bool alive, int dX, int dY, float windowWidth, float windowHeight, int health)
     :Entity(texturePath,xPos,yPos,speed,alive,dX,dY,windowWidth,windowHeight), health(health)
 {
     

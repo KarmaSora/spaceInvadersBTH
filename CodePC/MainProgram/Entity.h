@@ -5,12 +5,6 @@
 #include <iostream>
 
 class Entity : public sf::Drawable {
-
-    /*Code suggested by Betty
-    void moveRectShape(float x, float y);
-    */
-    //sf::RectangleShape rectShape;
-    
 private:
     sf::RectangleShape rectShape;
 
