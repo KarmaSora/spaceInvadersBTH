@@ -1,6 +1,11 @@
 #include "Game.h"
 #include "Menu.h"
 #include <ctime>
+
+#include "SFML/Audio/Music.hpp"
+#include "SFML/Audio/Sound.hpp"
+#include "SFML/Audio/SoundBuffer.hpp"
+
 #ifdef _DEBUG
 #pragma comment(lib, "sfml-window-d.lib")
 #pragma comment(lib, "sfml-system-d.lib")
@@ -36,8 +41,8 @@ int main()
 	menu.run();
 
 	Game game;
-	if(menu.getStartGame()){
-	game.run();
+	if (menu.getStartGame()) {
+		game.run();
 	}
 	return 0;
 }

@@ -2,117 +2,115 @@
 
 bool Enemy::getIsAlive() const
 {
-    return isAlive;
+	return isAlive;
 }
 
 sf::Vector2f Enemy::getPosition() const
 {
-    return Entity::getPosition();
+	return Entity::getPosition();
 }
 
 void Enemy::setPosition(float x, float y)
 {
-    Entity::setPosition(x, y);
+	Entity::setPosition(x, y);
 }
 
 Enemy::Enemy(float x, float y, const sf::Texture& texture, int firingDelay)
-    : isAlive(true), frameCounter(0), gen(rd()), dis(100, 300), firingDelay(firingDelay)
+	: isAlive(true), frameCounter(0), gen(rd()), dis(100, 300), firingDelay(firingDelay)
 {
-    setSpeed(0.05f);
+	setSpeed(0.05f);
 
-    setSize(sf::Vector2f(40.0f, 40.0f));
-    setPosition(x, y);
-    setTexture(texture, true);
-    setFillColor(sf::Color(255, 12, 213));
-    direction = 1; //Start moving right
+	setSize(sf::Vector2f(40.0f, 40.0f));
+	setPosition(x, y);
+	setTexture(texture, true);
+	setFillColor(sf::Color(255, 12, 213));
+	direction = 1; //Start moving right
 }
 
 
 void Enemy::move()
 {
-    if (this != nullptr) {
-        Entity::move(Entity::getSpeed() * direction, 0.f);
-    }
+	if (this != nullptr) {
+		Entity::move(Entity::getSpeed() * direction, 0.f);
+	}
 }
 
 void Enemy::changeDirection()
 {
-    direction *= -1; //Reverse
-    Entity::move(0.f, 20.f); //Move down
+	direction *= -1; //Reverse
+	Entity::move(0.f, 20.f); //Move down
 }
 
 void Enemy::update(float deltaTime)
 {
-    if (this != nullptr) {
-        move(); //Move the enemy
+	if (this != nullptr) {
+		move(); //Move the enemy
 
 
-        //Shooting:
-        frameCounter += deltaTime;
+		//Shooting:
+		frameCounter += deltaTime;
 
-        if (frameCounter >= firingDelay) {
-            fireBullet();
-            frameCounter = 0;  // Reset
-        }
+		if (frameCounter >= firingDelay) {
+			fireBullet();
+			frameCounter = 0;  // Reset
+		}
 
-        // Update bullets
-        float bulletSpeedDown = 5.f; // Bullets move down
-        updateBullets(bulletSpeedDown);
-    }
+		// Update bullets
+		float bulletSpeedDown = 5.f; // Bullets move down
+		updateBullets(bulletSpeedDown);
+	}
 }
 
 void Enemy::draw(sf::RenderWindow& window)
 {
-    if (this != nullptr && isAlive) {
-        window.draw(getRectangle());
-        drawBullets(window);
+	if (this != nullptr && isAlive) {
+		window.draw(getRectangle());
+		drawBullets(window);
 
-    }
+	}
 
 
 }
 
 void Enemy::fireBullet()
 {
-    float fireSpeed = 0.02f;
-    int bulletDamage = 1;
-    Bullet bullet(getPosition().x + getSize().x / 2.f, getPosition().y +getSize().y, fireSpeed, bulletDamage);
-    bullets.push_back(bullet);
+	float fireSpeed = 0.02f;
+	int bulletDamage = 1;
+	Bullet bullet(getPosition().x + getSize().x / 2.f, getPosition().y + getSize().y, fireSpeed, bulletDamage);
+	bullets.push_back(bullet);
 }
 
 void Enemy::updateBullets(float deltaTime)
 {
-    //Update each bullet's position
-    for (auto& bullet : bullets) {
-        bullet.update(deltaTime);
-    }
+	//Update each bullet's position
+	for (auto& bullet : bullets) {
+		bullet.update(deltaTime);
+	}
 
-    //Remove inactive bullets (out of bounds)
-    bullets.erase(std::remove_if(bullets.begin(), bullets.end(),
-        [](const Bullet& bullet) { return !bullet.isActive(); }),
-        bullets.end());
+	//Remove inactive bullets (out of bounds)
+	bullets.erase(std::remove_if(bullets.begin(), bullets.end(),
+		[](const Bullet& bullet) { return !bullet.isActive(); }),
+		bullets.end());
 }
 
 void Enemy::drawBullets(sf::RenderWindow& window)
 {
-    for (const auto& bullet : bullets) {
-        bullet.draw(window);
-    }
+	for (const auto& bullet : bullets) {
+		bullet.draw(window);
+	}
 }
 
 const std::vector<Bullet>& Enemy::getBullets() const
 {
-    return bullets;
+	return bullets;
 }
 
-sf::FloatRect Enemy::getBounds() 
+sf::FloatRect Enemy::getBounds()
 {
-    return getGlobalBounds();
+	return getGlobalBounds();
 }
 
-
-// had to add something, can change later...
 void Enemy::updateMovement()
 {
-    Entity::updateMovement();
+	Entity::updateMovement();
 }

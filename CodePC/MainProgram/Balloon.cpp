@@ -46,7 +46,7 @@ float Balloon::getPosX() const
 float Balloon::getPosY() const
 {
 	return this->sprite.getPosition().y;
-	
+
 
 }
 
@@ -60,12 +60,12 @@ bool Balloon::collidedWith(const Obstacle& obstacle)
 	return this->sprite.getGlobalBounds().intersects(obstacle.getBounds());
 }
 
-bool Balloon::collidedWith( Enemy& enemy)
+bool Balloon::collidedWith(Enemy& enemy)
 {
 	return this->sprite.getGlobalBounds().intersects(enemy.getBounds());
 }
 
-void Balloon::draw(sf::RenderTarget & target, sf::RenderStates states) const
+void Balloon::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(this->sprite);
 }

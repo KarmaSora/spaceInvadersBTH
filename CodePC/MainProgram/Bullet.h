@@ -1,43 +1,44 @@
 #ifndef BULLET_H
 #define BULLET_H
 
-#include <SFML/Graphics.hpp>
 #include "Entity.h"
 
-class Bullet : public Entity{
+#include <SFML/Graphics.hpp>
+
+class Bullet : public Entity {
 public:
-    Bullet();
-    Bullet(float startX, float startY, float speed, int damage);
+	Bullet();
+	Bullet(float startX, float startY, float speed, int damage);
 
-    // Update the bullet's position
-    void update(float deltaTime);
+	// Update the bullet's position
+	void update(float deltaTime);
 
-    // Draw the bullet on the window
-    void draw(sf::RenderWindow& window) const;
+	// Draw the bullet on the window
+	void draw(sf::RenderWindow& window) const;
 
-    // Check if the bullet is currently active
-    bool isActive() const;
+	// Check if the bullet is currently active
+	bool isActive() const;
 
-    // Set the bullet to inactive
-    void deactivate();
+	// Set the bullet to inactive
+	void deactivate();
 
-    int getDamage() const;
-    sf::FloatRect getBounds() const;
+	int getDamage() const;
+	sf::FloatRect getBounds() const;
 
-    sf::Vector2f getPosition() const;
+	sf::Vector2f getPosition() const;
 
-    bool hasHit() const;
-    void markAsHit();
+	bool hasHit() const;
+	void markAsHit();
 
-    void updateMovement() override;
+	void updateMovement() override;
 private:
-    // Bullet attributes
-    sf::RectangleShape shape;
-    bool hasHitCharacter;  //Flag to track
-    int damage;
+	// Bullet attributes
+	sf::RectangleShape shape;
+	bool hasHitCharacter;  //Flag to track
+	int damage;
 
-    //Private helper method to set the bullet's appearance
-    void initShape();
+	//Private helper method to set the bullet's appearance
+	void initShape();
 };
 
 

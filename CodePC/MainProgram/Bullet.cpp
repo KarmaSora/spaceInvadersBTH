@@ -1,7 +1,7 @@
 #include "Bullet.h"
 
 Bullet::Bullet()
-	:  damage(1), hasHitCharacter(false)
+	: damage(1), hasHitCharacter(false)
 {
 	Entity::setSpeed(0.f);
 	Entity::setAlive(false);
@@ -9,7 +9,7 @@ Bullet::Bullet()
 }
 
 Bullet::Bullet(float startX, float startY, float speed, int damage)
-	:  damage(damage), hasHitCharacter(false)
+	: damage(damage), hasHitCharacter(false)
 {
 	Entity::setSpeed(speed);
 	Entity::setAlive(true);
@@ -70,7 +70,7 @@ void Bullet::markAsHit()
 
 void Bullet::updateMovement()
 {
-	update(0.0f);	
+	update(0.0f);
 }
 
 void Bullet::initShape()

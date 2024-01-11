@@ -1,7 +1,7 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include "Obstacle.h"
 #include "Enemy.h"
+#include "Obstacle.h"
+#include <SFML/Graphics.hpp>
 
 class Balloon : public sf::Drawable
 {
@@ -22,7 +22,6 @@ public:
 	float getPosY() const;
 	sf::Sprite getSprite() const;
 	bool collidedWith(const Obstacle& obstacle);
-	bool collidedWith( Enemy& enemy);
-	// Inherited via Drawable
-	virtual void draw(sf::RenderTarget & target,sf::RenderStates states) const override;
+	bool collidedWith(Enemy& enemy);
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

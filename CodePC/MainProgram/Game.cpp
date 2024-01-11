@@ -1,12 +1,8 @@
 #include "Game.h"
-#include <iostream>
-#include <fstream>
-#include <string>
 #include "Menu.h"
-
-#include "SFML/Audio/Music.hpp"
-#include "SFML/Audio/Sound.hpp"
-#include "SFML/Audio/SoundBuffer.hpp"
+#include <fstream>
+#include <iostream>
+#include <string>
 
 void Game::handleEvents()
 {
@@ -24,24 +20,19 @@ void Game::update()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 		window.close();
-		//exit(0);
 	}
-
-	//WTFTHis is bullshit
-	//WTF COMMITS CHANGES
 
 	elapsedTimeSinceLastUpdate += clock.restart();
 	while (elapsedTimeSinceLastUpdate > timePerFrame)
 	{
 
-		// Bounds checking to prevent the player from moving outside the window
 
 		sf::Vector2f characterPosition = this->character.getPosition();
 		sf::Vector2f characterSize = this->character.getSize();
 		sf::Vector2u windowSize = this->window.getSize();
 
 
-	
+
 
 		this->character.act();
 
@@ -78,7 +69,7 @@ void Game::render()
 	this->window.clear();
 
 	this->window.draw(background);
-	
+
 
 	this->window.draw(this->character);
 	this->window.draw(*this->balloon);
@@ -86,12 +77,10 @@ void Game::render()
 
 
 
-	//////
 	updateEnemies();
 	for (const auto& enemy : enemies) {
 		if (enemy != nullptr) enemy->draw(window);
 	}
-	//////
 	for (int i = 0; i < character.getHealth(); ++i) {
 		window.draw(lifeSprites[i]);
 
@@ -102,11 +91,11 @@ void Game::render()
 
 void Game::updateEnemies()
 {
-	
-	// Vector to store enemies marked for removal
+
+	//Vector to store enemies marked for removal
 	std::vector<std::unique_ptr<Enemy>> enemiesToRemove;
 
-	// Iterate over the enemies and mark them for removal
+	//Iterate over the enemies and mark them for removal
 	for (auto it = enemies.begin(); it != enemies.end(); /* no ++it here */) {
 		auto& enemy = *it;
 
@@ -117,21 +106,18 @@ void Game::updateEnemies()
 				for (auto& e : enemies) {
 					e->changeDirection();
 				}
-				// Don't break here, just mark the enemy for removal
-				//enemiesToRemove.push_back(std::move(enemy)); --Karma
-				//it = enemies.erase(it);  // Increment 'it' after erasing --Karma
 			}
 			else if (this->balloon->collidedWith(*enemy)) {
 				this->balloon->stopMoving();
 				this->character.receiveBalloon(this->balloon.get());
 
-				// Mark the enemy for removal
+				//Mark the enemy for removal
 				enemiesToRemove.push_back(std::move(enemy));
-				it = enemies.erase(it);  // Increment 'it' after erasing
+				it = enemies.erase(it); 
 				GameScore++;
 			}
 			else {
-				++it;  //Increment 'it' if no removal
+				++it;
 			}
 		}
 		else {
@@ -140,7 +126,7 @@ void Game::updateEnemies()
 		}
 	}
 
-	// Remove marked enemies from the vector
+	//Remove marked enemies from the vector
 	enemies.erase(std::remove_if(enemies.begin(), enemies.end(),
 		[&enemiesToRemove](const auto& enemy) {
 			return std::find(enemiesToRemove.begin(), enemiesToRemove.end(), enemy) != enemiesToRemove.end();
@@ -152,7 +138,6 @@ void Game::updateEnemies()
 void Game::updateBullets()
 {
 	for (auto& enemy : enemies) {
-		//Assuming some threshold for collision, adjust as needed
 		enemy->updateBullets(timePerFrame.asSeconds());
 
 		for (auto& bullet : enemy->getBullets()) {
@@ -243,7 +228,7 @@ Game::Game()
 
 	std::random_device rd;
 	std::mt19937 gen(rd());
-	std::uniform_int_distribution<> firingDelayDistribution(100, 900); // Random firing delay between 100 and 900, change this to your liking (900)
+	std::uniform_int_distribution<> firingDelayDistribution(100, 900); //Random firing delay between 100 and 900, change this to your liking (900)
 
 	for (int row = 0; row < 3; row++) {
 		for (int col = 0; col < 8; col++) {
@@ -252,15 +237,15 @@ Game::Game()
 			enemies.push_back(std::move(newEnemy));
 		}
 	}
-	backgroundTexture.loadFromFile("../Images/stars1.png");
+	backgroundTexture.loadFromFile("../../CodePC/Images/stars1.png");
 	background.setTexture(backgroundTexture);
 
 	//Hearts:
 	heartTexture.loadFromFile("../../CodePC/Images/pixel-heart.png");
-	
+
 	for (float i = 0; i < 3; ++i) {
 		lifeSprite.setTexture(heartTexture);
-		
+
 		lifeSprite.setPosition(10.f + i * 30.f, 10.f);
 
 		lifeSprite.setScale(0.03f, 0.03f);
@@ -273,16 +258,16 @@ void Game::run()
 {
 
 
-	while (this->window.isOpen()&&this->GameScore!=24)
+	while (this->window.isOpen() && this->GameScore != 24)
 	{
 
 		handleEvents();
 		update();
 		render();
 	}
-	
+
 	registerScore(this->GameScore);
-	if(this->GameScore ==24){ 
+	if (this->GameScore == 24) {
 		gameScreen("You won!");
 	}
 
@@ -312,14 +297,14 @@ std::string Game::readScore() const
 	std::ifstream readFile;
 	readFile.open(this->scoreFilePath);
 	if (readFile.is_open()) {
-		while(std::getline(readFile, singleLine)){
+		while (std::getline(readFile, singleLine)) {
 			totalScore += singleLine;
-		
+
 		}
 	}
 	readFile.close();
 
-	
+
 
 	return totalScore;
 }
