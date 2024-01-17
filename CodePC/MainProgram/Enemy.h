@@ -35,7 +35,7 @@ public:
 	void fireBullet();
 
 	// Update bullets' positions and check for collisions
-	void updateBullets(float deltaTime);
+	void updateBullets();
 
 	// Draw bullets on the window
 	void drawBullets(sf::RenderWindow& window);

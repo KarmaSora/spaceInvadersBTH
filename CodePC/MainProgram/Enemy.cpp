@@ -56,8 +56,7 @@ void Enemy::update(float deltaTime)
 		}
 
 		// Update bullets
-		float bulletSpeedDown = 5.f; // Bullets move down
-		updateBullets(bulletSpeedDown);
+		updateBullets();
 	}
 }
 
@@ -80,11 +79,11 @@ void Enemy::fireBullet()
 	bullets.push_back(bullet);
 }
 
-void Enemy::updateBullets(float deltaTime)
+void Enemy::updateBullets()
 {
 	//Update each bullet's position
 	for (auto& bullet : bullets) {
-		bullet.update(deltaTime);
+		bullet.updateMovement();
 	}
 
 	//Remove inactive bullets (out of bounds)
@@ -96,7 +95,8 @@ void Enemy::updateBullets(float deltaTime)
 void Enemy::drawBullets(sf::RenderWindow& window)
 {
 	for (const auto& bullet : bullets) {
-		bullet.draw(window);
+		window.draw(bullet);
+		
 	}
 }
 

@@ -14,22 +14,15 @@ Bullet::Bullet(float startX, float startY, float speed, int damage)
 	Entity::setSpeed(speed);
 	Entity::setAlive(true);
 	initShape();
-	shape.setPosition(startX, startY);
+	//shape.setPosition(startX, startY);
+	Entity::setPosition(startX, startY);
 }
 
 
-void Bullet::update(float deltaTime)
-{
-	float movement = Entity::getSpeed() * deltaTime;
-	shape.move(0.f, movement);
-	if (shape.getPosition().y > 600.f) {
-		deactivate();
-	}
-}
 
-void Bullet::draw(sf::RenderWindow& window) const
+void Bullet::draw(sf::RenderWindow& window) 
 {
-	window.draw(shape);
+	window.draw(getRectangle());
 }
 
 bool Bullet::isActive() const
@@ -48,14 +41,15 @@ int Bullet::getDamage() const
 	return this->damage;
 }
 
-sf::FloatRect Bullet::getBounds() const
+sf::FloatRect Bullet::getBounds() 
 {
-	return this->shape.getGlobalBounds();
+
+	return Entity::getGlobalBounds();
 }
 
 sf::Vector2f Bullet::getPosition() const
 {
-	return this->shape.getPosition();
+	return Entity::getPosition();
 }
 
 bool Bullet::hasHit() const
@@ -70,11 +64,15 @@ void Bullet::markAsHit()
 
 void Bullet::updateMovement()
 {
-	update(0.0f);
+	float movement = Entity::getSpeed() + 0.5f;
+	Entity::move(0.f, movement);
+	if (Entity::getPosition().y > 600.f) {
+		deactivate();
+	}
 }
 
 void Bullet::initShape()
 {
-	shape.setSize(sf::Vector2f(5, 10));
-	shape.setFillColor(sf::Color::Red);
+	Entity::setSize(sf::Vector2f(5, 10));
+	Entity::setFillColor(sf::Color::Red);
 }

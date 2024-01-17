@@ -13,20 +13,19 @@ private:
 
 public:
 	Character();
-	Character(std::string texturePath, float xPos, float yPos, float speed, bool alive, int dX, int dY, float windowWidth, float windowHeight, int health = 3);
 
 	void act();
 	void receiveBalloon(Balloon* theBalloon);
 	void releaseBalloon();
 
 
-	void setPosition(float xPos, float yPos) override;
+	void setPosition(float xPos, float yPos); //tog bort override
 
 
-	bool isCollidingWith(const Bullet& bullet);
+	bool isCollidingWith( Bullet& bullet);
 	void takeDamage(int damage);
 	sf::FloatRect getBounds();
 
 	int getHealth() const;
-	void updateMovement() override;
+	void updateMovement() override;		//override sker  -> dynamisk binding
 };

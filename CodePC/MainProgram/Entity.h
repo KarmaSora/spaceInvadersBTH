@@ -38,7 +38,7 @@ public:
 		// Setters for position
 	void setDX(const int dX);
 	void setDY(const int dY);
-	virtual void setPosition(float xPos, float yPos);
+	void setPosition(float xPos, float yPos); //tog bort virtual härifrån och override från Character.h
 	void setXPos(float xPos);
 	void setYPos(float yPos);
 	void setTexture(const sf::Texture& texture, bool resetRect = false);
@@ -47,7 +47,7 @@ public:
 	void setPosOfRect(float xPos, float yPos);
 	void setFillColor(sf::Color color);
 	sf::Color getFillColor();
-	virtual void move(float offsetX, float offsetY);
+	void move(float offsetX, float offsetY);	//tog bort vitual
 
 
 	// Setters for widthHeight
@@ -58,8 +58,8 @@ public:
 	// Getters
 	int getDX() const;
 	int getDY() const;
-	float getXPos() const;
-	float getYPos() const;
+	//float getXPos() const;		// var inte deklarerade och användes inte...
+	//float getYPos() const;
 	const sf::Texture& getTexture() const;
 	float getSpeed() const;
 
@@ -74,7 +74,7 @@ public:
 	float getPosYOfRect();
 
 	// Getters for position
-	virtual sf::Vector2f getPosition() const;
+	 sf::Vector2f getPosition() const;	//tog bort virtual
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 

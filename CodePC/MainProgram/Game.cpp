@@ -138,12 +138,12 @@ void Game::updateEnemies()
 void Game::updateBullets()
 {
 	for (auto& enemy : enemies) {
-		enemy->updateBullets(timePerFrame.asSeconds());
+		enemy->updateBullets();
 
 		for (auto& bullet : enemy->getBullets()) {
 			if (!bullet.hasHit()) {
 				sf::FloatRect characterBounds = character.getBounds();
-				sf::FloatRect bulletBounds = bullet.getBounds();
+				sf::FloatRect bulletBounds = const_cast<Bullet&>(bullet).getBounds();
 
 				if (characterBounds.intersects(bulletBounds)) {
 					character.takeDamage(bullet.getDamage());

@@ -10,9 +10,6 @@ Entity::Entity()
 	this->setTexture(tex);
 	this->rectShape.setFillColor(sf::Color::Green);
 
-	////sets defult outline for entity
-	//this->rectShape.setOutlineColor(sf::Color::Cyan);
-	//this->rectShape.setOutlineThickness(5.f);
 
 }
 
@@ -66,6 +63,7 @@ sf::FloatRect Entity::getGlobalBounds()
 
 //Setters&Getters
 void Entity::setXPos(float xPos) {
+	this->xPos = xPos;
 	this->xPos = xPos;
 	setPosition(xPos, this->yPos);
 }
