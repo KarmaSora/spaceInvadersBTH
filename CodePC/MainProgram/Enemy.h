@@ -30,7 +30,6 @@ public:
 
 	void move();
 	void changeDirection();
-	void update();
 	void draw(sf::RenderWindow& window);
 
 	// Create and fire a bullet

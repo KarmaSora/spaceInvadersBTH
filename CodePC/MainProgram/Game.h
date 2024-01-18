@@ -21,6 +21,8 @@ private:
 	int GameScore = 0;
 	std::string scoreFilePath = "../../CodePC/Images/gameScore.txt";
 	std::vector<std::unique_ptr<Enemy>> enemies;
+	//create entity so i can use dynamic bindning
+
 	sf::Texture enemyTexture;
 
 private:

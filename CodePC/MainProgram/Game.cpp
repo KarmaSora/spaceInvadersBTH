@@ -98,7 +98,22 @@ void Game::updateEnemies()
 
 		enemy->setDeltaTime(timePerFrame.asSeconds());
 		//enemy->update();
-		enemy->updateMovement();
+		//enemy->updateMovement();
+
+		//dynamic_cast<Enemy*>(entityPtr)->updateMovement();
+			
+			
+			
+		entityPtr = dynamic_cast<Enemy*>(enemy.get());
+
+
+
+		entityPtr->updateMovement();
+			
+
+		
+			
+
 
 
 

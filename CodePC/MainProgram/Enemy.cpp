@@ -46,10 +46,7 @@ void Enemy::changeDirection()
 	Entity::move(0.f, 20.f); //Move down
 }
 
-void Enemy::update()
-{
-	
-}
+
 
 void Enemy::draw(sf::RenderWindow& window)
 {
