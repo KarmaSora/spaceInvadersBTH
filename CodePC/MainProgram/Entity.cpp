@@ -117,6 +117,8 @@ void Entity::updateMovement()
 	this->rectShape.setPosition(xPos, yPos);
 
 
+
+
 }
 void Entity::setDX(const int dX)
 {

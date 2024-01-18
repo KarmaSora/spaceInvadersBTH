@@ -20,11 +20,7 @@ Bullet::Bullet(float startX, float startY, float speed, int damage)
 
 
 
-void Bullet::draw(sf::RenderWindow& window) 
-{
-	//window.draw(getRectangle());
-	window.draw(*this);
-}
+
 
 bool Bullet::isActive() const
 {
@@ -76,4 +72,6 @@ void Bullet::initShape()
 {
 	Entity::setSize(sf::Vector2f(5, 10));
 	Entity::setFillColor(sf::Color::Red);
+	Entity::setOutlineColor(sf::Color::White);
+	Entity::setOutlineThickness(1.f);
 }

@@ -10,15 +10,17 @@ private:
 	bool isAlive;
 
 	int direction; // 1 for right, -1 for left
-
 	std::vector<Bullet> bullets;
 	float frameCounter;
+	float deltaTime;
+
 	std::random_device rd;
 	std::mt19937 gen;
 	std::uniform_int_distribution<> dis;
 
 	int firingDelay;
 public:
+	void setDeltaTime(float deltaTIme);
 	bool getIsAlive() const;
 	sf::Vector2f getPosition() const;
 	void setPosition(float x, float y);
@@ -28,7 +30,7 @@ public:
 
 	void move();
 	void changeDirection();
-	void update(float deltaTime);
+	void update();
 	void draw(sf::RenderWindow& window);
 
 	// Create and fire a bullet

@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 
+
+
 void Game::handleEvents()
 {
 	sf::Event event;
@@ -84,6 +86,8 @@ void Game::render()
 
 void Game::updateEnemies()
 {
+	
+
 
 	//Vector to store enemies marked for removal
 	std::vector<std::unique_ptr<Enemy>> enemiesToRemove;
@@ -92,9 +96,14 @@ void Game::updateEnemies()
 	for (auto it = enemies.begin(); it != enemies.end(); /* no ++it here */) {
 		auto& enemy = *it;
 
-		enemy->update(timePerFrame.asSeconds());
+		enemy->setDeltaTime(timePerFrame.asSeconds());
+		//enemy->update();
+		enemy->updateMovement();
+
+
 
 		if (enemy != nullptr) {
+
 			if (enemy->getPosition().x <= 0 || enemy->getPosition().x >= 860) {
 				for (auto& e : enemies) {
 					e->changeDirection();
@@ -214,7 +223,7 @@ void Game::gameScreen(std::string toDiplay)
 Game::Game()
 	: window(sf::VideoMode(WIDTH, HEIGHT), "Space Invaders"),
 	timePerFrame(sf::seconds(1.f / 60.f)),
-	elapsedTimeSinceLastUpdate(sf::Time::Zero), obstacle(HEIGHT, WIDTH, sf::Color::Yellow)
+	elapsedTimeSinceLastUpdate(sf::Time::Zero), obstacle(HEIGHT, WIDTH, sf::Color::Yellow), entityPtr(nullptr)
 {
 	this->balloon = std::make_unique<Balloon>(3.0f);
 	this->character.receiveBalloon(this->balloon.get());

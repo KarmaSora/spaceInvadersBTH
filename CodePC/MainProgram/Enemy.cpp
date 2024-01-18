@@ -1,5 +1,10 @@
 #include "Enemy.h"
 
+void Enemy::setDeltaTime(float deltaTIme)
+{
+	this->deltaTime=deltaTIme;
+}
+
 bool Enemy::getIsAlive() const
 {
 	return isAlive;
@@ -41,23 +46,9 @@ void Enemy::changeDirection()
 	Entity::move(0.f, 20.f); //Move down
 }
 
-void Enemy::update(float deltaTime)
+void Enemy::update()
 {
-	if (this != nullptr) {
-		move(); //Move the enemy
-
-
-		//Shooting:
-		frameCounter += deltaTime;
-
-		if (frameCounter >= firingDelay) {
-			fireBullet();
-			frameCounter = 0;  // Reset
-		}
-
-		// Update bullets
-		updateBullets();
-	}
+	
 }
 
 void Enemy::draw(sf::RenderWindow& window)
@@ -110,5 +101,18 @@ sf::FloatRect Enemy::getBounds()
 
 void Enemy::updateMovement()
 {
-	Entity::updateMovement(); //Dry code.
+	if (this != nullptr) {
+		move(); //Move the enemy
+
+		//Shooting:
+		frameCounter += deltaTime;
+
+		if (frameCounter >= firingDelay) {
+			fireBullet();
+			frameCounter = 0;  // Reset
+		}
+
+		// Update bullets
+		updateBullets();
+	}
 }
