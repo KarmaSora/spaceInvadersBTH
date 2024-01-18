@@ -65,10 +65,7 @@ void Enemy::draw(sf::RenderWindow& window)
 	if (this != nullptr && isAlive) {
 		window.draw(getRectangle());
 		drawBullets(window);
-
 	}
-
-
 }
 
 void Enemy::fireBullet()
@@ -82,7 +79,7 @@ void Enemy::fireBullet()
 void Enemy::updateBullets()
 {
 	//Update each bullet's position
-	for (auto& bullet : bullets) {
+	for (auto& bullet : bullets) {  //använd basklass pekare...
 		bullet.updateMovement();
 	}
 
@@ -95,9 +92,9 @@ void Enemy::updateBullets()
 void Enemy::drawBullets(sf::RenderWindow& window)
 {
 	for (const auto& bullet : bullets) {
-		window.draw(bullet);
-		
+		window.draw(bullet);	
 	}
+
 }
 
 const std::vector<Bullet>& Enemy::getBullets() const
@@ -112,5 +109,5 @@ sf::FloatRect Enemy::getBounds()
 
 void Enemy::updateMovement()
 {
-	Entity::updateMovement();
+	Entity::updateMovement(); //Dry code.
 }

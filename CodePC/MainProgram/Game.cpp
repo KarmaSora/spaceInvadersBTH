@@ -27,13 +27,6 @@ void Game::update()
 	{
 
 
-		sf::Vector2f characterPosition = this->character.getPosition();
-		sf::Vector2f characterSize = this->character.getSize();
-		sf::Vector2u windowSize = this->window.getSize();
-
-
-
-
 		this->character.act();
 
 
@@ -137,6 +130,7 @@ void Game::updateEnemies()
 
 void Game::updateBullets()
 {
+	
 	for (auto& enemy : enemies) {
 		enemy->updateBullets();
 

@@ -43,6 +43,8 @@ private:
 
 	std::unique_ptr<Balloon>(balloon);
 
+	Entity* entityPtr;
+
 
 
 	void handleEvents();
