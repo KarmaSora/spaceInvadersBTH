@@ -22,7 +22,7 @@ public:
 	Entity();
 	Entity(std::string texturePath, float xPos, float yPos, float speed, bool alive, int dX, int dY, float windowWidth, float windowHeight);
 
-	sf::RectangleShape getRectangle();
+	//sf::RectangleShape getRectangle();
 	void setRectangle(const sf::RectangleShape& rectShape);
 	sf::Vector2f getPosition();
 	void setSize(const sf::Vector2f size);

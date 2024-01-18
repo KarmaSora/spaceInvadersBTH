@@ -63,7 +63,8 @@ void Enemy::update(float deltaTime)
 void Enemy::draw(sf::RenderWindow& window)
 {
 	if (this != nullptr && isAlive) {
-		window.draw(getRectangle());
+		//window.draw(getRectangle());
+		window.draw(*this);
 		drawBullets(window);
 	}
 }

@@ -47,12 +47,6 @@ float Balloon::getPosY() const
 {
 	return this->sprite.getPosition().y;
 
-
-}
-
-sf::Sprite Balloon::getSprite() const
-{
-	return this->sprite;
 }
 
 bool Balloon::collidedWith(const Obstacle& obstacle)

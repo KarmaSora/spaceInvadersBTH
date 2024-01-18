@@ -22,7 +22,8 @@ Bullet::Bullet(float startX, float startY, float speed, int damage)
 
 void Bullet::draw(sf::RenderWindow& window) 
 {
-	window.draw(getRectangle());
+	//window.draw(getRectangle());
+	window.draw(*this);
 }
 
 bool Bullet::isActive() const
