@@ -19,7 +19,7 @@ public:
 	void releaseBalloon();
 
 
-	void setPosition(float xPos, float yPos); //tog bort override
+	void setPosition(float xPos, float yPos); 
 
 
 	bool isCollidingWith( Bullet& bullet);

@@ -97,24 +97,10 @@ void Game::updateEnemies()
 		auto& enemy = *it;
 
 		enemy->setDeltaTime(timePerFrame.asSeconds());
-		//enemy->update();
-		//enemy->updateMovement();
-
-		//dynamic_cast<Enemy*>(entityPtr)->updateMovement();
 			
 			
-			
-		entityPtr = dynamic_cast<Enemy*>(enemy.get());
-
-
-
-		entityPtr->updateMovement();
-			
-
-		
-			
-
-
+		entityPtr = dynamic_cast<Enemy*>(enemy.get()); //dynamic cast to call updateMovement() from Enemy class
+		entityPtr->updateMovement(); //dynamic binding
 
 
 		if (enemy != nullptr) {

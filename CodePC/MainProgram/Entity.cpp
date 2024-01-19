@@ -23,15 +23,7 @@ Entity::Entity(std::string texturePath, float xPos, float yPos, float speed, boo
 
 }
 
-//sf::RectangleShape Entity::getRectangle()
-//{
-//	return this->rectShape;
-//}
 
-void Entity::setRectangle(const sf::RectangleShape& rectShape)
-{
-	this->rectShape = rectShape;
-}
 
 sf::Vector2f Entity::getPosition()
 {

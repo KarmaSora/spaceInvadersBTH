@@ -22,8 +22,6 @@ public:
 	Entity();
 	Entity(std::string texturePath, float xPos, float yPos, float speed, bool alive, int dX, int dY, float windowWidth, float windowHeight);
 
-	//sf::RectangleShape getRectangle();
-	void setRectangle(const sf::RectangleShape& rectShape);
 	sf::Vector2f getPosition();
 	void setSize(const sf::Vector2f size);
 	sf::Vector2f getSize();
@@ -34,8 +32,6 @@ public:
 	virtual void updateMovement() = 0;
 
 	//Setters&Getters
-		// Setters
-		// Setters for position
 	void setDX(const int dX);
 	void setDY(const int dY);
 	void setPosition(float xPos, float yPos); //tog bort virtual härifrån och override från Character.h
@@ -58,8 +54,6 @@ public:
 	// Getters
 	int getDX() const;
 	int getDY() const;
-	//float getXPos() const;		// var inte deklarerade och användes inte...
-	//float getYPos() const;
 	const sf::Texture& getTexture() const;
 	float getSpeed() const;
 
@@ -74,7 +68,7 @@ public:
 	float getPosYOfRect();
 
 	// Getters for position
-	 sf::Vector2f getPosition() const;	//tog bort virtual
+	sf::Vector2f getPosition() const;	//tog bort virtual
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 

@@ -51,7 +51,6 @@ void Enemy::changeDirection()
 void Enemy::draw(sf::RenderWindow& window)
 {
 	if (this != nullptr && isAlive) {
-		//window.draw(getRectangle());
 		window.draw(*this);
 		drawBullets(window);
 	}
@@ -68,7 +67,7 @@ void Enemy::fireBullet()
 void Enemy::updateBullets()
 {
 	//Update each bullet's position
-	for (auto& bullet : bullets) {  //använd basklass pekare...
+	for (auto& bullet : bullets) { 
 		bullet.updateMovement();
 	}
 

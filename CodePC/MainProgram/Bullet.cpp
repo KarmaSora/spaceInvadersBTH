@@ -14,7 +14,6 @@ Bullet::Bullet(float startX, float startY, float speed, int damage)
 	Entity::setSpeed(speed);
 	Entity::setAlive(true);
 	initShape();
-	//shape.setPosition(startX, startY);
 	Entity::setPosition(startX, startY);
 }
 

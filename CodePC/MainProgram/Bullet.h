@@ -10,10 +10,7 @@ public:
 	Bullet();
 	Bullet(float startX, float startY, float speed, int damage);
 
-	// Update the bullet's position
 
-	// Draw the bullet on the window
-	void draw(sf::RenderWindow& window) ;
 
 	// Check if the bullet is currently active
 	bool isActive() const;
@@ -32,7 +29,6 @@ public:
 	void updateMovement() override;
 private:
 	// Bullet attributes
-	//sf::RectangleShape shape;								//remove this....		
 	bool hasHitCharacter;  //Flag to track
 	int damage;
 

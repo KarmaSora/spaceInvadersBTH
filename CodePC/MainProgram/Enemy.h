@@ -47,7 +47,7 @@ public:
 	sf::FloatRect getBounds();
 
 
-	void updateMovement() override;
+	void updateMovement() override; //override sker  -> dynamisk binding
 
 };
 
